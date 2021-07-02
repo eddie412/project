@@ -3,22 +3,38 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>Home</title>
+	<title>전통 이酒 </title>
 </head>
 <body>
 <h1>
 	전통 이酒   
 </h1>
+	<div id="root">
+		<header id = "header">
+			<div id="header_box">
+				<%@ include file = "include/header.jsp" %>
+			</div>
+		</header>
+		
+		<nav id= "nav">
+			<div id="nav_box">
+				<%@ include file = "include/nav.jsp" %>
+			</div>
+		</nav>
+		
+		<section id="container">
+			<div id="container_box">
+				본문
+			</div>
+		
+		</section>
+		
+		<footer>
+			<div id="footer_box">
+				<%@ include file = "include/footer.jsp" %>
+			</div>
+		</footer>
+	</div>
 
-<!-- Navbar-->
-	<nav id ="navbar">
-		<div class="navbar_menu">
-			<ul class = "navbar_menu">
-				<li class = "navbar_menu_item">Home</li>
-				<li class = "navbar_menu_item">로그인</li>
-				<li class = "navbar_menu_item">마이페이지</li>
-			</ul>
-		</div>
-	</nav>
 </body>
 </html>
