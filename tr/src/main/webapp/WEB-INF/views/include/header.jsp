@@ -32,6 +32,7 @@
 	<table>
 		<tr>
 			<td><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></td>
+			<td><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></td>
 			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
 			<td>
 				<ul>
