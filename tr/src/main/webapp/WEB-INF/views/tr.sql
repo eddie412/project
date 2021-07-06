@@ -43,7 +43,7 @@ create table tr_qna(
 	qWriter varchar2(10) not null ,			--작성자
 	qDate date default sysdate,
 	qContent varchar2(1000) not null, 
-	qPass number(12) not null
+	qPass number(12)
 );
 
 alter table tr_qna modify qWriter varchar2(10);

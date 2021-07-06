@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/3.8.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/3.8.1 https://maven.apache.org/maven-v3_8_1.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tr</groupId>
 	<artifactId>controller</artifactId>
-	<name>tr</name>
+	<name>study</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
+		<!-- 스프링 버전 수정 -->
 		<java-version>1.8</java-version>
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
 	<!-- 오라클 -->
-    <repositories>
-        <repository>
-               <id>oracle</id>
-               <url>http://maven.jahia.org/maven2</url>
-          </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>oracle</id>
+			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -65,7 +68,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.15</version>
@@ -88,16 +91,7 @@
 				</exclusion>
 			</exclusions>
 			<scope>runtime</scope>
-		</dependency> -->
-		
-		<!-- log4j 추가 -->
- 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-		<dependency>
-    		<groupId>log4j</groupId>
-    		<artifactId>log4j</artifactId>
-   			<version>1.2.17</version>
 		</dependency>
- 
 
 		<!-- @Inject -->
 		<dependency>
@@ -124,39 +118,36 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<!-- spring-jdbc -->
+		 <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
 	
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13</version>
+			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>
-		
-		<!-- spring-test 추가 -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-test</artifactId>
-    		<version>${org.springframework-version}</version>
-    		<scope>test</scope>
-		</dependency>
-		
-		<!-- 오라클 JDBC 드라이버 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>12.1.0.2</version>
-        </dependency>
-     
-        <!-- spring-jdbc -->
-        <dependency>
+		</dependency> 
+		<!-- spring test -->
+		 <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <artifactId>spring-test</artifactId>
             <version>${org.springframework-version}</version>
+            <scope>test</scope>
         </dependency>
         
-        <!-- org.mybatis/mybatis -->
+         <!-- log4jdbc-log4j2-jdbc4 -->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+            <version>1.16</version>
+        </dependency>
+  
+  	<!-- org.mybatis/mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -170,15 +161,70 @@
             <version>1.3.0</version>
         </dependency>
         
-        
-		
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
-		<dependency>
-    		<groupId>com.oracle.database.jdbc</groupId>
-    		<artifactId>ojdbc6</artifactId>
-   		 	<version>11.2.0.4</version>
+        <!-- ajax 데이터 컨트롤러 사용 -->
+        <dependency>
+       		<groupId>org.codehaus.jackson</groupId>
+       		<artifactId>jackson-mapper-asl</artifactId>
+       		<version>1.9.13</version>
 		</dependency>
-		        
+		<dependency>
+        	<groupId>org.codehaus.jackson</groupId>
+        	<artifactId>jackson-core-asl</artifactId>
+        	<version>1.9.13</version>
+		</dependency>
+
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+    		<version>2.10.0</version>
+		</dependency>
+		
+		<!-- 암호화 START -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-core</artifactId>
+    		<version>5.0.8.RELEASE</version>
+		</dependency>
+
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+   			<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-web</artifactId>
+    		<version>5.0.8.RELEASE</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-config</artifactId>
+    		<version>5.0.8.RELEASE</version>
+		</dependency>
+		<!-- 암호화 END -->
+        
+        <!-- 첨부파일 START -->  
+        <!-- MultipartHttpServletRequest -->
+        <dependency>
+        	<groupId>commons-io</groupId>
+        	<artifactId>commons-io</artifactId>
+        	<version>2.0.1</version>
+        </dependency>  
+        
+        <dependency>
+        	<groupId>commons-fileupload</groupId>
+        	<artifactId>commons-fileupload</artifactId>
+        	<version>1.2.2</version>
+        </dependency> 
+        <!-- 첨부파일 END -->
+        <!-- 트랜젝션 START -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-tx</artifactId>
+		    <version>3.1.1.RELEASE</version>
+		</dependency>
+		<!-- 트랜젝션 END -->
 	</dependencies>
     <build>
         <plugins>

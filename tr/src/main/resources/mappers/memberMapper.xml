@@ -2,12 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="MemberMapper">
+<mapper namespace="memberMapper">
 
 	<!-- 회원 가입 -->
-	<insert id="signup">
-		 insert into tbl_member(userId, userPass, userName, userPhon)
+	<insert id="register">
+		 INSERT into TR_MEMBER(userId, userPass, userName, userPhon)
  		 values(#{userId}, #{userPass}, #{userName}, #{userPhon}) 
 	</insert>
-
+	<!-- 로그인 -->
+   	<select id="login" resultType="com.tr.VO.MemberVO">
+   		Select USERID, USERPASS
+   		FROM tr_MEMBER
+   		Where USERID = #{userId}
+   			<!-- AND USERPASS = #{userPass} -->   	
+   	</select>
 </mapper>

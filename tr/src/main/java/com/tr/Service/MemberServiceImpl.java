@@ -11,12 +11,23 @@ import com.tr.VO.MemberVO;
 public class MemberServiceImpl implements MemberService{
 	
 	@Inject
-	private MemberDAO dao;
+	MemberDAO dao;
 	
 	//회원가입
 	@Override
-	public void signup(MemberVO vo) throws Exception{
-		dao.singup(vo);
+	public void register(MemberVO vo) throws Exception{
+		dao.register(vo);
+	}
+	//로그인
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception{
+		return dao.login(vo);
+	}
+	//아이디 중복 체크
+	@Override
+	public int idChk(MemberVO vo) throws Exception{
+		int result = dao.idChk(vo);
+		return result;
 	}
 	
 

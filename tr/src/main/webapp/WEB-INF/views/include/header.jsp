@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>header</title>
 </head>
 <body>
-
+	<table>
+		<tr>
+			<td>메뉴</td>
+			<td><img src="/images/logo.PNG" /></td>
+			<td>마이페이지/장바구니</td>
+		</tr>
+		
+	</table>
 </body>
 </html>
