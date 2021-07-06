@@ -18,6 +18,8 @@
 			<label for="userPass">비밀번호: </label>
    			<input id="userPass" name="userPass" required="required" />
 		</div>
+		
+		<button type="submit" id="login_btn" name="login_btn">로그인</button>
 	</form>
 </body>
 </html>
