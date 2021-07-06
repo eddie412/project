@@ -6,7 +6,6 @@
 	<title>전통 이酒 </title>
 </head>
 <body>
-
 	<div id="root">
 		<header id = "header">
 			<div id="header_box">
