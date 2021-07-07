@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+  <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
  <mapper namespace="product">
  	<!-- 01. 상품 전체 목록  -->
- 	<select id="listProduct" resultType="com.example.spring02.model.shop.dto.ProductVO">
+ 	<select id="listProduct" resultType="com.tr.VO.ProductVO">
  		SELECT
  			pNo,
  			pName,
@@ -16,7 +16,7 @@
  		ORDER BY pName
  	</select>
  	<!-- 02.상품 상세보기 -->
- 	<select id="detailProduct" resultType="com.example.spring02.model.shop.dto.ProductVO">
+ 	<select id="detailProduct" resultType="com.tr.VO.ProductVO">
  		SELECT
  			pNo,
  			pName,

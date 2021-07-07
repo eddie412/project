@@ -15,40 +15,40 @@ public class ProductServiceImpl  implements ProductService{
 	@Inject
 	ProductDAO productDao;
 
+	//상품목록
 	@Override
 	public List<ProductVO> listProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.listProduct();
 	}
 
+	//상품상세
 	@Override
 	public ProductVO detailProduct(int pNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.detailProduct(pNo);
 	}
 
+	//상품수정
 	@Override
 	public void updateProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
+		productDao.updateProduct(vo);
 	}
 
+	//상품삭제
 	@Override
 	public void deleteProduct(int pNo) {
-		// TODO Auto-generated method stub
-		
+		productDao.deleteProduct(pNo);
 	}
-
+	
+	//상품추가
 	@Override
 	public void insertProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		
+		productDao.insertProduct(vo);
 	}
 
+	//상품이미지 삭제를 위한 이미지파일정보
 	@Override
 	public String fileInfo(int pNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.fileInfo(pNo);
 	}
 
 	

@@ -3,10 +3,17 @@ package com.tr.VO;
 public class ProductVO {
 	private String pNO;
 	private String pName;
+	private String pImg;
 	private int pPrice;
 	private int pCount;
 	private String pInfo;
 	private int pSales;
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
 	public String getpNO() {
 		return pNO;
 	}
