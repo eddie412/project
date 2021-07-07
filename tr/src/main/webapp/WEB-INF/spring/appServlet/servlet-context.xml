@@ -23,6 +23,6 @@
 	
 	<context:component-scan base-package="com.tr.controller" />
 	
-	
-	
+	<!-- mapping : 가상 경로(상대경로), location : 리소스가 실제로 저장된 경로 -->
+	<resources location="/WEB-INF/views/images/" mapping="/images/**"/>
 </beans:beans>

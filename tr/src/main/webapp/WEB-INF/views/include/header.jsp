@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
++<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
++<style>
 	#menu {
 	 	width : 40px;
 	 	margin-right: 600px;
@@ -26,11 +26,19 @@
 		margin-right: 50px;
 	}
 </style>
-<title>header</title>
+<title>Insert title here</title>
+</head>
+<body>
+ <title>header</title>
 </head>
 <body>
 	<table>
 		<tr>
+			<td>메뉴</td>
+			<td><a href = "login.jsp" >마이페이지</a></td>
+			<td>장바구니</td>
+		</tr>
+		
 			<td><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></td>
 			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
 			<td>
