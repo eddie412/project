@@ -1,11 +1,14 @@
 package com.tr.DAO;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
@@ -29,5 +32,12 @@ public class MemberDAOImpl implements MemberDAO{
 		int result=sql.selectOne("memberMapper.idChk", vo);
 		return result;
 	}
+	//마이페이지_주문상세
+	@Override
+	public List<OrderVO> orderView() throws Exception {
+		return sql.selectList("memberMapper.orderview");
+	}
+
+	
 
 }

@@ -32,12 +32,11 @@
 	<table>
 		<tr>
 			<td><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></td>
-			<td><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></td>
 			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
 			<td>
 				<ul>
 					<li><a href = "login.jsp" >로그인</a></li>
-					<li>마이페이지</a></li>
+					<li><a href ="member/mp_orderView">마이페이지</a></li>
 					<li>장바구니</li>
 				</ul>			
 			</td>

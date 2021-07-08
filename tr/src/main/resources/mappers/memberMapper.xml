@@ -12,8 +12,15 @@
 	<!-- 로그인 -->
    	<select id="login" resultType="com.tr.VO.MemberVO">
    		Select USERID, USERPASS
-   		FROM tr_MEMBER
+   		FROM tr_member
    		Where USERID = #{userId}
    			<!-- AND USERPASS = #{userPass} -->   	
    	</select>
+
+	<!-- 마이페이지_주문상세 -->
+	<select id="orderview" resultType="com.tr.VO.OrderVO">
+		SELECT oId, oNo, oDate, oNon, oName, oPrice, oCount, oTotal
+		FROM tr_order
+		ORDER BY oDate desc
+	</select>
 </mapper>

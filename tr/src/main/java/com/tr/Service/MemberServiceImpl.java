@@ -1,11 +1,14 @@
 package com.tr.Service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.MemberDAO;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -29,6 +32,9 @@ public class MemberServiceImpl implements MemberService{
 		int result = dao.idChk(vo);
 		return result;
 	}
-	
-
+	//마이페이지_주문상세
+	@Override
+	public List<OrderVO> orderView() throws Exception {
+		return dao.orderView();
+	}
 }

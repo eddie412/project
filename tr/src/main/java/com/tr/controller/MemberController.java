@@ -1,18 +1,23 @@
 package com.tr.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.MemberService;
+import com.tr.Service.MemberServiceImpl;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderVO;
 
 @Controller
 @RequestMapping("/member/*")
@@ -52,6 +57,7 @@ public class MemberController {
 				}
 				return "redirect:/";
 			}
+	
 		// 로그인 post
 			@RequestMapping(value = "/login", method = RequestMethod.POST)
 			public String login(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
@@ -79,4 +85,14 @@ public class MemberController {
 				
 				return "redirect:/";
 			}
+			
+			//마이페이지_주문상세 get
+			@RequestMapping(value="/mp_orderView" , method = RequestMethod.GET)
+			public String orderview(Model model) throws Exception{
+				List<OrderVO> orderView = service.orderView();
+				model.addAttribute("orderView", orderView);
+				
+				return "member/mp_orderView";
+			}
+
 	}
