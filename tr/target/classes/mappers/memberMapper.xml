@@ -19,7 +19,7 @@
 
 	<!-- 마이페이지_주문상세 -->
 	<select id="orderview" resultType="com.tr.VO.OrderVO">
-		SELECT oId, oNo, oDate, oNon, oName, oPrice, oCount, oTotal
+		SELECT oId, oNo, oDate, oNon, oName, oPrice, oCount, NVL(oTotal, oPrice*oCount) as oTotal
 		FROM tr_order
 		ORDER BY oDate desc
 	</select>

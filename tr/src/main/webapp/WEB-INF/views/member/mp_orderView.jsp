@@ -19,6 +19,7 @@
 			<td>${order.oName}</td>
 			<td>${order.oPrice}</td>
 			<td>${order.oCount}</td>
+			<td>${order.oTotal}</td>
 		</tr>
 	</c:forEach>
 </table>
