@@ -23,6 +23,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO login(MemberVO vo) throws Exception {
 		return sql.selectOne("memberMapper.login",vo);
 	}
+	//패스워드 체크
+	@Override
+	public int passChk(MemberVO vo) throws Exception{
+		int result = sql.selectOne("memberMapper.passChk", vo);
+		return result;
+	}
 	//아이디 중복 체크
 	@Override
 	public int idChk(MemberVO vo) throws Exception{

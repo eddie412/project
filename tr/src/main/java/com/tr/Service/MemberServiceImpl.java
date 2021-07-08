@@ -23,6 +23,12 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO vo) throws Exception{
 		return dao.login(vo);
 	}
+	//패스워드 체크
+	@Override
+	public int passChk(MemberVO vo) throws Exception{
+		int result = dao.passChk(vo);
+		return result;
+	}
 	//아이디 중복 체크
 	@Override
 	public int idChk(MemberVO vo) throws Exception{

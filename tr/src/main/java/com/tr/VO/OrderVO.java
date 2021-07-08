@@ -8,6 +8,7 @@ public class OrderVO {
 	private String oInfo;
 	private int oPrice;
 	private int oCount;
+	
 	public String getoId() {
 		return oId;
 	}
