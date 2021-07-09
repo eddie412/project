@@ -34,8 +34,7 @@
 	</c:forEach>	
 </table>
 
-<footer id="footer">
 	<%@ include file="../include/footer.jsp" %>
-</footer>
+
 </body>
 </html>
