@@ -2,9 +2,15 @@ package com.tr.VO;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class OrderVO {
 	private String oId; // 주문자 아이디
 	private int oNo; // 주문번호
+	//@DateTimeFormat(pattern = "yyyy.MM.dd")
+	//@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date oDate; // 주문날짜
 	private String oNon; // 상품번호
 	private String oName; // 상품명

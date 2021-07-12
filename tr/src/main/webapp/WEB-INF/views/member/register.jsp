@@ -1,9 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+function fn_idChk(){
+	$.ajax({
+		url : "/member/idChk",
+		type : "post",
+		dataType : "json",
+		data : {"userId" : $("#userId").val()},
+		success : function(data){
+			if(data == 1){
+				alert("중복된 아이디입니다.");
+			}else if(data == 0){
+				$("#idChk").attr("value", "Y");
+				alert("사용가능한 아이디입니다.");
+			}
+		}
+	})
+}
+	</script>
 <title>register</title>
 </head>
 <body>
@@ -12,16 +31,11 @@
   		<div class="input_area">
   				<label for="userId">아이디</label>
    				<input id="userId" name="userId" required="required" />
-   				<button class ="idChk" type="button" id="idChk">중복체크</button>
+   				<button class ="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복체크</button>
   		</div>
   
   		<div class="input_area">
   			<label for="userPass">비밀번호</label>
-   			<input type="password" id="userPass" name="userPass" required="required" />      
-  		</div>
-  		
-  		<div class="input_area">
-  			<label for="userPass">비밀번호 확인</label>
    			<input type="password" id="userPass" name="userPass" required="required" />      
   		</div>
   
@@ -36,22 +50,23 @@
  		</div>
   
   		<div class="input_area">
-  			<label for="userPhon">휴대폰 번호</label>
-   			<input type="number" id="userPhon" name="userPhon" placeholder="숫자만 입력해주세요" required="required" />      
+  			<label for="userPhone">휴대폰 번호</label>
+   			<input type="tel" id="userPhone" name="userPhone" placeholder="숫자만 입력해주세요" required="required" />      
  		 </div>
  		 
  		 <div class="input_area">
-  			<label for="userAdd">주소</label>
-   			<input type="text" id="userAdd" name="userAdd" required="required" />
+  			<label for="userAddr">주소</label>
+   			<input type="text" id="userAddr" name="userAddr" required="required" />
    			<button type ="button" name="addChk" id="addChk">주소찾기</button>  
  		 </div>
  		 
  		 <div class="input_area">
-  			<label for="bday">생년월일</label>
-   			<input type="text" id="bday" name="bday" placeholder="미성년자는 회원가입 불가" />
+  			<label for="userBday">생년월일</label>
+   			<input type="date" id="userBday" name="userBday" placeholder="미성년자는 회원가입 불가" />
  		 </div>
   
-  		<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
+  		<button class="btn btn-success" type="submit" id="submit">회원가입</button>
+		<button class="cencle btn btn-danger" type="button">취소</button>
   
  </form>   
 </section>

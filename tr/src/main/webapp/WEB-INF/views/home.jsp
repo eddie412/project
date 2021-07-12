@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="root">
-		<header id = "header">
+		<header>
 			<div id="header_box">
 				<%@ include file = "include/header.jsp" %>
 			</div>

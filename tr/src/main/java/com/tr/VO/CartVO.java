@@ -3,10 +3,11 @@ package com.tr.VO;
 public class CartVO {
 	private String cId;
 	private String cNo;
+	private String cName;
 	private String cInfo;
 	private int cPrice;
 	private int cCount;
-	private int Totla;
+	private int cTotal;
 	
 	public String getcId() {
 		return cId;
@@ -19,6 +20,12 @@ public class CartVO {
 	}
 	public void setcNo(String cNo) {
 		this.cNo = cNo;
+	}
+	public String getcName() {
+		return cName;
+	}
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 	public String getcInfo() {
 		return cInfo;
@@ -38,12 +45,19 @@ public class CartVO {
 	public void setcCount(int cCount) {
 		this.cCount = cCount;
 	}
-	public int getTotla() {
-		return Totla;
+	public int getcTotal() {
+		return cTotal;
 	}
-	public void setTotla(int totla) {
-		Totla = totla;
+	public void setcTotal(int ctotal) {
+		cTotal = ctotal;
 	}
+	
+	@Override
+	public String toString() {
+		return "CartVO [cId=" + cId + ", cNo=" + cNo + ", cName=" + cName + ", cInfo=" + cInfo + ", cPrice=" + cPrice
+				+ ", cCount=" + cCount + ", Total=" + cTotal + "]";
+	}
+	
 	
 	
 }

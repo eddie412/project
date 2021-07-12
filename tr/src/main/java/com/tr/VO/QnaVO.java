@@ -1,11 +1,21 @@
 package com.tr.VO;
 
+import java.util.Date;
+
 public class QnaVO {
 	private int qNo;
 	private String qTitle;
 	private String qWriter;
+	private Date qDate;
 	private String qContent;
 	private int qPass;
+	
+	public Date getqDate() {
+		return qDate;
+	}
+	public void setqDate(Date qDate) {
+		this.qDate = qDate;
+	}
 	
 	public int getqNo() {
 		return qNo;
