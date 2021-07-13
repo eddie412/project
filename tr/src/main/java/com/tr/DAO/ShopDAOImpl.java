@@ -15,16 +15,24 @@ public class ShopDAOImpl implements ShopDAO{
 	@Inject
 	SqlSession sql;
 	
-	//장바구니
+	//장바구니 조회
 	@Override
-	public List<CartVO> cart(String cId) throws Exception {
-		return sql.selectList("shopMapper.cart", cId);
+	public List<CartVO> list(String userId) throws Exception {
+		return sql.selectList("shopMapper.list", userId);
+	}
+	
+	//장바구니 상품 합계
+	@Override
+	public int total(String userId) throws Exception {
+		return sql.selectOne("shopMapper.total", userId);
 	}
 
-	//장바구니_상품삭제
+	//장바구니 상품삭제
 	@Override
 	public void delete(CartVO vo) throws Exception {
 		sql.delete("shopMapper.delete", vo);
 	}
+
+
 
 }

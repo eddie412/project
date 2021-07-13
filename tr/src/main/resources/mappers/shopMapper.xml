@@ -2,17 +2,27 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shopMapper">
 	
-	<!-- 장바구니 -->
-	<select id="cart" resultType="com.tr.VO.CartVO">
-		SELECT 		cId, cNo, cName, cInfo, cPrice, cCount, (cPrice * cCount) as cTotal
-		FROM			tr_cart
-		WHERE		cId = #{cId}
+	<!-- 장바구니 조회-->
+	<select id="list" resultType="com.tr.VO.CartVO">
+		SELECT 		c.cId, c.userId, p.pNo, m.userName, p.pName, p.pImg, c.count, p.pPrice, (c.count * p.pPrice) as money
+		FROM			tr_member m, tr_pro p, tr_cart c
+		WHERE		m.userId = c.userId
+		AND			p.pNo = c.pNo
+		AND			c.userId = #{userId}
+		ORDER BY	cId
+	</select>
+	
+	<!-- 장바구니 상품 합계 -->
+	<select id="total"  resultType="int">
+		SELECT		NVL(SUM(pPrice * count), 0) money
+		FROM			tr_pro p, tr_cart c
+		WHERE		p.pNo = c.pNo
+		AND			c.userId = #{userId}
 	</select>
 	
 	<!-- 장바구니_상품삭제 -->
 	<delete id="delete">
 		DELETE FROM tr_cart
-		WHERE cId = #{cId}
-		AND	cNo = #{cNo}
+		WHERE cNo = #{cNo}
 	</delete>
 </mapper>

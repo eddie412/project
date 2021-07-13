@@ -1,6 +1,8 @@
 package com.tr.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -24,14 +26,24 @@ public class ShopController {
 	@Inject
 	ShopService service;
 	
-	// 장바구니
+	// 장바구니 조회
 	@RequestMapping(value="list", method = RequestMethod.GET)
 	public String cart(Model model, HttpSession session) throws Exception {
+		logger.info("list get...");
+		String userId = (String) session.getAttribute("userId");
 		
-		List<CartVO> cart = service.cart((String) session.getAttribute("userId")); 
-		model.addAttribute("cart", cart);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return "shop/cart";
+		List<CartVO> list = service.list(userId); 
+		int total = service.total(userId);
+		
+		map.put("list", list);
+		map.put("listYN", list.size());
+		map.put("total", total);
+		
+		model.addAttribute("cart", map);
+		
+		return "shop/list";
 	}
 	
 	//장바구니_상품 삭제
@@ -39,6 +51,8 @@ public class ShopController {
 	public String delete(CartVO vo, HttpSession session) throws Exception{
 		String cId = (String) session.getAttribute("userId");
 		String cNo = (String) session.getAttribute("cNo");
+		
+		logger.info("cId..." + cId + ", cNo..." + cNo);
 		
 		service.delete(vo);
 		

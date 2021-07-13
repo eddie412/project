@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +24,26 @@
 	background: #B28EF7;
 }
 
-.btn_count{
+#main th:first-child {
+	width: 5%;
+}
+
+input[type="checkbox"] {
+	zoom: 1.5;
+}
+
+.btn_count {
 	background: #F2E3FC;
 	border: none;
 	margin: 0px 15px;
 	font-size: 18px;
+}
+
+.img {
+	float: left;
+	width: 10vw;
+	height: auto;
+	clear: both;
 }
 </style>
 <script type="text/javascript">
@@ -40,12 +56,12 @@
 				sum += parseInt($(".itemCheck")[i].value);
 			}
 		}
-		
+
 		$("#total_sum").html(sum + "원");
 	}
-	
+
 	//상품수량 변경
-	function a(){
+	function a() {
 		alert("옙!");
 	}
 </script>
@@ -60,7 +76,7 @@
 	<h2 align="center">장바구니</h2>
 
 	<!-- 메인 -->
-	<form>
+	<%-- <form>
 		<table id="main" align="center">
 			<tr>
 				<th><label>전체선택<input type="checkbox" name="allCheck" id="allCheck" /></label></th>
@@ -94,8 +110,42 @@
 				</td>
 			</tr>
 		</table>
+	</form> --%>
+	<form>
+		<table id="main" align="center">
+			<tr>
+				<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
+				<th>상품정보</th>
+				<th>수량</th>
+				<th>상품금액</th>
+			</tr>
+			<c:choose>
+				<c:when test="${cart.listYN == 0}">
+					<tr>
+						<td colspan="4">장바구니에 상품이 담겨있지 않습니다.</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="item" items="${cart.list}">
+						<tr>
+							<td><input type="checkbox" class="itemCheck" value=""
+								onclick="itemSum()"></td>
+							<td>
+								<div>
+									${item.pName}<br>
+									<fmt:formatNumber pattern="###,###,###" value="${item.pPrice}" />원<br>
+								</div>
+								 <img src="../resources/images/${item.pImg}" alt="상품이미지"	class="img">
+							</td>
+							<td>${item.count}개</td>
+							<td><fmt:formatNumber pattern="###,###,###" value="${item.count * item.pPrice}" />원</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</table>
 	</form>
-	
+
 	<script type="text/javascript">
 		//상품 전체 선택
 		$("#allCheck").click(function() {
@@ -108,9 +158,9 @@
 				itemSum();
 			}
 		});
-		
+
 		//체크박스 하나라도 uncheck면 전체선택 해제
-		$(".itemCheck").click(function(){
+		$(".itemCheck").click(function() {
 			$("#allCheck").prop("checked", false);
 		});
 	</script>

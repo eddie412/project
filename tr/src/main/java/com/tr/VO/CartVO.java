@@ -1,63 +1,69 @@
 package com.tr.VO;
 
 public class CartVO {
-	private String cId;
-	private String cNo;
-	private String cName;
-	private String cInfo;
-	private int cPrice;
-	private int cCount;
-	private int cTotal;
+	private int cId;					//장바구니 번호
+	private String userId;			//사용자 아이디
+	private String userName; 		// 사용자이름
+	private String pNo;				//상품번호
+	private String pImg;				//상품이미지
+	private String pName;			//상품이름
+	private int pPrice;				//상품 가격
+	private int count;				//구매 수량
 	
-	public String getcId() {
+	public int getcId() {
 		return cId;
 	}
-	public void setcId(String cId) {
+	public void setcId(int cId) {
 		this.cId = cId;
 	}
-	public String getcNo() {
-		return cNo;
+	public String getUserId() {
+		return userId;
 	}
-	public void setcNo(String cNo) {
-		this.cNo = cNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getcName() {
-		return cName;
+	public String getUserName() {
+		return userName;
 	}
-	public void setcName(String cName) {
-		this.cName = cName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getcInfo() {
-		return cInfo;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setcInfo(String cInfo) {
-		this.cInfo = cInfo;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
-	public int getcPrice() {
-		return cPrice;
+	
+	public String getpImg() {
+		return pImg;
 	}
-	public void setcPrice(int cPrice) {
-		this.cPrice = cPrice;
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
 	}
-	public int getcCount() {
-		return cCount;
+	public String getpName() {
+		return pName;
 	}
-	public void setcCount(int cCount) {
-		this.cCount = cCount;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
-	public int getcTotal() {
-		return cTotal;
+	public int getpPrice() {
+		return pPrice;
 	}
-	public void setcTotal(int ctotal) {
-		cTotal = ctotal;
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	@Override
 	public String toString() {
-		return "CartVO [cId=" + cId + ", cNo=" + cNo + ", cName=" + cName + ", cInfo=" + cInfo + ", cPrice=" + cPrice
-				+ ", cCount=" + cCount + ", Total=" + cTotal + "]";
+		return "CartVO [cId=" + cId + ", userId=" + userId + ", userName=" + userName + ", pNo=" + pNo + ", pImg="
+				+ pImg + ", pName=" + pName + ", pPrice=" + pPrice + ", count=" + count + "]";
 	}
-	
-	
 	
 }

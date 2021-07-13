@@ -1,17 +1,19 @@
 package com.tr.VO;
 
 public class ProductVO {
-	private String pNO;
+	private String pNo;
 	private String pName;
+	private String pImg;
 	private int pPrice;
 	private int pCount;
 	private String pInfo;
 	private int pSales;
-	public String getpNO() {
-		return pNO;
+	
+	public String getpNo() {
+		return pNo;
 	}
-	public void setpNO(String pNO) {
-		this.pNO = pNO;
+	public void setpNO(String pNo) {
+		this.pNo = pNo;
 	}
 	public String getpName() {
 		return pName;
@@ -19,6 +21,13 @@ public class ProductVO {
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
+	
 	public int getpPrice() {
 		return pPrice;
 	}

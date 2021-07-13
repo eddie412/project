@@ -22,6 +22,15 @@ $(document).ready(function(){
     }).on("keyup", function() {
         $(this).val($(this).val().replace(replaceNotInt, ""));
     });
+    
+    
+    $("#reset").on("click", function(){
+    	var result = confirm("취소하시겠습니까?");
+    	
+    	if(result){
+    		location.href='http://localhost:8085/';
+    	}
+    })
 
 });
 
@@ -72,8 +81,10 @@ function updateCheck(){
 		}
 		
 		check = 1;
-	}else if(check == 1){
-		alert("정보 수정되었습니다.");
+	}
+	
+	if(check == 1){
+		alert("정보 수정되었습니다. \n수정된 비밀번호로 다시 접속해주시길 바랍니다.");
 		return true;
 	}
 	
@@ -184,7 +195,7 @@ function updateCheck(){
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="취소" onclick="location.href='home'"> 
+					<input type="button" value="취소"  id="reset" onclick="javascript:'"> 
 					<input type="submit" value="수정" onclick="return updateCheck()">
 				</td>
 			</tr>

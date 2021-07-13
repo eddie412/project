@@ -12,7 +12,7 @@ public class MemberVO {
 	private String userEmail;
 	private String userPhone;
 	private String userAddr;
-	private Date userBday;
+	private Date userBday;;
 
 	public String getUserId() {
 		return userId;
@@ -69,6 +69,7 @@ public class MemberVO {
 	public void setUserBday(Date userBday) {
 		this.userBday = userBday;
 	}
+
 
 	@Override
 	public String toString() {
