@@ -5,7 +5,7 @@
 	<!-- 장바구니 조회-->
 	<select id="list" resultType="com.tr.VO.CartVO">
 		SELECT 		c.cId, c.userId, p.pNo, m.userName, p.pName, p.pImg, c.count, p.pPrice, (c.count * p.pPrice) as money
-		FROM			tr_member m, tr_pro p, tr_cart c
+		FROM		tr_member m, tr_pro p, tr_cart c
 		WHERE		m.userId = c.userId
 		AND			p.pNo = c.pNo
 		AND			c.userId = #{userId}
@@ -15,7 +15,7 @@
 	<!-- 장바구니 상품 합계 -->
 	<select id="total"  resultType="int">
 		SELECT		NVL(SUM(pPrice * count), 0) money
-		FROM			tr_pro p, tr_cart c
+		FROM		tr_pro p, tr_cart c
 		WHERE		p.pNo = c.pNo
 		AND			c.userId = #{userId}
 	</select>

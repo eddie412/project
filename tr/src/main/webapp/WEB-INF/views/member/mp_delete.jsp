@@ -9,8 +9,8 @@
 <style type="text/css">
 #main {
 	position: fixed;
-	width: 80%;
-	margin-left: 250px;
+	width: 70%;
+	margin-left: 400px;
 	margin-top: 50px;
 	text-align: center;
 }
@@ -22,33 +22,6 @@
 
 #main th {
 	background: #B28EF7;
-}
-
-#sidemenu {
-	width: 20%;
-	height: 80%;
-}
-
-#sidemenu>ul {
-	list-style: none;
-}
-
-#sidemenu  li {
-	display: table-cell;
-	color: black;
-	line-height: 100px;
-}
-
-#sidemenu  a {
-	color: black;
-}
-
-#sidemenu  a:visited {
-	color: black;
-}
-
-#sidemenu a:hover {
-	color: #6C28F0;
 }
 </style>
 <script type="text/javascript">
@@ -86,15 +59,7 @@
 
 	<h2 align="center">주문상세내역</h2>
 	<!-- 사이드 메뉴 -->
-	<div id="sidemenu">
-		<h3 style="padding-left: 60px">마이페이지</h3>
-		<ul align="center">
-			<li><a href="mp_order">주문상세내역</a></li>
-			<li><a href="mp_qna">문의사항</a></li>
-			<li><a href="mp_update">회원정보수정</a></li>
-			<li><a href="mp_deleteview">탈퇴하기</a></li>
-		</ul>
-	</div>
+	<%@ include file="../include/mypageNav.jsp" %>
 
 	<!-- 메인 -->
 	<form method="post" action="mp_delete" name="frm">

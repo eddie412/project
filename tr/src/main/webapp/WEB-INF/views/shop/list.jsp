@@ -41,15 +41,16 @@ input[type="checkbox"] {
 
 .img {
 	float: left;
-	width: 10vw;
+	width: 200px;
 	height: auto;
+	overflow: hidden;
 	clear: both;
+	object-fit: cover;
 }
 </style>
 <script type="text/javascript">
 	//상품 선택 시 합계 노출
 	function itemSum() {
-		var sum = 0;
 		var count = $(".itemCheck").length;
 		for (var i = 0; i < count; i++) {
 			if ($(".itemCheck")[i].checked == true) {
@@ -57,7 +58,7 @@ input[type="checkbox"] {
 			}
 		}
 
-		$("#total_sum").html(sum + "원");
+		$("#total").html(sum + "원");
 	}
 
 	//상품수량 변경
@@ -128,7 +129,7 @@ input[type="checkbox"] {
 				<c:otherwise>
 					<c:forEach var="item" items="${cart.list}">
 						<tr>
-							<td><input type="checkbox" class="itemCheck" value=""
+							<td><input type="checkbox" class="itemCheck" value="${}"
 								onclick="itemSum()"></td>
 							<td>
 								<div>
@@ -143,6 +144,10 @@ input[type="checkbox"] {
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
+			<tr>
+				<th colspan="2">총합</th>
+				<td colspan="2" style="color:#8D2D54;" id="total">0원</td>
+			</tr>
 		</table>
 	</form>
 
