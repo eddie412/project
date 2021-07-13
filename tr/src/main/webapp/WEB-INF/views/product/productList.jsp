@@ -17,7 +17,10 @@
 <!-- 상품이미지 -->
 	<c:forEach var="row" items="${list}">
 	<tr>
-		<td><img src="${path}/images/${row.pImg}" width="100px" height="110px"></td>	
+		<td>
+			<a href="${path}/product/detail/${row.pNO}">
+			<img src="${path}/images/${row.pImg}" width="100px" height="110px"></a>
+		</td>		
 	</tr>
 <!-- 상품명 -->
 	<tr>

@@ -23,7 +23,7 @@ public class ProductServiceImpl  implements ProductService{
 
 	//상품상세
 	@Override
-	public ProductVO detailProduct(int pNo) {
+	public ProductVO detailProduct(String pNo) {
 		return productDao.detailProduct(pNo);
 	}
 
@@ -35,7 +35,7 @@ public class ProductServiceImpl  implements ProductService{
 
 	//상품삭제
 	@Override
-	public void deleteProduct(int pNo) {
+	public void deleteProduct(String pNo) {
 		productDao.deleteProduct(pNo);
 	}
 	
@@ -47,7 +47,7 @@ public class ProductServiceImpl  implements ProductService{
 
 	//상품이미지 삭제를 위한 이미지파일정보
 	@Override
-	public String fileInfo(int pNo) {
+	public String fileInfo(String pNo) {
 		return productDao.fileInfo(pNo);
 	}
 

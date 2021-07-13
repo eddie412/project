@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <style>
-	footer{	
+	#footerbox{	
 		border: dashed;
 		width:100%;
 		height:80px;
@@ -24,7 +24,7 @@
 <title>footer</title>
 </head>
 <body>
-	<footer>
+	<div id="footerbox">
 		<p id="serviceName">
 		  전통 이酒
 		</p>
@@ -36,7 +36,7 @@
 			
 		</dl>
 	
-	</footer>
+	</div>
 
 </body>
 </html>

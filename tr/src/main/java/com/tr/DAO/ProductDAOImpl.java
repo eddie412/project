@@ -20,7 +20,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품상세
 	@Override
-	public ProductVO detailProduct(int pNo) {
+	public ProductVO detailProduct(String pNo) {
 		return sqlSession.selectOne("product.detailProduct",pNo);
 	}
 	//상품수정
@@ -30,7 +30,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품삭제
 	@Override
-	public void deleteProduct(int pNo) {
+	public void deleteProduct(String pNo) {
 		sqlSession.delete("product.deleteProduct",pNo);
 	}
 	//상품추가
@@ -40,7 +40,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품이비니 삭제를 위한 이미지파일 정보
 	@Override
-	public String fileInfo(int pNo) {
+	public String fileInfo(String pNo) {
 		return sqlSession.selectOne("product.fileInfo",pNo);
 	}
 	

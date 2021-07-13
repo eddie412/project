@@ -1,5 +1,6 @@
 package com.tr.VO;
 
+
 public class ProductVO {
 	private String pNO;
 	private String pName;
@@ -8,6 +9,14 @@ public class ProductVO {
 	private int pCount;
 	private String pInfo;
 	private int pSales;
+	private int pId;
+	
+	public int getpId() {
+		return pId;
+	}
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
 	public String getpImg() {
 		return pImg;
 	}
@@ -18,6 +27,7 @@ public class ProductVO {
 		return pNO;
 	}
 	public void setpNO(String pNO) {
+		
 		this.pNO = pNO;
 	}
 	public String getpName() {

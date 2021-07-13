@@ -95,3 +95,4 @@ drop table;
 
 alter table tr_pro modify pName varchar2(50);
 insert into tr_pro(pno,pName,pPrice,pCount,pInfo) values ('S01','고운달 오크 200ml',180000,3,'문경오미자로 빚은 지역특산물 52도');
+
