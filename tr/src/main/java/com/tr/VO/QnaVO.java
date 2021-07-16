@@ -1,12 +1,14 @@
 package com.tr.VO;
 
+import java.sql.Date;
+
 public class QnaVO {
 	private int qNo;
 	private String qTitle;
 	private String qWriter;
 	private String qContent;
 	private int qPass;
-	
+	private Date qDate;
 	public int getqNo() {
 		return qNo;
 	}
@@ -37,6 +39,19 @@ public class QnaVO {
 	public void setqPass(int qPass) {
 		this.qPass = qPass;
 	}
+	public Date getqDate() {
+		return qDate;
+	}
+	public void setqDate(Date qDate) {
+		this.qDate = qDate;
+	}
+	@Override
+	public String toString() {
+		return "QnaVO [qNo=" + qNo + ", qTitle=" + qTitle + ", qWriter=" + qWriter + ", qContent=" + qContent
+				+ ", qPass=" + qPass + ", qDate=" + qDate + "]";
+	} 		
+	
+	
 	
 	
 }

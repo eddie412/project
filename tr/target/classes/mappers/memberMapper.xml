@@ -12,18 +12,20 @@
 		 						USEREMAIL, 
 		 						USERPHONE,
 		 						USERADDR,
-		 						USERBDAY)
+		 						USERBDAY,
+		 						VERIFY)
  		 VALUES(#{userId}, 
  		 		#{userPass}, 
  		 		#{userName}, 
  		 		#{userEmail},
  		 		#{userPhone},
  		 		#{userAddr},
- 		 		#{userBday}) 
+ 		 		#{userBday},
+ 		 		1) 
 	</insert>
 	<!-- 로그인 -->
    	<select id="login" resultType="com.tr.VO.MemberVO">
-   		Select USERID, USERPASS
+   		Select USERID, USERPASS, VERIFY
    		FROM TR_MEMBER
    		Where USERID = #{userId}
    			AND USERPASS = #{userPass}   	
@@ -40,5 +42,11 @@
 	<select id="idChk" resultType="int">
 		SELECT COUNT(*) FROM TR_MEMBER
 		WHERE USERID = #{userId}
+	</select>
+	
+	<!-- 회원 관리 -->
+	<select id="memberList" resultType="com.tr.VO.MemberVO">
+		Select *
+		FROM TR_MEMBER
 	</select>
 </mapper>

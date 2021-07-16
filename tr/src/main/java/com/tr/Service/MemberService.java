@@ -1,5 +1,7 @@
 package com.tr.Service;
 
+import java.util.List;
+
 import com.tr.VO.MemberVO;
 
 public interface MemberService {
@@ -12,4 +14,7 @@ public interface MemberService {
 	public int passChk(MemberVO vo) throws Exception;
 	//아이디 체크
 	public int idChk(MemberVO vo) throws Exception;
+	//회원 관리
+	public List<MemberVO> memberList(MemberVO vo) throws Exception;
+	
 }

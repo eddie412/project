@@ -1,5 +1,7 @@
 package com.tr.DAO;
 
+import java.util.List;
+
 import com.tr.VO.MemberVO;
 
 public interface MemberDAO {
@@ -12,4 +14,6 @@ public interface MemberDAO {
 		public int passChk(MemberVO vo) throws Exception;
 		//아이디 중복 체크
 		public int idChk(MemberVO vo) throws Exception;
+		//회원 관리
+		public List<MemberVO> memberList(MemberVO memberVo) throws Exception;
 }

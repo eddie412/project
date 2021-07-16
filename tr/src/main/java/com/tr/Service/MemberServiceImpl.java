@@ -1,7 +1,8 @@
 package com.tr.Service;
 
-import javax.inject.Inject;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.MemberDAO;
@@ -10,8 +11,8 @@ import com.tr.VO.MemberVO;
 @Service
 public class MemberServiceImpl implements MemberService{
 	
-	@Inject
-	MemberDAO dao;
+	@Autowired
+	private MemberDAO dao;
 	
 	//회원가입
 	@Override
@@ -35,6 +36,12 @@ public class MemberServiceImpl implements MemberService{
 		int result = dao.idChk(vo);
 		return result;
 	}
+	//회원 관리
+	@Override
+	public List<MemberVO> memberList(MemberVO memberVo) throws Exception{
+		return dao.memberList(memberVo);
+	}
+	
 	
 
 }

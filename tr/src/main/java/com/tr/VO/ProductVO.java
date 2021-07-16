@@ -1,17 +1,19 @@
 package com.tr.VO;
 
 public class ProductVO {
-	private String pNO;
+	private String pNo;
 	private String pName;
 	private int pPrice;
 	private int pCount;
 	private String pInfo;
 	private int pSales;
-	public String getpNO() {
-		return pNO;
+	
+	
+	public String getpNo() {
+		return pNo;
 	}
-	public void setpNO(String pNO) {
-		this.pNO = pNO;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
 	public String getpName() {
 		return pName;
@@ -42,6 +44,11 @@ public class ProductVO {
 	}
 	public void setpSales(int pSales) {
 		this.pSales = pSales;
+	}
+	@Override
+	public String toString() {
+		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pCount=" + pCount + ", pInfo="
+				+ pInfo + ", pSales=" + pSales + "]";
 	}
 	
 	

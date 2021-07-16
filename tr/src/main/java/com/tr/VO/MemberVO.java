@@ -13,6 +13,7 @@ public class MemberVO {
 	private String userPhone;
 	private String userAddr;
 	private Date userBday;
+	private int verify;
 	
 	public String getUserId() {
 		return userId;
@@ -56,11 +57,20 @@ public class MemberVO {
 	public void setUserBday(Date userBday) {
 		this.userBday = userBday;
 	}
+	public int getVerify() {
+		return verify;
+	}
+	public void setVerify(int verify) {
+		this.verify = verify;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userId=" + userId + ", userPass=" + userPass + ", userName=" + userName + ", userEmail="
-				+ userEmail + ", userPhone=" + userPhone + ", userAddr=" + userAddr + ", userBday=" + userBday + "]";
+				+ userEmail + ", userPhone=" + userPhone + ", userAddr=" + userAddr + ", userBday=" + userBday
+				+ ", verify=" + verify + "]";
 	}
+	
+	
 	
 	
 	
