@@ -13,5 +13,12 @@ public interface ShopService {
 	public int total(String userId) throws Exception;
 	
 	//장바구니_상품삭제
-	public void delete(CartVO vo) throws Exception;
+	public void delete(int cId) throws Exception;
+	
+	//장바구니 전체삭제
+	public void deleteAll(String userId) throws Exception;
+	
+	//주문서 상품 조회
+	public List<CartVO> orderlist(int cId) throws Exception;
+	
 }

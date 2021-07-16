@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 </head>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <style type="text/css">
 #main {
 	width: 80%;
@@ -32,13 +33,6 @@ input[type="checkbox"] {
 	zoom: 1.5;
 }
 
-.btn_count {
-	background: #F2E3FC;
-	border: none;
-	margin: 0px 15px;
-	font-size: 18px;
-}
-
 .img {
 	float: left;
 	width: 200px;
@@ -48,24 +42,6 @@ input[type="checkbox"] {
 	object-fit: cover;
 }
 </style>
-<script type="text/javascript">
-	//상품 선택 시 합계 노출
-	function itemSum() {
-		var count = $(".itemCheck").length;
-		for (var i = 0; i < count; i++) {
-			if ($(".itemCheck")[i].checked == true) {
-				sum += parseInt($(".itemCheck")[i].value);
-			}
-		}
-
-		$("#total").html(sum + "원");
-	}
-
-	//상품수량 변경
-	function a() {
-		alert("옙!");
-	}
-</script>
 <body>
 	<!-- 헤드 -->
 	<header>
@@ -77,98 +53,125 @@ input[type="checkbox"] {
 	<h2 align="center">장바구니</h2>
 
 	<!-- 메인 -->
-	<%-- <form>
-		<table id="main" align="center">
-			<tr>
-				<th><label>전체선택<input type="checkbox" name="allCheck" id="allCheck" /></label></th>
-				<th colspan="2">상품정보</th>
-				<th>상품가격</th>
-				<th>상품수량</th>
-				<th>상품총액</th>
-			</tr>
-			<c:if test="${empty cart}">
-				<td colspan="6">장바구니에 상품이 담겨있지 않습니다.</td>
-			</c:if>
-			<c:forEach var="cart" items="${cart}">
-				<tr>
-					<td><input type="checkbox"  id="cNo" class="itemCheck" value="${cart.cTotal}"  onclick="itemSum()"></td>
-					<td colspan="2"><span
-						style="font-size: 16px; color: #F0B928; font-weight: bold;" >[상품명]${cart.cName}</span><br>${cart.cInfo}</td>
-					<td>${cart.cPrice}원</td>
-					<td><input type="button" value="-" class="btn_count" >${cart.cCount}<input type="button" value="+" class="btn_count"></td>
-					<td>${cart.cTotal}원</td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<th colspan="3">총액</th>
-				<td colspan="3"  id="total_sum" >0원</td>
-			</tr>
-			<tr>
-				<td colspan="6"  align="center">
-					<input type="button" value="쇼핑 계속하기"> 
-					<input type="button" value="삭제하기" onclick="location.href='/shop/delete'"> 
-					<input type="submit" value="주문하기">
-				</td>
-			</tr>
-		</table>
-	</form> --%>
-	<form>
+	<form method="post" action="orderView" role="frm">
 		<table id="main" align="center">
 			<tr>
 				<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
 				<th>상품정보</th>
 				<th>수량</th>
 				<th>상품금액</th>
+				<th>삭제</th>
 			</tr>
 			<c:choose>
 				<c:when test="${cart.listYN == 0}">
 					<tr>
-						<td colspan="4">장바구니에 상품이 담겨있지 않습니다.</td>
+						<td colspan="5">장바구니에 상품이 담겨있지 않습니다.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="item" items="${cart.list}">
+					<c:forEach var="cart" items="${cart.list}">
 						<tr>
-							<td><input type="checkbox" class="itemCheck" value="${}"
-								onclick="itemSum()"></td>
+							<td><input type="checkbox" name="cId"  class="itemCheck"
+								onclick="itemSum()" value="${cart.cId}"> <input
+								type="hidden" class="itemSum"
+								value="${cart.count * cart.pPrice}"></td>
 							<td>
 								<div>
-									${item.pName}<br>
-									<fmt:formatNumber pattern="###,###,###" value="${item.pPrice}" />원<br>
-								</div>
-								 <img src="../resources/images/${item.pImg}" alt="상품이미지"	class="img">
+									${cart.pName}<br>
+									<fmt:formatNumber pattern="###,###,###" value="${cart.pPrice}" />
+									원<br>
+								</div> <img src="../resources/images/${cart.pImg}"
+								alt="${cart.pName} 이미지" class="img">
 							</td>
-							<td>${item.count}개</td>
-							<td><fmt:formatNumber pattern="###,###,###" value="${item.count * item.pPrice}" />원</td>
+							<td>${cart.count}개</td>
+							<td class="sum"><fmt:formatNumber pattern="###,###,###"
+									value="${cart.count * cart.pPrice}" />원</td>
+							<td><a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<tr>
 				<th colspan="2">총합</th>
-				<td colspan="2" style="color:#8D2D54;" id="total">0원</td>
+				<td colspan="3" style="font-weight: bold; color: #8D2D54;"
+					id="total">0원</td>
 			</tr>
 		</table>
-	</form>
+		<div>
+			<input type="button" value="쇼핑 계속하기"
+				onclick="location.href='../member/mp_order'"> <input
+				type="button" value="전체 삭제" class="deleteCon"> <input
+				type="button" value="주문하기" onclick="check()">
+		</div>
 
-	<script type="text/javascript">
-		//상품 전체 선택
-		$("#allCheck").click(function() {
-			var chk = $("#allCheck").prop("checked");
-			if (chk) {
-				$(".itemCheck").prop("checked", true);
-				itemSum();
-			} else {
-				$(".itemCheck").prop("checked", false);
-				itemSum();
+<script type="text/javascript">
+//주문하기
+function check(){
+	var all = $(".itemCheck").length;
+	var count = 0;
+	
+	for (var i = 0; i < all; i++) {
+		if($(".itemCheck")[i].checked == true){
+			++count;
+		}
+	}
+
+	if (count == 0) {
+		alert("주문하실 상품을 선택해주세요.");
+	}else{
+		$("form[role='frm']").submit();
+	}		
+}	
+
+
+//상품 삭제
+$(".deleteCon").click(function() {
+		var count = $(".itemCheck").length;
+		if (count == 0) {
+			alert("상품이 없습니다. 장바구니에 상품을 담아주세요.");
+		} else {
+			var result = confirm("상품을 삭제하시겠습니까?");
+
+			if (result) {
+				location.href = "/shop/deleteAll"
 			}
-		});
 
-		//체크박스 하나라도 uncheck면 전체선택 해제
-		$(".itemCheck").click(function() {
-			$("#allCheck").prop("checked", false);
-		});
-	</script>
+		}
+	});
 
+	//선택한 상품 가격 총합
+	function itemSum() {
+		var str = "";
+		var sum = 0;
+		var count = $(".itemCheck").length;
+
+		for (var i = 0; i < count; i++) {
+			if ($(".itemCheck")[i].checked == true) {
+				sum += parseInt($(".itemSum")[i].value);
+			}
+		}
+
+		$("#total").html(sum + "원");
+
+	//전체 체크박스 선택/해제
+	$("#allCheck").click(function() {
+		var chk = $("#allCheck").prop("checked");
+		if (chk) {
+			$(".itemCheck").prop("checked", true);
+			itemSum();
+		} else {
+			$(".itemCheck").prop("checked", false);
+			itemSum();
+		}
+	});
+
+	//체크 박스 하나 해제시 전체 체크박스 해제
+	$(".itemCheck").click(function() {
+		$("#allCheck").prop("checked", false);
+	});	
+}
+	
+</script>
+	</form>
 </body>
 </html>

@@ -5,24 +5,40 @@
 	<!-- 장바구니 조회-->
 	<select id="list" resultType="com.tr.VO.CartVO">
 		SELECT 		c.cId, c.userId, p.pNo, m.userName, p.pName, p.pImg, c.count, p.pPrice, (c.count * p.pPrice) as money
-		FROM		tr_member m, tr_pro p, tr_cart c
+		FROM			tr_member m, tr_pro p, tr_cart c
 		WHERE		m.userId = c.userId
 		AND			p.pNo = c.pNo
 		AND			c.userId = #{userId}
-		ORDER BY	cId
+		ORDER BY	cId DESC
 	</select>
 	
 	<!-- 장바구니 상품 합계 -->
 	<select id="total"  resultType="int">
 		SELECT		NVL(SUM(pPrice * count), 0) money
-		FROM		tr_pro p, tr_cart c
+		FROM			tr_pro p, tr_cart c
 		WHERE		p.pNo = c.pNo
 		AND			c.userId = #{userId}
 	</select>
 	
 	<!-- 장바구니_상품삭제 -->
-	<delete id="delete">
+	<delete id="delete" >
 		DELETE FROM tr_cart
-		WHERE cNo = #{cNo}
+		WHERE cId = #{cId}
 	</delete>
+	
+	<!-- 장바구니 상품 전체삭제 -->
+	<delete id="deleteAll">
+		DELETE FROM tr_cart
+		WHERE userId = #{userId}
+	</delete>
+	
+	<!-- 주문서 상품 조회 -->
+	<select id="orderlist" resultType="com.tr.VO.CartVO">
+		SELECT 		c.cId, c.userId, p.pNo, m.userName, p.pName, p.pImg, c.count, p.pPrice, (c.count * p.pPrice) as money
+		FROM			tr_member m, tr_pro p, tr_cart c
+		WHERE		m.userId = c.userId
+		AND			p.pNo = c.pNo
+		AND			c.cId = #{cId}
+	</select>
+
 </mapper>

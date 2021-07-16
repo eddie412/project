@@ -21,7 +21,7 @@
 	display: inline-block;
 	color: black;
 	margin-left: 60px;
-	margin-top: 150px;
+	margin-top: 100px;
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.1em;
