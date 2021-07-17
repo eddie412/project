@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,9 +25,10 @@
 			<div id="container_box" style="width:80;height:300;">
 			 상품목록
 				<table>
-						<c:forEach var="row" items="${listProduct}">
+						<c:forEach var="row" items="${list}">
 						<tr>
-							<td><img src="${path}/images/${row.pImg}" width="100px" height="110px"></td>	
+							<a href="${path}/product/detail/${row.pNO}">
+							<td><img src="${path}/images/${row.pImg}" width="100px" height="110px"></a></td>	
 						</tr>
 					
 						<tr>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+<!-- 게시판 글 작성 -->
+   <insert id="insert">
+	   INSERT INTO TR_QNA(    QNO 
+	   						, root
+	   					      , QTITLE 
+	   					      , QCONTENT 
+	   					      , QWRITER 
+	   					      ,step
+	   					      ,indent
+	   					     )
+	                 VALUES(    SQ_QNA.NEXTVAL 
+	                 			,sq_qna.currval
+	                 		  , #{title}
+	                 		  , #{content}
+	                 		  , #{writer} 
+	                 		  ,0
+	                 		  ,0 
+	                 		  )
+   
+   </insert>
+   <!-- 목록 -->
+  <select id="listPage" resultType="com.tr.VO.BoardVO" parameterType="com.tr.VO.SearchCriteria">
+		SELECT  qNO, 
+		        qTITLE, 
+		        qCONTENT,
+		        qWRITER, 
+		        qDATE,
+		        root,
+		        step,
+		        indent
+		 FROM ( 
+		        SELECT qNO, 
+		               qTITLE, 
+		               qCONTENT, 
+		               qWRITER, 
+		               qDATE,
+		               root,
+		               step,
+		               indent,
+		               ROW_NUMBER() OVER (ORDER BY qNO DESC) AS RNUM
+		         FROM tr_qna 	
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		              ) tr_qna
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY root DESC,STEP ASC
+		
+	</select>
+	<!-- 개수 -->
+	<select id="listCount" parameterType="com.tr.VO.SearchCriteria" resultType="int">
+		SELECT COUNT(qNO)
+		   FROM tr_qna
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND qNO > 0
+	</select>
+	<!-- 답글 -->
+	<insert id="reply">
+		<![CDATA[
+			{CALL DECLARE BEGIN
+				UPDATE tr_qna SET step = step + 1
+				WHERE root = #{root} AND step > #{step};
+				
+				INSERT INTO tr_qna (qno,
+									root, 
+									qtitle,
+									qcontent, 
+									qwriter, 
+									step, 
+									indent)
+				VALUES (sq_qna.NEXTVAL, 
+						#{root}, 
+						#{title},
+						#{content}, 
+						#{writer}, 
+						#{step} + 1, 
+						#{indent } + 1);
+			END}
+		]]>
+	
+	</insert>
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND qTITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND qCONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND qWRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (qTITLE LIKE '%' || #{keyword} || '%') or (qCONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	<!-- 조회 -->
+	<select id="read" parameterType="int" resultType="com.tr.VO.BoardVO">
+		SELECT	qNO
+			  , qTITLE
+			  , qCONTENT
+			  , qWRITER
+			  , qDATE
+			  , root
+		 FROM tr_qna
+		 WHERE qNO = #{qno}
+	</select>
+	<!-- 수정 -->
+   <update id="update" parameterType="com.tr.VO.BoardVO">
+  	 select qpass from tr_qna where qno=?;
+   
+		UPDATE tr_qna
+		   SET qTITLE    =   #{title},
+		   	   qCONTENT  =   #{content}
+		 WHERE qNO = #{qno} 
+	</update>
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM tr_qna
+		 WHERE qNO = #{qno}
+	</delete>
+  </mapper>

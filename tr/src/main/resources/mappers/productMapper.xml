@@ -17,13 +17,14 @@
  	</select>
  	<!-- 02.상품 상세보기 -->
  	<select id="detailProduct" resultType="com.tr.VO.ProductVO">
- 		SELECT
- 			pNo,
- 			pName,
- 			pImg,
- 			pPrice,
- 			pInfo
- 			From tr_pro
- 			WHERE pNo =#{pNo}
+	SELECT
+			pNo,
+			pName,
+			pImg,
+			pPrice,
+			pInfo
+	From tr_pro
+	WHERE pNo =#{pNo}
  	</select>
+
  </mapper>

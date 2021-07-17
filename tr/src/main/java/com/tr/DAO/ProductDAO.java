@@ -2,7 +2,9 @@ package com.tr.DAO;
 
 import java.util.List;
 
+import com.tr.VO.CategoryVO;
 import com.tr.VO.ProductVO;
+import com.tr.VO.ReplyVO;
 
 public interface ProductDAO {
 	//상품목록

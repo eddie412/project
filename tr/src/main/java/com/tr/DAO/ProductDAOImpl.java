@@ -7,7 +7,10 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.tr.VO.CategoryVO;
 import com.tr.VO.ProductVO;
+import com.tr.VO.ReplyVO;
+
 @Repository
 public class ProductDAOImpl  implements ProductDAO{
 	
@@ -43,6 +46,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	public String fileInfo(String pNo) {
 		return sqlSession.selectOne("product.fileInfo",pNo);
 	}
+
 	
 	
 }

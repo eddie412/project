@@ -7,16 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 상세보기</title>
-<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp"%>
 </head>
-<body >
-<%@ include file="../include/nav.jsp" %>
+<body>
+	<%@ include file="../include/nav.jsp"%>
 	<h2>상품상세보기</h2>
 	<table border="1">
 		<tr>
-			<td>
-				<img src="${path}/images/${vo.pImg}" alt="이미지" width="340" height="300">
-			</td>
+			<td><img src="${path}/images/${vo.pImg}" alt="이미지" width="340"
+				height="300"></td>
 			<td>
 				<table border="1" style="height: 300px; width: 400px;">
 					<tr align="center">
@@ -25,29 +24,36 @@
 					</tr>
 					<tr align="center">
 						<td>가격</td>
-						<td><fmt:formatNumber value="${vo.pPrice}" pattern="###,###,###"/></td>
+						<td><fmt:formatNumber value="${vo.pPrice}"
+								pattern="###,###,###" /></td>
 					</tr>
-					<tr align="center">
-						<td>상품소개</td>
-						<td>${vo.pInfo}</td>
-					</tr>
+
 					<tr align="center">
 						<td colspan="2">
-							<form name="form1" method="post" action="${path}/shop/cart/insert.do">
+							<form name="form1" method="post"
+								action="${path}/shop/cart/insert.do">
 								<input type="hidden" name="productId" value="${vo.pNO}">
 								<select name="amount">
 									<c:forEach begin="1" end="10" var="i">
 										<option value="${i}">${i}</option>
 									</c:forEach>
-								</select>&nbsp;개
-								<input type="submit" value="장바구니에 담기">
-							</form>
-							<a href="${path}/product/list.do">상품목록</a>
-						</td>	
+								</select>&nbsp;개 <br> <input type="submit" value="장바구니에 담기">
+
+							</form> <a href="${path}/product/list.do">상품목록</a>
+						</td>
 					</tr>
+
 				</table>
+				<tr align="center">
+					<td colspan="2">상세 정보</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">${vo.pInfo}</td>
+				</tr>
+	
 			</td>
-		</tr>		
+		</tr>
 	</table>
+
 </body>
 </html>
