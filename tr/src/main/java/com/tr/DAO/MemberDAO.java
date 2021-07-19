@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
 
@@ -24,8 +25,8 @@ public interface MemberDAO {
 	//마이페이지_회원정보 조회
 	public MemberVO  info(String userId) throws Exception;
 
-	// 마이페이지_주문상세
-	public List<OrderVO> order(String userId) throws Exception;
+	// 마이페이지_주문내역리스트
+	public List<OrderListVO> orderList(OrderVO vo) throws Exception;
 
 	// 마이페이지_문의사항
 	public List<QnaVO> qna(String userId) throws Exception;

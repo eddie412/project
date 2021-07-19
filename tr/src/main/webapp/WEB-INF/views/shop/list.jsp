@@ -53,7 +53,7 @@ input[type="checkbox"] {
 	<h2 align="center">장바구니</h2>
 
 	<!-- 메인 -->
-	<form method="post" action="orderView" role="frm">
+	<form method="post" action="../order/orderView" role="frm">
 		<table id="main" align="center">
 			<tr>
 				<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
@@ -71,8 +71,7 @@ input[type="checkbox"] {
 				<c:otherwise>
 					<c:forEach var="cart" items="${cart.list}">
 						<tr>
-							<td><input type="checkbox" name="cId"  class="itemCheck"
-								onclick="itemSum()" value="${cart.cId}"> <input
+							<td><input type="checkbox" name="cId"  class="itemCheck"		onclick="itemSum()" value="${cart.cId}"> <input
 								type="hidden" class="itemSum"
 								value="${cart.count * cart.pPrice}"></td>
 							<td>
@@ -94,7 +93,7 @@ input[type="checkbox"] {
 			<tr>
 				<th colspan="2">총합</th>
 				<td colspan="3" style="font-weight: bold; color: #8D2D54;"
-					id="total">0원</td>
+					id="total" value="${sum}">0원</td>
 			</tr>
 		</table>
 		<div>

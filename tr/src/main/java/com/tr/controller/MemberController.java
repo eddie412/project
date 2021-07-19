@@ -13,13 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.MemberService;
+import com.tr.Service.OrderService;
 import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderDetailVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
 
@@ -31,6 +35,9 @@ public class MemberController {
 
 	@Inject
 	MemberService service;
+	
+	@Inject
+	OrderService oservice;
 
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
@@ -106,14 +113,37 @@ public class MemberController {
 		return result;
 	}
 
-	// 마이페이지_주문상세 get
-	@RequestMapping(value = "/mp_order", method = RequestMethod.GET)
-	public String order(Model model, HttpSession session) throws Exception {
+	// 마이페이지_주문내역리스트
+	@RequestMapping(value = "/mp_orderList", method = RequestMethod.GET)
+	public String order(Model model, HttpSession session, OrderVO vo) throws Exception {
 		String userId = (String) session.getAttribute("userId");
+		
+		
+		vo.setUserId(userId);
 
-		List<OrderVO> order = service.order(userId);
-		model.addAttribute("order", order);
+		List<OrderListVO> orderList = service.orderList(vo);
+		
+		model.addAttribute("orderlist", orderList);
+
 		return "member/mp_order";
+	}
+	
+
+	//주문상세조회
+	@RequestMapping(value="mp_orderDetail" , method = RequestMethod.GET)
+	public String orderDetail(HttpSession session, @RequestParam("n") String oId, OrderVO vo, Model model) throws Exception{
+		logger.info("orderDetail post...");
+		
+		String userId = (String) session.getAttribute("userId");
+		
+		vo.setUserId(userId);
+		vo.setoId(oId);
+		
+		List<OrderListVO> orderDetail = oservice.orderDetail(vo);
+		logger.info("★값="+orderDetail);
+		model.addAttribute("orderDetail", orderDetail);
+		
+		return "member/mp_orderDetail";
 	}
 
 	// 마이페이지_문의사항 get

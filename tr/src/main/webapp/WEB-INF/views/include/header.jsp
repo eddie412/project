@@ -62,7 +62,7 @@
 					</c:if>
 					<c:if test="${member != null}">
 						<button id="logoutBtn" type="button">로그아웃</button>
-						<li><a href ="/member/mp_order">마이페이지</a></li><br>
+						<li><a href ="/member/mp_orderList">마이페이지</a></li><br>
 						<li><a href="/shop/list">장바구니</a></li>
 					</c:if>
 				</ul>			

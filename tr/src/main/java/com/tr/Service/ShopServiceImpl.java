@@ -39,11 +39,5 @@ public class ShopServiceImpl implements ShopService {
 		dao.deleteAll(userId);
 	}
 
-	//주문서 상품 조회
-	@Override
-	public List<CartVO> orderlist(int cId) throws Exception {
-		return dao.orderlist(cId);
-	}
-
 
 }

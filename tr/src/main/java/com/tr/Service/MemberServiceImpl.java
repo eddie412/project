@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tr.DAO.MemberDAO;
 import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
 
@@ -50,10 +51,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.info(userId);
 	}
 	
-	// 마이페이지_주문상세
+	// 마이페이지_주문내역 리스트
 	@Override
-	public List<OrderVO> order(String userId) throws Exception {
-		return dao.order(userId);
+	public List<OrderListVO> orderList(OrderVO vo) throws Exception {
+		return dao.orderList(vo);
 	}
 
 	// 마이페이지_문의사항

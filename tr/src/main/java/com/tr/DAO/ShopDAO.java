@@ -18,6 +18,5 @@ public interface ShopDAO {
 	//장바구니 전체삭제
 	public void deleteAll(String userId) throws Exception;
 	
-	//주문서 상품 조회
-	public List<CartVO> orderlist(int cId) throws Exception;
+
 }
