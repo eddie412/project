@@ -48,20 +48,22 @@
 			<th>상품명</th>
 			<th>가격</th>
 			<th>수량</th>
-			<th>금액</th>
+			<th>총 금액</th>
+			<th>주문상태</th>
 		</tr>
-		<c:if test="${empty orderlist}">
+		<c:if test="${empty order}">
 			<td colspan="7">상품을 구매한적이 없습니다.</td>
 		</c:if>
-		<c:forEach var="orderList" items="${orderlist}">
+		<c:forEach var="order" items="${order}">
 			<tr>
-				<td><fmt:formatDate value="${orderList.oDate}" pattern="yyyy.MM.dd" /></td>
-				<td><a href='mp_orderDetail?n=${orderList.oId}'>${orderList.oId}</a></td>
-				<td><a href='/product/product?pno=${orderList.pNo}'><img src="../resources/images/${orderList.pImg}" alt="${orderList.pName} 이미지" ></a></td>
-				<td>${orderList.pName}</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${orderList.pPrice}" />원</td>
-				<td>${orderList.count}개</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${orderList.pPrice * orderList.count}" />원</td>
+				<td><fmt:formatDate value="${order.oDate}" pattern="yyyy.MM.dd" /></td>
+				<td><a href='mpOrderDetail?oId=${order.oId}'>${order.oId}</a></td>
+				<td><a href='/product/product?pno=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a></td>
+				<td>${order.pName}</td>
+				<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원</td>
+				<td>${order.count}개</td>
+				<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice * order.count}" />원</td>
+				<td>${order.delivery}</td>
 			</tr>
 		</c:forEach>
 	</table>

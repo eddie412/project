@@ -7,9 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.MemberDAO;
-import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
 
@@ -45,17 +43,25 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	// 마이페이지_주문내역
+	@Override
+	public List<OrderVO> order(OrderVO vo) throws Exception {
+		return dao.order(vo);
+	}
+	
+	//마이페이지_주문내역상세
+	@Override
+	public List<OrderVO> orderDetail(OrderVO vo) throws Exception {
+		return dao.orderDetail(vo);
+	}
+	
 	//마이페이지_회원정보 조회
 	@Override
 	public MemberVO info(String userId) throws Exception {
 		return dao.info(userId);
 	}
 	
-	// 마이페이지_주문내역 리스트
-	@Override
-	public List<OrderListVO> orderList(OrderVO vo) throws Exception {
-		return dao.orderList(vo);
-	}
+
 
 	// 마이페이지_문의사항
 	@Override

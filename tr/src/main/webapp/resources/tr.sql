@@ -39,7 +39,7 @@ alter Table tr_order ADD Foreign Key(oId) REFERENCES tr_member(userId);
 
 
 drop table tr_order;
-drop table tr_order CASCADE CONSTRAINTS
+drop table tr_order CASCADE CONSTRAINTS;
 
 select * from tr_order;
 
@@ -53,6 +53,14 @@ create table tr_orderDetails(
 );
 
 alter table tr_orderDetails ADD CONSTRAINT tr_orderDetials_oId FOREIGN KEY(oId) REFERENCES tr_order(oId);
+
+create sequence sq_orderDetails
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
+select * from tr_orderDetails;
 
 drop table tr_orderDetails;
 
@@ -105,17 +113,19 @@ start with 1
 maxvalue 1000
 nocache;
 
+drop sequence sq_qna;
+
 drop table tr_qna;
 
 select * from tr_qna;
 
 -------------------답글 테이블---------------------
 create table tr_reply( 
-	qNo 			number 				not null,									-- 문의사항 번호
-	rNo 			number 				not null,									-- 답글 번호
-	rContent	 	varchar2(1000) 	not null,									-- 답글 내용				
-	rWriter 		varchar2(10) 						DEFAULT '관리자',		-- 답글 작성자
-	rDate 		DATE 				not null		DEFAULT sysdate 		-- 답글 작성날짜
+	qNo 			number 				not null,										-- 문의사항 번호
+	rNo 			number 				not null,										-- 답글 번호
+	rContent	varchar2(1000) 		not null,										-- 답글 내용				
+	rWriter 		varchar2(10) 								DEFAULT '관리자',		-- 답글 작성자
+	rDate 		DATE 					not null		DEFAULT sysdate 		-- 답글 작성날짜
 );
 
 
@@ -128,8 +138,8 @@ drop table tr_reply;
 
 -------------------카테고리 테이블---------------------
 create table tr_category( 
-	cateCode 		varchar2(10) 	not null 	primary key	-- 카테고리 코드
-	cateName 		varchar2(20) 	not null,						-- 카테고리 이름
+	cateCode 		varchar2(10) 	not null 	primary key,	-- 카테고리 코드
+	cateName 		varchar2(20) 	not null						-- 카테고리 이름
 );
 
 
@@ -166,6 +176,6 @@ INSERT INTO tr_product VALUES('M001', '장수막걸리', 2500, 10, '백미를 �
 INSERT INTO tr_product VALUES('W001', '세븐 폴스, 카베르네 소비뇽', 19000, 10, '진한 과일 풍미에 묵직한 바디감이 느껴지는 레드와인', 5, 'W_Seven Falls.jpg');
 
 INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'W001', 5);
-INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'M001', 3);
+INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'M001', 2);
 
 INSERT INTO tr_cart(cId, userId, pNo, cPrice, cCount) VALUES(1, 'test', 'C012', 2500, 5);

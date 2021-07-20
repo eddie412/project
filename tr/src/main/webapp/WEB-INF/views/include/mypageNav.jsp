@@ -34,7 +34,7 @@
 <body>
 	<!-- 사이드 메뉴 -->
 		<ul id="nav" align="center">
-			<li><a href="mp_orderList">주문상세내역</a></li>
+			<li><a href="mpOrder">주문상세내역</a></li>
 			<li><a href="mp_qna">문의사항</a></li>
 			<li><a href="mp_update">회원정보수정</a></li>
 			<li><a href="mp_deleteview">탈퇴하기</a></li>

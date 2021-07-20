@@ -41,6 +41,11 @@ input[type="checkbox"] {
 	clear: both;
 	object-fit: cover;
 }
+input[type="button"] {
+	border:0; 
+	background:#E2BBF3; 
+	cursor:pointer;
+}
 </style>
 <body>
 	<!-- 헤드 -->
@@ -53,7 +58,7 @@ input[type="checkbox"] {
 	<h2 align="center">장바구니</h2>
 
 	<!-- 메인 -->
-	<form method="post" action="../order/orderView" role="frm">
+	<form method="get" action="/order/order" role="frm">
 		<table id="main" align="center">
 			<tr>
 				<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
@@ -63,7 +68,7 @@ input[type="checkbox"] {
 				<th>삭제</th>
 			</tr>
 			<c:choose>
-				<c:when test="${cart.listYN == 0}">
+				<c:when test="${cart.itemsYN == 0}">
 					<tr>
 						<td colspan="5">장바구니에 상품이 담겨있지 않습니다.</td>
 					</tr>
@@ -86,73 +91,57 @@ input[type="checkbox"] {
 							<td class="sum">
 								<fmt:formatNumber pattern="###,###,###"  value="${cart.count * cart.pPrice}" />원</td>
 							<td>
-								<a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a>
+								<!-- <a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a> -->
+								<a href="deleteItem?cId=${cart.cId}" onclick="return confirm('선택하신 상품을 삭제하시겠습니까?')"><input type="button" value="삭제"></a>
 							</td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-<%-- 			<tr>
+			<tr>
 				<th colspan="2">총합</th>
-				<td colspan="3" style="font-weight: bold; color: #8D2D54;"
-					id="total" value="${sum}">0원</td>
-			</tr> --%>
+				<td colspan="3" style="font-weight: bold; color: #8D2D54;" id="total" value="${sum}" >0원</td>
+			</tr> 
 		</table>
 		<div>
-			<input type="button" value="쇼핑 계속하기"
-				onclick="location.href='../member/mp_order'"> <input
-				type="button" value="전체 삭제" class="deleteCon"> <input
-				type="button" value="주문하기" onclick="check()">
+			<input type="button" value="쇼핑 계속하기" onclick="location.href='/'">
+			<input type="button" value="전체 삭제" class="deleteAll"> 
+			<input type="button" value="주문하기" onclick="check()">
 		</div>
 
 <script type="text/javascript">
-//주문하기
-function check(){
-	var all = $(".itemCheck").length;
-	var count = 0;
+
+	//주문하기
+	function check(){
+		var all = $(".itemCheck").length;
+		var count = 0;
 	
-	for (var i = 0; i < all; i++) {
-		if($(".itemCheck")[i].checked == true){
-			++count;
+		for (var i = 0; i < all; i++) {
+			if($(".itemCheck")[i].checked == true){
+				++count;
+			}
 		}
-	}
 
-	if (count == 0) {
-		alert("주문하실 상품을 선택해주세요.");
-	}else{
-		$("form[role='frm']").submit();
-	}		
-}	
+		if (count == 0) {
+			alert("주문하실 상품을 선택해주세요.");
+		}else{
+			$("form[role='frm']").submit();
+		}		
+	}	
 
-
-//상품 삭제
-$(".deleteCon").click(function() {
+	//상품 전체삭제
+	$(".deleteAll").click(function() {
 		var count = $(".itemCheck").length;
 		if (count == 0) {
 			alert("상품이 없습니다. 장바구니에 상품을 담아주세요.");
 		} else {
-			var result = confirm("상품을 삭제하시겠습니까?");
+			var result = confirm("상품을 전체 삭제하시겠습니까?");
 
 			if (result) {
-				location.href = "/shop/deleteAll"
+				location.href = "/order/deleteAll";
 			}
-
 		}
 	});
-
-	//선택한 상품 가격 총합
-	function itemSum() {
-		var str = "";
-		var sum = 0;
-		var count = $(".itemCheck").length;
-
-		for (var i = 0; i < count; i++) {
-			if ($(".itemCheck")[i].checked == true) {
-				sum += parseInt($(".itemSum")[i].value);
-			}
-		}
-
-		$("#total").html(sum + "원");
 
 	//전체 체크박스 선택/해제
 	$("#allCheck").click(function() {
@@ -165,6 +154,23 @@ $(".deleteCon").click(function() {
 			itemSum();
 		}
 	});
+
+	//선택한 상품 가격 총합
+	function itemSum() {
+		
+		var str = "";
+		var sum = 0;
+		var count = $(".itemCheck").length;
+
+		for (var i = 0; i < count; i++) {
+			if ($(".itemCheck")[i].checked == true) {
+				sum += parseInt($(".itemSum")[i].value);
+			}
+		}
+
+		$("#total").html(sum.toLocaleString('ko-KR') + "원");
+
+
 
 	//체크 박스 하나 해제시 전체 체크박스 해제
 	$(".itemCheck").click(function() {

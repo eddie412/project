@@ -7,22 +7,8 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 //숫자만 입력
-var replaceNotInt = /[^0-9]/gi;
 
-$(document).ready(function(){
-    
-    $("#userPhone").on("focusout", function() {
-        var x = $(this).val();
-        if (x.length > 0) {
-            if (x.match(replaceNotInt)) {
-               x = x.replace(replaceNotInt, "");
-            }
-            $(this).val(x);
-        }
-    }).on("keyup", function() {
-        $(this).val($(this).val().replace(replaceNotInt, ""));
-    });
-    
+$(document).ready(function(){ 
     
     $("#reset").on("click", function(){
     	var result = confirm("취소하시겠습니까?");
@@ -148,7 +134,7 @@ function updateCheck(){
 			</tr>
 			<tr>
 				<th>휴대폰번호</th>
-				<td><input type="text" id="userPhone" name="userPhone" value="${userPhone}"></td>
+				<td><input type="text" id="userPhone" name="userPhone" value="${userPhone}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
 			</tr>
 			<tr>
 				<th>주소</th>

@@ -4,16 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.OrderDAO;
-import com.tr.VO.CartVO;
 import com.tr.VO.OrderDetailVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
-import com.tr.controller.ShopController;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -28,34 +23,45 @@ public class OrderServiceImpl implements OrderService{
 		return dao.cart(userId);
 	}
 
-	
-	//주문서 상품 조회
+	//장바구니 총 결제금액
 	@Override
-	public List<CartVO> orderlist(int cId) throws Exception {
-		return dao.orderlist(cId);
+	public int total(String userId) throws Exception {
+		return dao.total(userId);
+	}
+
+	// 장바구니 상품 개별삭제
+	@Override
+	public void deleteItem(int cId) throws Exception {
+		dao.deleteItem(cId);
+	}
+
+	//장바구니 상품 전체삭제
+	@Override
+	public void deleteAll(String userId) throws Exception {
+		dao.deleteAll(userId);
+	}
+	
+	//주문서
+	@Override
+	public List<OrderVO> order(int cId) throws Exception {
+		return dao.order(cId);
 	}
 
 	//주문완료
 	@Override
-	public void order(OrderVO vo) throws Exception {
-		dao.order(vo);
+	public void orderComplete(OrderVO vo) throws Exception {
+		dao.orderComplete(vo);
 	}
 
-	//주문조회
+	//주문내역 삽입
 	@Override
-	public void orderInfo(OrderDetailVO vo) throws Exception {
-		dao.orderInfo(vo);
-	}
-	
-	//주문상세조회
-	@Override
-	public List<OrderListVO> orderDetail(OrderVO vo) throws Exception {
-		return dao.orderDetail(vo);
+	public void orderInsert(OrderDetailVO vo) throws Exception {
+		dao.orderInsert(vo);
 	}
 
 	//주문완료상품 삭제
 	@Override
-	public void orderDelete(CartVO vo) throws Exception {
+	public void orderDelete(OrderVO vo) throws Exception {
 		dao.orderDelete(vo);
 	}
 

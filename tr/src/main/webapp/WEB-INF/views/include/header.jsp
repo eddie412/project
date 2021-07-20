@@ -54,7 +54,7 @@
 	<table id="header">
 		<tr>
 			<td><a href="../nav" ><img src="../resources/images/Imenu.png" alt="메뉴" id="menu"></a></td>
-			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
+			<td><a href="/"><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></a></td>
 			<td>
 				<ul>
 					<c:if test="${member ==null}">
@@ -62,7 +62,7 @@
 					</c:if>
 					<c:if test="${member != null}">
 						<button id="logoutBtn" type="button">로그아웃</button>
-						<li><a href ="/member/mp_orderList">마이페이지</a></li><br>
+						<li><a href ="/member/mpOrder">마이페이지</a></li><br>
 						<li><a href="/order/cart">장바구니</a></li>
 					</c:if>
 				</ul>			

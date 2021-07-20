@@ -68,7 +68,7 @@
 			</tr>
 			<tr>
 				<th>주문상태</th>
-				<td>${orderDetail.oState}</td>
+				<td>${orderDetail.delivery}</td>
 			</tr>
 			<tr>
 				<th>상품이름</th>

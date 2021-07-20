@@ -7,9 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
 
@@ -45,17 +43,24 @@ public class MemberDAOImpl implements MemberDAO {
 		return result;
 	}
 	
+	// 마이페이지_주문내역
+	@Override
+	public List<OrderVO> order(OrderVO vo) throws Exception {
+		return sql.selectList("memberMapper.order", vo);
+	}
+
+	//마이페이지_주문내역상세
+	@Override
+	public List<OrderVO> orderDetail(OrderVO vo) throws Exception{
+		return sql.selectList("memberMapper.orderDetail", vo);
+	}
+	
 	//마이페이지_회원정보 조회
 	@Override
 	public MemberVO info(String userId) throws Exception {
 		return sql.selectOne("memberMapper.info", userId);
 	}
 
-	// 마이페이지_주문내역리스트
-	@Override
-	public List<OrderListVO> orderList(OrderVO vo) throws Exception {
-		return sql.selectList("memberMapper.orderList", vo);
-	}
 
 	// 마이페이지_문의사항
 	@Override

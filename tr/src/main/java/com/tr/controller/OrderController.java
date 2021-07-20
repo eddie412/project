@@ -14,14 +14,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tr.Service.MemberService;
 import com.tr.Service.OrderService;
-import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
 import com.tr.VO.OrderDetailVO;
 import com.tr.VO.OrderVO;
@@ -30,7 +28,7 @@ import com.tr.VO.OrderVO;
 @RequestMapping("/order/*")
 public class OrderController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	@Inject
 	OrderService service;
@@ -47,34 +45,57 @@ public class OrderController {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<OrderVO> cartItems = service.cart(userId);
-		//int total = service.total(userId);
+		int total = service.total(userId);
 
 		map.put("items", cartItems);
 		map.put("itemsYN", cartItems.size());
-		//map.put("total", total);
+		map.put("total", total);
 
 		model.addAttribute("cart", map);
 
 		return "order/cart";
 	}
 	
+
+	// 장바구니 상품 개별삭제
+	@RequestMapping(value = "deleteItem", method = RequestMethod.GET)
+	public String delete(@RequestParam int cId) throws Exception {
+		logger.info("★장바구니 상품개별삭제....deleteItem get");
+
+		service.deleteItem(cId);
+
+		return "redirect:/order/cart";
+	}
+
+	// 장바구니 상품 전체삭제
+	@RequestMapping(value = "deleteAll" , method = RequestMethod.GET)
+	public String deleteAll(HttpSession session) throws Exception{
+		logger.info("★장바구니 상품전체삭제....deleteAll get");
+		
+		String userId = (String) session.getAttribute("userId");
+		
+		service.deleteAll(userId);
+		
+		return "redirect:/order/cart";
+	}
+	
 	// 주문서
-	@RequestMapping(value="orderView", method = RequestMethod.POST)
+	@RequestMapping(value="order", method = RequestMethod.GET)
 		public String orderView(HttpSession session, Model model, @RequestParam(value="cId") int[] values) throws Exception {
-			logger.info("orderView post...");
+		logger.info("★주문서 진입....order get");
 
 			String userId = (String) session.getAttribute("userId");
 		
 			
-			//주문상품
+			//장바구니에서 선택한 상품 출력
 			  Map<String, Object> map = new HashMap<String, Object>();
 			  int total = 0;
 			  
 			  for(int i=0; i<values.length; i++) { 
 				  session.setAttribute("cId"+i, values[i]);
-				  map.put("list"+i, service.orderlist(values[i]).get(0));
+				  map.put("item"+i, service.order(values[i]).get(0));
 				  
-				  total += service.orderlist(values[i]).get(0).getCount() * service.orderlist(values[i]).get(0).getpPrice();
+				  total += service.order(values[i]).get(0).getCount() * service.order(values[i]).get(0).getpPrice();
 			  }
 			  model.addAttribute("order", map); 
 			  model.addAttribute("num", values.length);
@@ -93,19 +114,18 @@ public class OrderController {
 			model.addAttribute("total", total);
 			
 			
-			return "shop/orderView";
+			return "order/order";
 		}
 	
 
 	//주문완료
-@RequestMapping(value="order", method = RequestMethod.POST)
-	public String orderInsert(HttpSession session, OrderVO vo, OrderDetailVO dvo, CartVO cvo,@RequestParam(value="cId") int[] values) throws Exception{
-		logger.info("order post...");
+@RequestMapping(value="orderComplete", method = RequestMethod.POST)
+	public String orderInsert(HttpSession session, OrderVO vo, OrderDetailVO dvo, @RequestParam(value="cId") int[] values) throws Exception{
+	logger.info("★주문완료....orderComplete post");
 	
 		//사용자 아이디
 		String userId = (String) session.getAttribute("userId");
 		vo.setUserId(userId);
-		cvo.setUserId(userId);
 		
 		//주문번호(oId) 생성
 		Calendar cal = Calendar.getInstance();
@@ -127,16 +147,16 @@ public class OrderController {
 		Date now = new Date();
 		vo.setoDate(now);
 		
-		service.order(vo);
+		service.orderComplete(vo);
 		
 		//장바구니 번호(cId) 구별
 		dvo.setoId(oId);
 		
 		for(int i=0; i<(Integer)session.getAttribute("size"); i++) {
-			cvo.setcId(values[i]);
+			vo.setcId(values[i]);
 			dvo.setcId(values[i]);
-			service.orderInfo(dvo);
-			service.orderDelete(cvo);
+			service.orderInsert(dvo);
+			service.orderDelete(vo);
 		}
 		
 	
