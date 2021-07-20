@@ -12,10 +12,19 @@
 	</select>
 	
 	<!-- 관리자용 주문 내역 불러오기 -->
-	<select id="orderList" resultType="com.tr.VO.OrderVO">
-		Select *
-		FROM TR_ORDER
-		ORDER BY oDate DESC
+	<select id="orderList" resultType="com.tr.VO.OrderListVO">
+		Select o.oId, o.name, m.userPhone as phone, o.rName, o.rAddr, o.rPhone, o.pName, o.count, o.oDate, o.delivery
+		FROM TR_ORDER o, tr_member m
+<!-- 		INNER JOIN	tr_orderDetails d ON o.oId = d.oId
+		INNER JOIN	tr_member m ON o.userId = m.userId -->
+	</select>
+	<!-- 관리자용 주문 상세 보기 -->
+	<select id="orderView" resultType="com.tr.VO.OrderListVO">
+		Select o.oId, o.name, m.userPhone as phone, o.rName, o.rAddr, o.rPhone, o.pName, o.count, o.oDate, o.delivery
+		FROM TR_ORDER o
+		INNER JOIN	tr_orderDetails d ON o.oId = d.oId
+		INNER JOIN	tr_member m ON o.userId = m.userId
+		where o.oId = #{oId}
 	</select>
 	
 	<!-- 관리자용 상품관리 -->
@@ -61,11 +70,11 @@
 		where oId=#{oId}
 	</update>
 	<!-- 주문 내역 조회 -->
-	<select id="orderView" resultType="com.tr.VO.OrderVO">
+	<!-- <select id="orderView" resultType="com.tr.VO.OrderVO">
 		Select oId,name,rAddr,phone,count,oDate,delivery
 		from tr_order
 		where oId=#{oId}
-	</select>
+	</select> -->
 	<!-- 주문 수정 -->
 	<update id="orderModify">
 		update tr_order

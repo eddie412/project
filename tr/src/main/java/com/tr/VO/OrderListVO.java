@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class OrderListVO {
 	private String oId;				//주문번호
+	private String name;
 	private String userId;			//로그인계정
 	private String rName;			//보내는분 이름
 	private String rAddr;			//보내는분 주소
@@ -119,10 +120,16 @@ public class OrderListVO {
 	
 	@Override
 	public String toString() {
-		return "OrderListVO [oId=" + oId + ", userId=" + userId + ", rName=" + rName + ", rAddr=" + rAddr + ", rPhone="
-				+ rPhone + ", oMemo=" + oMemo + ", oDate=" + oDate + ", oTotal=" + oTotal + ", delivery=" + delivery
-				+ ", orderDetailsId=" + orderDetailsId + ", pNo=" + pNo + ", pName=" + pName + ", pImg=" + pImg
-				+ ", pInfo=" + pInfo + ", pPrice=" + pPrice + ", count=" + count + "]";
+		return "OrderListVO [oId=" + oId + ", name=" + name + ", userId=" + userId + ", rName=" + rName + ", rAddr="
+				+ rAddr + ", rPhone=" + rPhone + ", oMemo=" + oMemo + ", oDate=" + oDate + ", oTotal=" + oTotal
+				+ ", delivery=" + delivery + ", orderDetailsId=" + orderDetailsId + ", pNo=" + pNo + ", pName=" + pName
+				+ ", pImg=" + pImg + ", pInfo=" + pInfo + ", pPrice=" + pPrice + ", count=" + count + "]";
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

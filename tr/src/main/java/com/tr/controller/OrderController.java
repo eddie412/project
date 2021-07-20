@@ -60,6 +60,7 @@ public class OrderController {
 			total += service.orderlist(values[i]).get(0).getCount() * service.orderlist(values[i]).get(0).getpPrice();
 		}
 		model.addAttribute("order", map);
+		logger.info("★num값=" + values.length);
 		model.addAttribute("num", values.length);
 		session.setAttribute("size", values.length);
 

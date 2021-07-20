@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -132,7 +133,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 주문 내역 조회
 	@Override
-	public List<OrderVO> orderList(OrderVO orderVo) throws Exception {
+	public List<OrderVO> orderList(OrderListVO orderVo) throws Exception {
 		return sql.selectList("adminMapper.orderList", orderVo);
 	}
 

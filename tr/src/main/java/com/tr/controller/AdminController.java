@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tr.Service.AdminService;
 import com.tr.Service.MemberService;
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -41,11 +42,11 @@ public class AdminController {
 
 	// 주문내역 관리
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.GET)
-	public String order(OrderVO orderVo, Model model) throws Exception {
+	public String order(OrderListVO orderVo, Model model) throws Exception {
 		logger.info("get order");
 
 		List<OrderVO> orderList = aService.orderList(orderVo);
-		logger.info("★" + orderList);
+
 		model.addAttribute("orderList", orderList);
 
 		return "admin/order/orderList";
@@ -68,6 +69,7 @@ public class AdminController {
 		logger.info("Get orderView");
 
 		OrderVO order = aService.orderView(oId);
+		logger.info("★" + order);
 		model.addAttribute("order", order);
 	}
 

@@ -22,22 +22,32 @@
 	<input type="hidden" name="n" value="${order.oId}" />
 	
 		<div class="inputArea">
-			<label for="pNo">주문번호</label>
+			<label for="oId">주문번호</label>
 			<span>${order.oId}</span>
 		</div>
-		
+		------------주문정보-------------------
 		<div class="inputArea">
 			<label for="name">주문자</label>
 			<span> ${order.name}</span>
 		</div>
 		<div class="input_area">
-			<label for="addr">배송지</label>
-			<span> ${order.addr}</span>
-		</div>
-		<div class="input_area">
 			<label for="phone">전화번호</label>
 			<span> ${order.phone}</span>
 		</div>
+		------------받는사람정보----------------
+		<div class="input_area">
+			<label for="rName">받는사람</label>
+			<span> ${order.rName}</span>
+		</div>
+		<div class="input_area">
+			<label for="rAddr">받는주소</label>
+			<span> ${order.rAddr}</span>
+		</div>
+		<div class="input_area">
+			<label for="rPhone">연락처</label>
+			<span> ${order.rPhone}</span>
+		</div>
+		--------------배송정보---------------
 		<div class="input_area">
 			<label for="pName">상품명</label>
 			<span> ${order.pName}</span>

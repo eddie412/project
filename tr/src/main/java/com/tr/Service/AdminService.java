@@ -3,6 +3,7 @@ package com.tr.Service;
 import java.util.List;
 
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -54,7 +55,7 @@ public interface AdminService {
 	public ReplyVO replySelect(int rNo) throws Exception;
 	
 	//주문 내역 확인
-	public List<OrderVO> orderList(OrderVO orderVo) throws Exception;
+	public List<OrderVO> orderList(OrderListVO orderVo) throws Exception;
 	//배송 상태
 	public void delivery(OrderVO orderVo) throws Exception;
 	
