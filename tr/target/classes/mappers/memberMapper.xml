@@ -49,4 +49,49 @@
 		Select *
 		FROM TR_MEMBER
 	</select>
+	
+	<!-- 마이페이지_회원정보 조회 -->
+	<select id="info" resultType="com.tr.VO.MemberVO">
+		SELECT 	*
+		FROM		tr_member
+		WHERE	userId = #{userId}
+	</select>	
+	
+	<!-- 마이페이지_주문내역리스트-->
+	<select id="orderList" resultType="com.tr.VO.OrderListVO">
+		SELECT 			o.oDate, o.oId, p.pName, p.pImg, p.pPrice, d.count, (p.pPrice * d.count), d.pNo
+		FROM				tr_order o
+		INNER JOIN		tr_orderDetails d ON o.oId = d.oId
+		INNER JOIN		tr_product p ON d.pNo = p.pNo
+		WHERE			o.userId = #{userId}
+		ORDER BY		oDate DESC
+	</select>
+
+
+	<!-- 마이페이지_문의사항 -->
+	<select id="qna" resultType="com.tr.VO.QnaVO">
+		SELECT		qTitle, qDate, qContent
+		FROM			tr_qna
+		WHERE		qWriter = #{userId}
+		ORDER BY qDate DESC
+	</select>
+
+	<!-- 마이페이지_회원정보수정 -->
+	<update id="update" >
+		UPDATE 	tr_member
+		SET 	userName = #{userName},
+				userPass = #{userPass},
+				userEmail = #{userEmail},
+				userPhone = #{userPhone},
+				userAddr = #{userAddr},
+				userBday = #{userBday}
+		WHERE userId = #{userId}
+	</update>
+	
+	<!-- 마이페이지_회원정보삭제 -->
+	<delete id="delete">
+		DELETE FROM tr_member
+		WHERE userId = #{userId}
+		AND	  userPass = #{userPass}
+	</delete>
 </mapper>

@@ -58,29 +58,29 @@
 	<update id="delivery">
 		update TR_ORDER
 			set DELIVERY=#{delivery}
-		where NO=#{no}
+		where oId=#{oId}
 	</update>
 	<!-- 주문 내역 조회 -->
 	<select id="orderView" resultType="com.tr.VO.OrderVO">
-		Select no,name,addr,phone,count,oDate,delivery
+		Select oId,name,rAddr,phone,count,oDate,delivery
 		from tr_order
-		where no=#{no}
+		where oId=#{oId}
 	</select>
 	<!-- 주문 수정 -->
 	<update id="orderModify">
 		update tr_order
-		set no=#{no},
+		set oId=#{oId},
 			name=#{name},
 			addr=#{addr},
 			phone=#{phone},
 			pName=#{pName},
 			count=#{count}
-		where no=#{no}
+		where oId=#{oId}
 	</update>
 	<!-- 제품 삭제	 -->
 	<delete id="orderDelete">
 	delete	tr_order
-	where no = #{no}
+	where oId = #{oId}
 	</delete>
 	<!-- 회원 조회 -->
 	<select id="memberView" resultType="com.tr.VO.MemberVO">
@@ -144,9 +144,4 @@
 		From tr_reply
 		where rNo=#{rNo}
 	</select>
-	
-	
-	
-	
-	
 </mapper>

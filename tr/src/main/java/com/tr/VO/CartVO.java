@@ -2,49 +2,65 @@ package com.tr.VO;
 
 
 public class CartVO {
-	private String cId;
-	private String cNo;
-	private String cInfo;
-	private int cPrice;
-	private int cCount;
-	private int Totla;
+	private int cId;
+	private String userId;
+	private String pNo;
+	private int count;
+	private String pImg;
+	private String pName;
+	private int pPrice;
 	
-	public String getcId() {
+	public int getcId() {
 		return cId;
 	}
-	public void setcId(String cId) {
+	public void setcId(int cId) {
 		this.cId = cId;
 	}
-	public String getcNo() {
-		return cNo;
+	public String getUserId() {
+		return userId;
 	}
-	public void setcNo(String cNo) {
-		this.cNo = cNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getcInfo() {
-		return cInfo;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setcInfo(String cInfo) {
-		this.cInfo = cInfo;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
-	public int getcPrice() {
-		return cPrice;
+	public int getCount() {
+		return count;
 	}
-	public void setcPrice(int cPrice) {
-		this.cPrice = cPrice;
+	public void setCount(int count) {
+		this.count = count;
 	}
-	public int getcCount() {
-		return cCount;
+	public String getpImg() {
+		return pImg;
 	}
-	public void setcCount(int cCount) {
-		this.cCount = cCount;
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
 	}
-	public int getTotla() {
-		return Totla;
+	public String getpName() {
+		return pName;
 	}
-	public void setTotla(int totla) {
-		Totla = totla;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+	@Override
+	public String toString() {
+		return "CartVO [cId=" + cId + ", userId=" + userId + ", pNo=" + pNo + ", count=" + count + ", pImg=" + pImg
+				+ ", pName=" + pName + ", pPrice=" + pPrice + "]";
+	}
+	
+	
+	
+	
 	
 	
 }

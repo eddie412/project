@@ -19,11 +19,11 @@
 	<br><hr>
 	<h2>주문 수정</h2>
 	<form role="form" method="post" action="orderModify">
-	<input type="hidden" name="no" value="${order.no}" />
+	<input type="hidden" name="oId" value="${order.oId}" />
 	
 		<div class="inputArea">
 			<label for="no">주문번호</label>
-			<span>${order.no}</span>
+			<span>${order.oId}</span>
 		</div>
 		<div class="input_area">
 			<label for="name">주문자</label>

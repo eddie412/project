@@ -22,6 +22,10 @@ function fn_idChk(){
 			}
 		}
 	})
+	$.ajax({
+		url:"member/ageChk"
+		
+	})
 }
 	</script>
 <title>register</title>

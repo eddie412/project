@@ -19,11 +19,11 @@
 	<br><hr>
 	<h2>주문 상세 내역</h2>
 	<form role="form" method="post" autocomplete="off">
-	<input type="hidden" name="n" value="${order.no}" />
+	<input type="hidden" name="n" value="${order.oId}" />
 	
 		<div class="inputArea">
 			<label for="pNo">주문번호</label>
-			<span>${order.no}</span>
+			<span>${order.oId}</span>
 		</div>
 		
 		<div class="inputArea">

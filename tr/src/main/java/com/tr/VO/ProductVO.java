@@ -7,6 +7,8 @@ public class ProductVO {
 	private int pCount;
 	private String pInfo;
 	private int pSales;
+	private String pImg;
+	
 	
 	
 	public String getpNo() {
@@ -45,11 +47,18 @@ public class ProductVO {
 	public void setpSales(int pSales) {
 		this.pSales = pSales;
 	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
 	@Override
 	public String toString() {
 		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pCount=" + pCount + ", pInfo="
-				+ pInfo + ", pSales=" + pSales + "]";
+				+ pInfo + ", pSales=" + pSales + ", pImg=" + pImg + "]";
 	}
+	
 	
 	
 	

@@ -45,6 +45,7 @@ public class AdminController {
 		logger.info("get order");
 
 		List<OrderVO> orderList = aService.orderList(orderVo);
+		logger.info("★" + orderList);
 		model.addAttribute("orderList", orderList);
 
 		return "admin/order/orderList";
@@ -63,19 +64,19 @@ public class AdminController {
 
 	// 주문 내역 조회
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void getOrderView(@RequestParam("n") int no, Model model) throws Exception {
+	public void getOrderView(@RequestParam("n") String oId, Model model) throws Exception {
 		logger.info("Get orderView");
 
-		OrderVO order = aService.orderView(no);
+		OrderVO order = aService.orderView(oId);
 		model.addAttribute("order", order);
 	}
 
 	// 주문 수정 GET
 	@RequestMapping(value = "/order/orderModify", method = RequestMethod.GET)
-	public void getOrderModify(@RequestParam("n") int no, Model model) throws Exception {
+	public void getOrderModify(@RequestParam("n") String oId, Model model) throws Exception {
 		logger.info("Get orderModify");
 
-		OrderVO order = aService.orderView(no);
+		OrderVO order = aService.orderView(oId);
 		model.addAttribute("order", order);
 	}
 
@@ -83,18 +84,19 @@ public class AdminController {
 	@RequestMapping(value = "/order/orderModify", method = RequestMethod.POST)
 	public String postOrderModify(OrderVO vo) throws Exception {
 		logger.info("POST orderModify");
-
+		logger.info(vo.toString());
 		aService.orderModify(vo);
+		
 
 		return "redirect:/admin/order/orderList";
 	}
 
 	// 주문 삭제
 	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
-	public String getOrderDelete(@RequestParam("n") int no, Model model) throws Exception {
+	public String getOrderDelete(@RequestParam("n") int oId, Model model) throws Exception {
 		logger.info("Get orderDelete");
 
-		aService.orderDelete(no);
+		aService.orderDelete(oId);
 
 		return "redirect:/admin/order/orderList";
 	}

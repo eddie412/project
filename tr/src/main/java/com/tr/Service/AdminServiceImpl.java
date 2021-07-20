@@ -50,7 +50,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// 주문 내역 조회
 	@Override
-	public OrderVO orderView(int no) throws Exception {
+	public OrderVO orderView(String no) throws Exception {
 		return dao.orderView(no);
 	}
 

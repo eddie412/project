@@ -28,7 +28,7 @@ public class AdminDAOImpl implements AdminDAO {
 	// 상품 내역 조회
 	@Override
 	public List<ProductVO> productList(ProductVO productVo) throws Exception {
-		return sql.selectList("productList",productVo);
+		return sql.selectList("adminMapper.productList",productVo);
 	}
 	// 상품 등록
 	@Override
@@ -49,7 +49,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 주문 내역 조회
 	@Override
-	public OrderVO orderView(int no) throws Exception {
+	public OrderVO orderView(String no) throws Exception {
 		return sql.selectOne("adminMapper.orderView", no);
 	}
 
@@ -133,7 +133,7 @@ public class AdminDAOImpl implements AdminDAO {
 	// 주문 내역 조회
 	@Override
 	public List<OrderVO> orderList(OrderVO orderVo) throws Exception {
-		return sql.selectList("orderList", orderVo);
+		return sql.selectList("adminMapper.orderList", orderVo);
 	}
 
 	// 배송 처리
@@ -144,6 +144,6 @@ public class AdminDAOImpl implements AdminDAO {
 	//문의 사항 관리
 	@Override
 	public List<QnaVO> qnaList(QnaVO qnaVo) throws Exception{
-		return sql.selectList("qnaList", qnaVo);
+		return sql.selectList("adminMapper.qnaList", qnaVo);
 	}
 }

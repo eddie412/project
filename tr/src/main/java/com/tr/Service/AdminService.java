@@ -22,7 +22,7 @@ public interface AdminService {
 	public void productDelete(String pNo) throws Exception;
 	
 	//주문 내역 조회
-	public OrderVO orderView(int no) throws Exception;
+	public OrderVO orderView(String no) throws Exception;
 	//주문 수정
 	public void orderModify(OrderVO vo) throws Exception;
 	//상품 삭제
