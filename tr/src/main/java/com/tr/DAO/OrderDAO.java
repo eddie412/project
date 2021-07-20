@@ -9,6 +9,9 @@ import com.tr.VO.OrderVO;
 
 public interface OrderDAO {
 	
+	//장바구니
+	public List<OrderVO> cart(String userId) throws Exception;
+	
 	//주문서 상품 조회
 	public List<CartVO> orderlist(int cId) throws Exception;
 	

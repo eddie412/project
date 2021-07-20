@@ -16,10 +16,7 @@ public class ShopDAOImpl implements ShopDAO{
 	SqlSession sql;
 	
 	//장바구니 조회
-	@Override
-	public List<CartVO> list(String userId) throws Exception {
-		return sql.selectList("shopMapper.list", userId);
-	}
+
 	
 	//장바구니 상품 합계
 	@Override

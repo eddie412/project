@@ -2,6 +2,16 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="orderMapper">
 
+	<!-- 장바구니-->
+	<select id="cart" resultType="com.tr.VO.OrderVO">
+		SELECT 		c.cId, p.pName, p.pImg, c.count, p.pPrice, (c.count * p.pPrice) as money
+		FROM			tr_cart c, tr_member m, tr_product p, 
+		WHERE		m.userId = c.userId
+		AND			p.pNo = c.pNo
+		AND			c.userId = #{userId}
+		ORDER BY	cId DESC
+	</select>
+
 
 	<!-- 주문서 상품 조회 -->
 	<select id="orderlist" resultType="com.tr.VO.CartVO">

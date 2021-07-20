@@ -69,32 +69,34 @@ input[type="checkbox"] {
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach var="cart" items="${cart.list}">
+					<c:forEach var="cart" items="${cart.items}">
 						<tr>
-							<td><input type="checkbox" name="cId"  class="itemCheck"		onclick="itemSum()" value="${cart.cId}"> <input
-								type="hidden" class="itemSum"
-								value="${cart.count * cart.pPrice}"></td>
+							<td>
+								<input type="checkbox" name="cId"  class="itemCheck"	 onclick="itemSum()" value="${cart.cId}"> 
+								<input type="hidden" class="itemSum"	value="${cart.count * cart.pPrice}">
+							</td>
 							<td>
 								<div>
 									${cart.pName}<br>
-									<fmt:formatNumber pattern="###,###,###" value="${cart.pPrice}" />
-									원<br>
-								</div> <img src="../resources/images/${cart.pImg}"
-								alt="${cart.pName} 이미지" class="img">
+									<fmt:formatNumber pattern="###,###,###" value="${cart.pPrice}" />원<br>
+								</div> 
+								<img src="../resources/images/${cart.pImg}"	alt="${cart.pName} 이미지" class="img">
 							</td>
 							<td>${cart.count}개</td>
-							<td class="sum"><fmt:formatNumber pattern="###,###,###"
-									value="${cart.count * cart.pPrice}" />원</td>
-							<td><a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a></td>
+							<td class="sum">
+								<fmt:formatNumber pattern="###,###,###"  value="${cart.count * cart.pPrice}" />원</td>
+							<td>
+								<a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<tr>
+<%-- 			<tr>
 				<th colspan="2">총합</th>
 				<td colspan="3" style="font-weight: bold; color: #8D2D54;"
 					id="total" value="${sum}">0원</td>
-			</tr>
+			</tr> --%>
 		</table>
 		<div>
 			<input type="button" value="쇼핑 계속하기"

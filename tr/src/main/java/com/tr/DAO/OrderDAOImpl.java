@@ -18,6 +18,12 @@ public class OrderDAOImpl implements OrderDAO{
 	@Inject
 	SqlSession sql;
 	
+	//장바구니
+	@Override
+	public List<OrderVO> cart(String userId) throws Exception {
+		return sql.selectList("orderMapper.cart", userId);
+	}
+	
 	
 	//주문서 상품조회
 	@Override
@@ -48,6 +54,8 @@ public class OrderDAOImpl implements OrderDAO{
 	public void orderDelete(CartVO vo) throws Exception {
 		sql.delete("orderMapper.orderDelete", vo);
 	}
+
+
 	
 
 }

@@ -38,6 +38,26 @@ public class OrderController {
 	@Inject
 	MemberService mservice;
 	
+	// 장바구니
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	public String cart(Model model, HttpSession session) throws Exception {
+		logger.info("★장바구니 진입....cart get");
+		String userId = (String) session.getAttribute("userId");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<OrderVO> cartItems = service.cart(userId);
+		//int total = service.total(userId);
+
+		map.put("items", cartItems);
+		map.put("itemsYN", cartItems.size());
+		//map.put("total", total);
+
+		model.addAttribute("cart", map);
+
+		return "order/cart";
+	}
+	
 	// 주문서
 	@RequestMapping(value="orderView", method = RequestMethod.POST)
 		public String orderView(HttpSession session, Model model, @RequestParam(value="cId") int[] values) throws Exception {

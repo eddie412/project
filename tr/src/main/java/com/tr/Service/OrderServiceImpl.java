@@ -21,6 +21,12 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Inject
 	OrderDAO dao;
+	
+	// 장바구니
+	@Override
+	public List<OrderVO> cart(String userId) throws Exception {
+		return dao.cart(userId);
+	}
 
 	
 	//주문서 상품 조회

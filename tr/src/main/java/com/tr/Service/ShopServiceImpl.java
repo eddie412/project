@@ -15,11 +15,7 @@ public class ShopServiceImpl implements ShopService {
 	@Inject
 	ShopDAO dao;
 
-	// 장바구니 조회
-	@Override
-	public List<CartVO> list(String userId) throws Exception {
-		return dao.list(userId);
-	}
+
 
 	// 장바구니 상품 합계
 	@Override

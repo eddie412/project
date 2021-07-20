@@ -37,25 +37,7 @@ public class ShopController {
 	@Inject
 	ShopService service;
 
-	// 장바구니 조회
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String cart(Model model, HttpSession session) throws Exception {
-		logger.info("list get...");
-		String userId = (String) session.getAttribute("userId");
 
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		List<CartVO> list = service.list(userId);
-		int total = service.total(userId);
-
-		map.put("list", list);
-		map.put("listYN", list.size());
-		map.put("total", total);
-
-		model.addAttribute("cart", map);
-
-		return "shop/list";
-	}
 
 	// 장바구니_상품 삭제
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
