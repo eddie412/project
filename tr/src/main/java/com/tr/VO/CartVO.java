@@ -2,18 +2,14 @@ package com.tr.VO;
 
 
 public class CartVO {
-	private int cId;
+	private String cId;
 	private String userId;
 	private String pNo;
 	private int count;
-	private String pImg;
-	private String pName;
-	private int pPrice;
-	
-	public int getcId() {
+	public String getcId() {
 		return cId;
 	}
-	public void setcId(int cId) {
+	public void setcId(String cId) {
 		this.cId = cId;
 	}
 	public String getUserId() {
@@ -34,32 +30,10 @@ public class CartVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getpImg() {
-		return pImg;
-	}
-	public void setpImg(String pImg) {
-		this.pImg = pImg;
-	}
-	public String getpName() {
-		return pName;
-	}
-	public void setpName(String pName) {
-		this.pName = pName;
-	}
-	public int getpPrice() {
-		return pPrice;
-	}
-	public void setpPrice(int pPrice) {
-		this.pPrice = pPrice;
-	}
 	@Override
 	public String toString() {
-		return "CartVO [cId=" + cId + ", userId=" + userId + ", pNo=" + pNo + ", count=" + count + ", pImg=" + pImg
-				+ ", pName=" + pName + ", pPrice=" + pPrice + "]";
+		return "CartVO [cId=" + cId + ", userId=" + userId + ", pNo=" + pNo + ", count=" + count + "]";
 	}
-	
-	
-	
 	
 	
 	

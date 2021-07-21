@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tr.Service.AdminService;
 import com.tr.Service.MemberService;
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -42,11 +41,10 @@ public class AdminController {
 
 	// 주문내역 관리
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.GET)
-	public String order(OrderListVO orderVo, Model model) throws Exception {
+	public String order(OrderVO orderVo, Model model) throws Exception {
 		logger.info("get order");
 
 		List<OrderVO> orderList = aService.orderList(orderVo);
-
 		model.addAttribute("orderList", orderList);
 
 		return "admin/order/orderList";
@@ -65,20 +63,19 @@ public class AdminController {
 
 	// 주문 내역 조회
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void getOrderView(@RequestParam("n") String oId, Model model) throws Exception {
+	public void getOrderView(@RequestParam("n") int no, Model model) throws Exception {
 		logger.info("Get orderView");
 
-		OrderVO order = aService.orderView(oId);
-		logger.info("★" + order);
+		OrderVO order = aService.orderView(no);
 		model.addAttribute("order", order);
 	}
 
 	// 주문 수정 GET
 	@RequestMapping(value = "/order/orderModify", method = RequestMethod.GET)
-	public void getOrderModify(@RequestParam("n") String oId, Model model) throws Exception {
+	public void getOrderModify(@RequestParam("n") int no, Model model) throws Exception {
 		logger.info("Get orderModify");
 
-		OrderVO order = aService.orderView(oId);
+		OrderVO order = aService.orderView(no);
 		model.addAttribute("order", order);
 	}
 
@@ -95,10 +92,10 @@ public class AdminController {
 
 	// 주문 삭제
 	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
-	public String getOrderDelete(@RequestParam("n") int oId, Model model) throws Exception {
+	public String getOrderDelete(@RequestParam("n") int no, Model model) throws Exception {
 		logger.info("Get orderDelete");
 
-		aService.orderDelete(oId);
+		aService.orderDelete(no);
 
 		return "redirect:/admin/order/orderList";
 	}

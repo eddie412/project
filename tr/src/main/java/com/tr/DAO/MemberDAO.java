@@ -3,9 +3,6 @@ package com.tr.DAO;
 import java.util.List;
 
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
-import com.tr.VO.OrderVO;
-import com.tr.VO.QnaVO;
 
 public interface MemberDAO {
 		
@@ -19,18 +16,4 @@ public interface MemberDAO {
 		public int idChk(MemberVO vo) throws Exception;
 		//회원 관리
 		public List<MemberVO> memberList(MemberVO memberVo) throws Exception;
-		//마이페이지_회원정보 조회
-		public MemberVO  info(String userId) throws Exception;
-
-		// 마이페이지_주문내역리스트
-		public List<OrderListVO> orderList(OrderVO vo) throws Exception;
-
-		// 마이페이지_문의사항
-		public List<QnaVO> qna(String userId) throws Exception;
-
-		// 마이페이지_회원정보수정
-		public void update(MemberVO vo) throws Exception;
-		
-		//마이페이지_회원정보삭제
-		public void delete(MemberVO vo) throws Exception;
 }

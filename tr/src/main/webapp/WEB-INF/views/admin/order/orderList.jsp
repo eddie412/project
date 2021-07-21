@@ -7,8 +7,11 @@
 <meta charset="UTF-8">
 <title>OrderList</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-<link rel="stylesheet" type="text/css" href="../../resources/adminStyle.css">
+<style type="text/css">
+	<link rel="stylesheet" type="text/css" href="../../resources/adminStyle.css">
+</style>
 </head>
+<body>
 	<header id="header">
 		<div id="header_box">
 			<%@ include file="../../include/header.jsp"%>
@@ -18,11 +21,10 @@
 		<%@ include file="../aside.jsp"%>
 	</aside>
 	<br><hr>
-<body>
 	<ul class="orderList">
 		<c:forEach var="order"  items="${orderList}" varStatus="status">
 			<p><span>주문번호 </span><a href="orderView?n=${order.oId}">${order.oId}</a></p>
-			<p><span>주문자 </span>${order.name}</p>
+			<p><span>주문자 </span>${order.userName}</p>
 			<p><span>배송지 </span>${order.rAddr}</p>
 			<p><span>전화번호 </span>${order.rPhone}</p>
 			<p><span>상품명 </span>${order.pName}</p>

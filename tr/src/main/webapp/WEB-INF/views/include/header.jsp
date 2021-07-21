@@ -51,7 +51,7 @@ ul>li {
 		<tr>
 			<td><a href="../nav"><img
 					src="../../resources/images/Imenu.png" alt="메뉴" id="menu"></a></td>
-			<td><a href="../../"><img src="../../resources/images/logo.PNG"
+			<td><a href="/home"><img src="../../resources/images/logo.PNG"
 					alt="로고" id="logo"></a></td>
 			<td>
 				<ul>
@@ -64,8 +64,9 @@ ul>li {
 							<li><a href="/admin/adminPage">관리자 화면</a></li>
 						</c:if>
 						<c:if test="${member.verify != 9}">
-							<li><a href ="../member/mp_orderList">마이페이지</a></li><br>
-							<li><a href="/order/list">장바구니</a></li>
+							<li>마이페이지</li>
+							<br>
+							<li>장바구니</li>
 						</c:if>
 					</c:if>
 				</ul>

@@ -42,9 +42,10 @@ alter table tr_order ADD CONSTRAINT tr_order_userId FOREIGN KEY(userId) REFERENC
 
 drop table tr_order CASCADE CONSTRAINTS
 drop sequence sq_order;
+drop table tr_order;
 
-insert into tr_order(oId,NAME,ADDR,PHONE, pNAME,Count)
-values (sq_order.nextval,'aaa','상계동',010,'요구루트',2);
+insert into tr_order(oId,userId,count,pNo,rName,rAddr,rPhone,oMemo,oTotal)
+values (sq_order.nextval,'aa',1,'m1','주영','상계동',010,'배송',200);
 
 select * from tr_order;
 

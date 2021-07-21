@@ -2,8 +2,6 @@ package com.tr.VO;
 
 import java.sql.Date;
 
-import javax.xml.crypto.Data;
-
 public class MemberVO {
 
 	private String userId;

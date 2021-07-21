@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.tr.DAO.AdminDAO;
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -51,7 +50,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// 주문 내역 조회
 	@Override
-	public OrderVO orderView(String no) throws Exception {
+	public OrderVO orderView(int no) throws Exception {
 		return dao.orderView(no);
 	}
 
@@ -140,7 +139,7 @@ public class AdminServiceImpl implements AdminService {
 
 	// 주문내역 조회
 	@Override
-	public List<OrderVO> orderList(OrderListVO orderVo) throws Exception {
+	public List<OrderVO> orderList(OrderVO orderVo) throws Exception {
 		return dao.orderList(orderVo);
 	}
 

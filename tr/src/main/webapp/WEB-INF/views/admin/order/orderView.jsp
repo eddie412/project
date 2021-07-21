@@ -25,29 +25,29 @@
 			<label for="oId">주문번호</label>
 			<span>${order.oId}</span>
 		</div>
-		------------주문정보-------------------
+		--------------- 주문자정보 ----------------
 		<div class="inputArea">
-			<label for="name">주문자</label>
-			<span> ${order.name}</span>
+			<label for="userName">주문자</label>
+			<span> ${order.userName}</span>
 		</div>
 		<div class="input_area">
-			<label for="phone">전화번호</label>
-			<span> ${order.phone}</span>
+			<label for="phone">연락처</label>
+			<span> ${order.userPhone}</span>
 		</div>
-		------------받는사람정보----------------
-		<div class="input_area">
-			<label for="rName">받는사람</label>
+		-------------- 받는사람정보 --------------
+		<div class="inputArea">
+			<label for="rName">받는 사람</label>
 			<span> ${order.rName}</span>
-		</div>
-		<div class="input_area">
-			<label for="rAddr">받는주소</label>
-			<span> ${order.rAddr}</span>
 		</div>
 		<div class="input_area">
 			<label for="rPhone">연락처</label>
 			<span> ${order.rPhone}</span>
 		</div>
-		--------------배송정보---------------
+		-------------- 배송정보 --------------
+		<div class="input_area">
+			<label for="rAddr">배송지</label>
+			<span> ${order.rAddr}</span>
+		</div>
 		<div class="input_area">
 			<label for="pName">상품명</label>
 			<span> ${order.pName}</span>

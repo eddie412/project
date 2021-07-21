@@ -10,7 +10,6 @@ public class ProductVO {
 	private String pImg;
 	
 	
-	
 	public String getpNo() {
 		return pNo;
 	}

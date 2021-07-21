@@ -22,24 +22,35 @@
 	<input type="hidden" name="oId" value="${order.oId}" />
 	
 		<div class="inputArea">
-			<label for="no">주문번호</label>
+			<label for="oId">주문번호</label>
 			<span>${order.oId}</span>
 		</div>
-		<div class="input_area">
-			<label for="name">주문자</label>
-			<input type="text" id="name" name="name" value="${order.name}"/>
+		--------------- 주문자정보 ----------------
+		<div class="inputArea">
+			<label for="userName">주문자</label>
+			<span> ${order.userName}</span>
 		</div>
 		<div class="input_area">
-			<label for="addr">배송지</label>
-			<input type="text" id="addr" name="addr" value="${order.addr}"/>
+			<label for="phone">연락처</label>
+			<span> ${order.userPhone}</span>
+		</div>
+		-------------- 받는사람정보 --------------
+		<div class="inputArea">
+			<label for="rName">받는 사람</label>
+			<input type="text" id="rName" name="rName" value="${order.rName}"/>
 		</div>
 		<div class="input_area">
-			<label for="phone">전화번호</label>
-			<input type="text" id="phone" name="phone" value="${order.phone}"/>
+			<label for="rPhone">연락처</label>
+			<input type="text" id="rPhone" name="rPhone" value="${order.rPhone}"/>
+		</div>
+		-------------- 배송정보 --------------
+		<div class="input_area">
+			<label for="rAddr">배송지</label>
+			<input type="text" id="rAddr" name="rAddr" value="${order.rAddr}"/>
 		</div>
 		<div class="input_area">
 			<label for="pName">상품명</label>
-			<input type="text" id="pName" name="pName" value="${order.pName}"/>
+			<span> ${order.pName}</span>
 		</div>
 		<div class="input_area">
 			<label for="count">수량</label>
@@ -47,7 +58,7 @@
 		</div>
 		<div class="input_area">
 			<label for="oDate">주문일</label>
-			<span>${order.oDate}</span> 
+			<span> ${order.oDate}</span>
 		</div>
 		<div class="input_area">
 			<label for="delivery">상태</label>

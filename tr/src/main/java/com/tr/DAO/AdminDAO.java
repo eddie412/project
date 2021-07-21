@@ -3,7 +3,6 @@ package com.tr.DAO;
 import java.util.List;
 
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -26,7 +25,7 @@ public interface AdminDAO {
 	public void productDelete(String pNo) throws Exception;
 
 	// 주문 조회
-	public OrderVO orderView(String no) throws Exception;
+	public OrderVO orderView(int no) throws Exception;
 
 	// 주문 수정
 	public void orderModify(OrderVO vo) throws Exception;
@@ -65,7 +64,7 @@ public interface AdminDAO {
 	public ReplyVO replySelect(int rNo) throws Exception;
 
 	// 주문내역 조회
-	public List<OrderVO> orderList(OrderListVO orderVo) throws Exception;
+	public List<OrderVO> orderList(OrderVO orderVo) throws Exception;
 
 	// 배송 상태
 	public void delivery(OrderVO orderVo) throws Exception;

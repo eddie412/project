@@ -1,22 +1,24 @@
 package com.tr.VO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class OrderVO {
-	private String oId; // 주문번호
-	private Date oDate; // 주문날짜
-	private String userId; //주문자
-	private int count; // 상품수량
-	private String name;
-	private String addr; //주문자 주소
-	private String phone; //주문자 번호
-	private String pName; // 상품명
-	private String delivery; //주문 처리
-	private String rName; // 받는 사람 이름
-	private String rAddr; // 받는 사람 주소
-	private String rPhone; // 받는 사람 전화
-	private String oMemo; // 요청사항
-	private int oTotal; // 상품총금액
+	private String oId; 		// 주문 번호
+	private Date oDate; 		// 주문날짜
+	private String userId; 		// 아이디
+	private int count; 			// 상품수량
+	private String pNo; 		// 상품번호
+	private String delivery; 	//주문 처리
+	private String rName;		 //주문자
+	private String rAddr;		 //주문자 주소
+	private String rPhone; 		//주문자 번호
+	private String oMemo;		 // 상품명
+	private int oTotal; 			// 상품총금액
+	private String userName;
+	private String pName;
+	private String userPhone;
+	
+	
 	public String getoId() {
 		return oId;
 	}
@@ -41,23 +43,11 @@ public class OrderVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getAddr() {
-		return addr;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getpName() {
-		return pName;
-	}
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
 	public String getDelivery() {
 		return delivery;
@@ -95,20 +85,31 @@ public class OrderVO {
 	public void setoTotal(int oTotal) {
 		this.oTotal = oTotal;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+	public String getUserPhone() {
+		return userPhone;
+	}
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 	@Override
 	public String toString() {
-		return "OrderVO [oId=" + oId + ", oDate=" + oDate + ", userId=" + userId + ", count=" + count + ", name=" + name
-				+ ", addr=" + addr + ", phone=" + phone + ", pName=" + pName + ", delivery=" + delivery + ", rName="
-				+ rName + ", rAddr=" + rAddr + ", rPhone=" + rPhone + ", oMemo=" + oMemo + ", oTotal=" + oTotal + "]";
+		return "OrderVO [oId=" + oId + ", oDate=" + oDate + ", userId=" + userId + ", count=" + count + ", pNo=" + pNo
+				+ ", delivery=" + delivery + ", rName=" + rName + ", rAddr=" + rAddr + ", rPhone=" + rPhone + ", oMemo="
+				+ oMemo + ", oTotal=" + oTotal + ", userName=" + userName + ", pName=" + pName + ", userPhone="
+				+ userPhone + "]";
 	}
-	
-	
 	
 	
 	

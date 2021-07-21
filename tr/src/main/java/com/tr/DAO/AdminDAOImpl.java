@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.tr.VO.MemberVO;
-import com.tr.VO.OrderListVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.QnaVO;
@@ -29,7 +28,7 @@ public class AdminDAOImpl implements AdminDAO {
 	// 상품 내역 조회
 	@Override
 	public List<ProductVO> productList(ProductVO productVo) throws Exception {
-		return sql.selectList("adminMapper.productList",productVo);
+		return sql.selectList("productList",productVo);
 	}
 	// 상품 등록
 	@Override
@@ -50,7 +49,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 주문 내역 조회
 	@Override
-	public OrderVO orderView(String no) throws Exception {
+	public OrderVO orderView(int no) throws Exception {
 		return sql.selectOne("adminMapper.orderView", no);
 	}
 
@@ -133,8 +132,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 	// 주문 내역 조회
 	@Override
-	public List<OrderVO> orderList(OrderListVO orderVo) throws Exception {
-		return sql.selectList("adminMapper.orderList", orderVo);
+	public List<OrderVO> orderList(OrderVO orderVo) throws Exception {
+		return sql.selectList("orderList", orderVo);
 	}
 
 	// 배송 처리
@@ -145,6 +144,6 @@ public class AdminDAOImpl implements AdminDAO {
 	//문의 사항 관리
 	@Override
 	public List<QnaVO> qnaList(QnaVO qnaVo) throws Exception{
-		return sql.selectList("adminMapper.qnaList", qnaVo);
+		return sql.selectList("qnaList", qnaVo);
 	}
 }

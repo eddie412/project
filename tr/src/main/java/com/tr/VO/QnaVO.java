@@ -6,9 +6,10 @@ public class QnaVO {
 	private int qNo;
 	private String qTitle;
 	private String qWriter;
+	private Date qDate;
 	private String qContent;
 	private int qPass;
-	private Date qDate;
+	
 	public int getqNo() {
 		return qNo;
 	}
