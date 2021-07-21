@@ -2,6 +2,7 @@ package com.tr.Service;
 
 import java.util.List;
 
+import com.tr.VO.CategoryVO;
 import com.tr.VO.ProductVO;
 
 public interface ProductService {
@@ -17,4 +18,9 @@ public interface ProductService {
 	public void insertProduct(ProductVO vo);
 	//상품이미지 삭제를 위한 이미지파일정보
 	public String fileInfo(String pNo);
+	
+//	-------------------------사용자
+	//카테고리
+	public List<CategoryVO> list(int cateCode) throws Exception;
+
 }

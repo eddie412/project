@@ -47,6 +47,20 @@ public class ProductDAOImpl  implements ProductDAO{
 		return sqlSession.selectOne("product.fileInfo",pNo);
 	}
 
+//	---------------------- 사용자 관점
+	//상품평
+		@Override
+		public void productReply(ReplyVO vo) throws Exception {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		//카테고리
+		@Override
+		public List<CategoryVO> list(int cateCode) throws Exception {
+			
+			return sqlSession.selectList("product.category");
+		}
 	
 	
 }

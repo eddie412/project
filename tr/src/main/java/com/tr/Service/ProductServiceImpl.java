@@ -52,4 +52,10 @@ public class ProductServiceImpl  implements ProductService{
 		return productDao.fileInfo(pNo);
 	}
 	
+//	--------------------------------사용자
+	@Override
+	public List<CategoryVO> list(int cateCode) throws Exception {
+		return productDao.list(cateCode);
+	}
+	
 }

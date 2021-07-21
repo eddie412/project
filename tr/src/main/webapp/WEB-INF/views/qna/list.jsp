@@ -15,6 +15,18 @@
 </head>
 <body>
 <div id="root">
+<header id = "header">
+			<div id="header_box">
+				<%@ include file = "../include/header.jsp" %>
+			</div>
+		</header>
+		
+		<nav id= "nav">
+			<div id="nav_box">
+				<%@ include file = "../include/nav.jsp" %>
+			</div>
+		</nav>
+		<br>
 			<header>
 				<h1> 문의사항</h1>
 			</header>
@@ -26,11 +38,11 @@
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						
 						
-						<c:forEach items="${list}" var = "list" varStatus="vs">
+						<c:forEach items="${list}" var = "list">
 							<tr>
-								<td><c:out value="${pageMaker.totalCount-((scri.page-1)*scri.perPageNum+vs.index)}"/></td>
+								<td><c:out value="${list.pNO}"/></td>
 								<td>
-								<a href="/board/readView?qno=${list.qno}&
+								<a href="/qna/readView?qno=${list.qno}&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&
 															searchType=${scri.searchType}&
@@ -78,10 +90,14 @@
 					    </c:if> 
 					  </ul>
 					</div>
-						<input type="button" value="작성" onClick="location.href='/board/writeView'">
+						<input type="button" value="작성" onClick="location.href='/qna/writeView'">
 				</form>
 			</section>
-		
+		<footer id="footer">
+			<div id="footer_box">
+				<%@ include file = "../include/footer.jsp" %>
+			</div>
+		</footer>
 		</div>
 </body>
 </html>

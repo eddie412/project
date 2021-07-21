@@ -1,111 +1,146 @@
+-------------------- 멤버 테이블 ------------------------
 create table tr_member(
-	
-  mId varchar2(15)  not null primary key,
-  mPass varchar2(12) not null,
-  mName varchar2(12) not null,
-  mEmail varchar2(100),
-  mPhone number(11) not null,
-  mAddr varchar2(300) not null,
-  mBday number(8) not null
+  userId varchar2(15)  not null primary key,    -- 아이디
+  userPass varchar2(100) not null,				-- 비밀번호
+  userName varchar2(12) not null,				-- 이름
+  userEmail varchar2(100),						-- 이메일
+  userPhone varchar2(11) not null,				-- 전화번호
+  userAddr varchar2(300) not null,				-- 주소
+  userBday Date not null,						-- 생일
+  verify Number not null						-- 관리자 구분(1: 사용자)
 );
 
-create table tr_order(
-  oId varchar2(10) not null,
-  oNo number(10)  not null primary key,
-  oDate date default sysdate,
-  oNon varchar2(30) not null,					--상품번호
-  oInfo varchar2(1000) not null,
-  oPrice number(10) not null,
-  oCount number(2) not null
+drop table tr_member;
+delete from tr_member where userName='aa';
+-------------------- 주문 테이블 ------------------------
+create table tr_order(		
+  oId varchar2(15) primary key,				-- 주문번호
+  oDate date default sysdate,				-- 주문날짜
+  userId varchar2(15),						-- 아이디
+  count number(2),							-- 주문 수량
+  pNo varchar2(30),							-- 상품번호
+  delivery varchar2(20) default '배송준비',	-- 주문상태
+  rName varchar2(12),						-- 받는분 이름
+  rAddr varchar2(300),						-- 받는분 주소
+  rPhone varchar2(11),						-- 받는분 연락처
+  oMemo varchar2(100),						-- 요구사항
+  oTotal number								-- 총 금액
 );
+create sequence sq_order
+increment by 1
+maxvalue 1000
+nocache;
 
+alter table tr_order ADD CONSTRAINT tr_order_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
+drop table tr_order CASCADE CONSTRAINTS
+drop sequence sq_order;
+insert into tr_order(oId,NAME,ADDR,PHONE, pNAME,Count)
+values (sq_order.nextval,'aaa','상계동',010,'요구루트',2);
+select * from tr_order;
+
+drop table tr_order ;
+-------------------- 주문상세 테이블 ------------------------
+create table tr_orderDetails(
+	oNo number primary Key,
+	oId varchar2(15),
+    pNo varchar2(10),
+    count number
+    );
+
+create sequence sq_oDetails
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+alter table tr_orderDetails ADD CONSTRAINT tr_orderDetials_oId FOREIGN KEY(oId) REFERENCES tr_order(oId);
+
+-------------------- 장바구니 테이블 ------------------------
 create table tr_cart(
-  cId varchar2(10) not null,
-  cNo varchar2(30) not null,
-  cInfo varchar2(1000) not null ,
-  cPrice number(10) not null,
-  cCount number(2) not null,
-  cTotal number(10) not null 
+cId number primary key,				-- 카트번호
+userId varchar2(15) not null,		-- 아이디
+pNo varchar2(10) not null,			-- 상품번호
+count number						-- 주문 수량
+);
+alter table tr_cart ADD FOREIGN key(userId) REFERENCES tr_member(userId);
+select * from TR_CART;
+drop table tr_cart;
+insert into tr_cart(cId,userId,pNo,count) values (sq_cart.nextval,'aa','m14',1);
+
+----------------------상품 테이블--------------------------------
+create table tr_product(
+	pNo varchar2(10) not null primary key,   	--상품번호
+	pName varchar2(100) not null,				--상품명
+	pPrice number(10) not null,					--판매가
+	pCount number(10) default 0,				--재고
+	pInfo varchar2(1000),						--상품정보
+	pSales number(3) default 0,					--판매량
+	pImg varchar2(500)							--상품 이미지
 );
 
-create table tr_pro(
-	pNo varchar2(10) not null primary key,
-	pName varchar2(10) not null,
-	pPrice number(10) not null,
-	pCount number(10) default 0,
-	pInfo varchar2(1000) not null ,
-	pSales number(3) default 0
-);
+drop table tr_product;
+create sequence sq_m		--시퀀스 for 막걸리
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
 
+create sequence sq_s		--시퀀스 for 소주
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
+create sequence sq_b		--시퀀스 for 맥주
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+insert into tr_product(pNO,pNAME,pPrice,pCount,pInfo,pSales)
+values ('m'||sq_product.nextval,'와인',1000,2,'요구루트',3);
+insert into tr_product(pNO,pNAME,pPrice,pCount,pInfo,pSales)
+values ('m1','막걸리',1000,2,'요구루트',3);
+
+--------------------------문의사항 테이블--------------------------
 create table tr_qna(
-	qNo number(10) not null primary key,
-	qTitle varchar2(20) not null ,
-	qWriter varchar2(10) not null ,			--작성자
-	qDate date default sysdate,
-	qContent varchar2(1000) not null, 
-	qPass number(12)
+	qNo number(10) not null primary key,		-- 문의사항 번호
+	qTitle varchar2(100) not null ,				-- 제목
+	qWriter varchar2(100) not null ,			--작성자
+	qDate date default sysdate,					-- 작성날짜
+	qContent varchar2(1000) not null, 			-- 내용
+	qPass number(12)							-- 비밀번호
 );
-
-alter table tr_qna modify qWriter varchar2(10);
-
-create table tr_reply( 
-	qNo number(10) not null,
-	rNo number(3) not null,
-	rContent varchar2(1000) not null,
-	rDate date default sysdate not null,
-	rWriter varchar2(10) not null
-);
-
-alter Table tr_order
-ADD Foreign Key(oId) REFERENCES tr_member(mId);
-
-alter Table tr_cart
-ADD Foreign Key(cId) REFERENCES tr_member(mId);
-
-alter Table tr_cart
-ADD Foreign Key(cNo) REFERENCES tr_pro(pNo);
-
-alter Table tr_reply
-ADD Foreign Key(qNo) REFERENCES tr_qna(qNo);
-
 
 create sequence sq_qna
-increment by 1
-start with 1
-maxvalue 1000
-nocache;
+alter table tr_qna modify qWriter varchar2(10);
+
+drop table tr_qna;
+-------------------답글 테이블---------------------
+create table tr_reply( 
+	qNo number not null,						-- 문의사항 번호
+rNo number not null,						-- 답글 번호
+	rContent varchar2(1000) not null,			-- 답글 내용				
+	rWriter varchar2(10) default '관리자',		-- 답글 작성자
+	rDate date default sysdate not null			-- 답글 작성날짜
+);
+drop table tr_reply;
+where qNo = 2;
+-------------------카테고리 테이블---------------------
+create table tr_category( 
+	cateName varchar2(20) not null,				-- 카테고리 이름
+	cateCode varchar2(10) not null primary key	-- 카테고리 코드
+);
+
+drop table tr_category;
+-------------------상품평 테이블---------------------
+create table tr_comment(
+	pNo varchar2(10),				-- 상품 번호
+	cNo number(3) not null,			-- 상품평 번호
+	cContent varchar2(1000),		-- 상품평 내용
+	cDate DATE DEFAULT sysdate,		-- 상품평 작성 날짜
+	userId varchar2(15)  not null	-- 사용자 아이디
+);
+alter table tr_comment ADD CONSTRAINT tr_comment_pNo FOREIGN KEY(pNo) REFERENCES tr_product(pNo);
+alter table tr_comment ADD CONSTRAINT tr_comment_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
+
 
 drop sequence sq_qna;
-
-insert into tr_qna(qNo, qTitle, qWriter, qContent, qPass)
-values(sq_qna.nextval, 'test', 'tester', '안녕', 1234);
-
-delete from tr_qna
-where qNo = 2;
-
-select * from TR_QNA;
-
-create sequence sq_reply
-increment by 1
-start with 1
-maxvalue 1000
-nocache;
-
-drop table;
-
-alter table tr_pro modify pName varchar2(50);
-insert into tr_pro(pno,pName,pPrice,pCount,pInfo) values ('S01','고운달 오크 200ml',180000,3,'문경오미자로 빚은 지역특산물 52도');
-
-create table tr_category(
-    cateName    varchar2(20) not null,
-    cateCode    varchar2(30) not null,
-    cateCodeRef varchar2(30) null,
-    primary key(cateCode),
-    foreign key(cateCodeRef) references tr_category(cateCode)
-    );
-    insert into tr_category(cateName, cateCode) values('소주','S');
-    insert into tr_category(cateName, cateCode) values('막걸리','M');
-    insert into tr_category(cateName, cateCode) values('약주','Y');
-    insert into tr_category(cateName, cateCode) values('과실주','F');
-    insert into tr_category(cateName, cateCode) values('안주','N');
-    

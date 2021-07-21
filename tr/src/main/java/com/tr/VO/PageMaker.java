@@ -13,12 +13,18 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	private int displayPageNum = 5;
-	private Criteria cri;
+	private SearchCriteria scri;
+
 	
-	public void setCri(Criteria cri) {
-		this.cri = cri;
+	
+	public SearchCriteria getScri() {
+		return scri;
 	}
-	
+
+	public void setScri(SearchCriteria scri) {
+		this.scri = scri;
+	}
+
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		calcData();
@@ -48,27 +54,24 @@ public class PageMaker {
 		return displayPageNum;
 	}
 	
-	public Criteria getCri() {
-		return cri;
-	}
 	 
 	private void calcData() {
-		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
+		endPage = (int) (Math.ceil(scri.getPage() / (double)displayPageNum) * displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
 	  
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
+		int tempEndPage = (int) (Math.ceil(totalCount / (double)scri.getPerPageNum()));
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;
 		}
 		prev = startPage == 1 ? false : true;
-		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
+		next = endPage * scri.getPerPageNum() >= totalCount ? false : true;
 	}
 	
 	public String makeQuery(int page) {
 		UriComponents uriComponents =
 		UriComponentsBuilder.newInstance()
 						    .queryParam("page", page)
-							.queryParam("perPageNum", cri.getPerPageNum())
+							.queryParam("perPageNum", scri.getPerPageNum())
 							.build();
 		   
 		return uriComponents.toUriString();
@@ -80,9 +83,9 @@ public class PageMaker {
 	 UriComponents uriComponents =
 	            UriComponentsBuilder.newInstance()
 	            .queryParam("page", page)
-	            .queryParam("perPageNum", cri.getPerPageNum())
-	            .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-	            .queryParam("keyword", encoding(((SearchCriteria)cri).getKeyword()))
+	            .queryParam("perPageNum", scri.getPerPageNum())
+	            .queryParam("searchType", scri.getSearchType())
+	            .queryParam("keyword", encoding((scri).getKeyword()))
 	            .build(); 
 	    return uriComponents.toUriString();  
 	}

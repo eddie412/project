@@ -19,5 +19,11 @@ public interface ProductDAO {
 	public void insertProduct(ProductVO vo);
 	//상품 이미지 삭제를 위한 이미지파일 정보
 	public String fileInfo(String pNo);
+
+//	------------------사용자 관점
+	//상품 소감 작성
+	public void productReply(ReplyVO vo) throws Exception;
 	
+	//카테고리
+	public List<CategoryVO> list(int cateCode) throws Exception;
 }

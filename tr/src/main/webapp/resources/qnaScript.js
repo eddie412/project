@@ -7,7 +7,7 @@ $(document).ready(function(){
 	
 	$(".cancel_btn").on("click", function(){
 		event.preventDefault();
-		location.href = "/board/readView?qno=${update.qno}"
+		location.href = "/qna/readView?qno=${update.qno}"
 			   + "&page=${scri.page}"
 			   + "&perPageNum=${scri.perPageNum}"
 			   + "&searchType=${scri.searchType}"
@@ -18,7 +18,7 @@ $(document).ready(function(){
 		if(fn_valiChk()){
 			return false;
 		}
-		formObj.attr("action", "/board/update");
+		formObj.attr("action", "/qna/update");
 		formObj.attr("method", "post");
 		formObj.submit();
 	})

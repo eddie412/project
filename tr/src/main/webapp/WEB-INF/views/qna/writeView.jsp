@@ -9,13 +9,25 @@
 </head>
 <body>
 <div id="root">
+<header id = "header">
+			<div id="header_box">
+				<%@ include file = "../include/header.jsp" %>
+			</div>
+		</header>
+		
+		<nav id= "nav">
+			<div id="nav_box">
+				<%@ include file = "../include/nav.jsp" %>
+			</div>
+		</nav>
+		<br>
 			<header>
 				<h1> 문의사항</h1>
 			</header>
 			<hr />
 			
 			<section id="container">
-				<form name="frm" method="post" action="/board/write">
+				<form name="frm" method="post" action="/qna/write">
 					<table>
 						<tbody>
 							<tr>
@@ -35,14 +47,18 @@
 							<tr>
 								<td>						
 									<input type="submit" onclick="return qnaCheck()" value="등록">
-									<input type="button" onclick="location.href='/board/list'" value="취소">
+									<input type="button" onclick="location.href='/qna/list'" value="취소">
 								</td>
 							</tr>			
 						</tbody>			
 					</table>
 				</form>
 			</section>
-			<hr />
+			<footer id="footer">
+			<div id="footer_box">
+				<%@ include file = "../include/footer.jsp" %>
+			</div>
+		</footer>
 		</div>
 </body>
 </html>
