@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.ProductDAO;
-import com.tr.VO.CategoryVO;
 import com.tr.VO.ProductVO;
 
 @Service
@@ -54,7 +53,7 @@ public class ProductServiceImpl  implements ProductService{
 	
 //	--------------------------------사용자
 	@Override
-	public List<CategoryVO> list(int cateCode) throws Exception {
+	public List<ProductVO> list(int cateCode) throws Exception {
 		return productDao.list(cateCode);
 	}
 	

@@ -2,7 +2,7 @@ package com.tr.DAO;
 
 import java.util.List;
 
-import com.tr.VO.CategoryVO;
+
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 
@@ -25,5 +25,5 @@ public interface ProductDAO {
 	public void productReply(ReplyVO vo) throws Exception;
 	
 	//카테고리
-	public List<CategoryVO> list(int cateCode) throws Exception;
+	public List<ProductVO> list(int cateCode) throws Exception;
 }

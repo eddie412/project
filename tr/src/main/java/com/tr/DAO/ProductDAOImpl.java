@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.tr.VO.CategoryVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 
@@ -57,7 +56,7 @@ public class ProductDAOImpl  implements ProductDAO{
 		
 		//카테고리
 		@Override
-		public List<CategoryVO> list(int cateCode) throws Exception {
+		public List<ProductVO> list(int cateCode) throws Exception {
 			
 			return sqlSession.selectList("product.category");
 		}

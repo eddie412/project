@@ -39,7 +39,7 @@
 	<!-- 카데고리  호출-->
 		<select id="list" resultType="com.tr.VO.ProductVO">
 		select
-		    p.pno, p.pName, p.pCode, c.cateName, pPrice, pImg, pInfo
+		    p.pno, p.pName, se, c.cateName, pPrice, pImg, pInfo
 		 from tr_pro p
 		            inner join tr_category c
 		                on p.pCode = c.cateCode           

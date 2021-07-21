@@ -16,7 +16,7 @@
 	                 		  , #{title}
 	                 		  , #{content}
 	                 		  , #{writer} 
-	                 		  , #{pass}
+	                 		  , #{qpass}
 	                 		  )
    </insert>
    
@@ -32,7 +32,7 @@
 		               qTITLE, 
 		               qCONTENT, 
 		               qWRITER, 
-		               qDATE
+		               qDATE,
 		               ROW_NUMBER() OVER (ORDER BY qNO DESC) AS RNUM
 		         FROM tr_qna 	
 		         WHERE 1=1 

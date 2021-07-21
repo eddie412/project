@@ -111,6 +111,7 @@ create table tr_qna(
 );
 
 create sequence sq_qna
+
 alter table tr_qna modify qWriter varchar2(10);
 
 drop table tr_qna;
@@ -129,6 +130,11 @@ create table tr_category(
 	cateName varchar2(20) not null,				-- 카테고리 이름
 	cateCode varchar2(10) not null primary key	-- 카테고리 코드
 );
+insert into tr_category values('소주','s');
+insert into tr_category values('막걸리','m');
+insert into tr_category values('약주','y');
+insert into tr_category values('과실주','f');
+insert into tr_category values('안주','n');
 
 drop table tr_category;
 -------------------상품평 테이블---------------------

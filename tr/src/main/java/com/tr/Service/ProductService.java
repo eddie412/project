@@ -2,7 +2,7 @@ package com.tr.Service;
 
 import java.util.List;
 
-import com.tr.VO.CategoryVO;
+
 import com.tr.VO.ProductVO;
 
 public interface ProductService {
@@ -21,6 +21,6 @@ public interface ProductService {
 	
 //	-------------------------사용자
 	//카테고리
-	public List<CategoryVO> list(int cateCode) throws Exception;
+	public List<ProductVO> list(int cateCode) throws Exception;
 
 }
