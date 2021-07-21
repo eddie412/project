@@ -45,7 +45,7 @@
 					<li><a href = "login.jsp" >로그인</a></li>
 					<li><a>마이페이지</a></li>
 					<li>장바구니</li>
-					<li><a href="board/list">고객센터</a></li>
+					<li><a href="qna/list">고객센터</a></li>
 				</ul>			
 			</td>
 		</tr>	

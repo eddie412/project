@@ -10,11 +10,13 @@
 	   					      , QTITLE 
 	   					      , QCONTENT 
 	   					      , QWRITER 
+	   					      , qpass
 	   					     )
 	                 VALUES(    SQ_QNA.NEXTVAL 
 	                 		  , #{title}
 	                 		  , #{content}
 	                 		  , #{writer} 
+	                 		  , #{pass}
 	                 		  )
    </insert>
    
@@ -65,7 +67,9 @@
 			  , qCONTENT
 			  , qWRITER
 			  , qDATE
-		 FROM tr_qna
+			  , qpass
+		 FROM tr_qna q
+		
 		 WHERE qNO = #{qno}
 	</select>
 	
@@ -99,6 +103,7 @@
 			, RNO
 			, rCONTENT
 			, rWRITER
+			
 			)
 			VALUES(    #{qno}
 				, sq_reply.NEXTVAL

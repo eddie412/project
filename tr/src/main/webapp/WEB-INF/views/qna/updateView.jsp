@@ -29,6 +29,11 @@
 							</tr>	
 							<tr>
 								<td>
+									<label for="pass">비밀번호</label><input type="password" id="pass" name="pass" />
+								</td>
+							</tr>	
+							<tr>
+								<td>
 									<label for="content">내용</label><textarea id="content" name="content"><c:out value="${update.content}" /></textarea>
 								</td>
 							</tr>

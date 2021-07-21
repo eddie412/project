@@ -15,7 +15,7 @@ $(document).ready(function(){
 	})
 	
 	$(".update_btn").on("click", function(){
-		if(fn_valiChk()){
+		if(qnaCheck()){
 			return false;
 		}
 		formObj.attr("action", "/qna/update");

@@ -9,6 +9,7 @@ public class QnaVO {
 	private String qcontent;
 	private String qwriter;
 	private Date qdate;
+	private int qpass;
 //	---------------------------------
 	private int rno;
 	private String rcontent;
@@ -77,6 +78,14 @@ public class QnaVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.qdate = regdate;
+	}
+
+	public int getQpass() {
+		return qpass;
+	}
+
+	public void setQpass(int qpass) {
+		this.qpass = qpass;
 	}
 	
 }

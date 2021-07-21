@@ -30,9 +30,15 @@
 				<form name="frm" method="post" action="/qna/write">
 					<table>
 						<tbody>
+							<c:if test="${member.userId != null}">
 							<tr>
 								<td>
 									<label for="title">제목</label><input type="text" id="title" name="title" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="pass">비밀번호</label><input type="password" id="pass" name="pass" />
 								</td>
 							</tr>	
 							<tr>
@@ -42,14 +48,18 @@
 							</tr>
 							<tr>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" />
+									<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${member.userId}" readonly="readonly"/>
 								</td>
 							<tr>
 								<td>						
 									<input type="submit" onclick="return qnaCheck()" value="등록">
 									<input type="button" onclick="location.href='/qna/list'" value="취소">
 								</td>
-							</tr>			
+							</tr>
+							</c:if>
+							<c:if test="${member.userId == null}">
+								<p>로그인 후에 작성하실수 있습니다.</p>
+							</c:if>			
 						</tbody>			
 					</table>
 				</form>
