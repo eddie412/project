@@ -1,13 +1,13 @@
 ------------------- 멤버 테이블 ------------------------
 create table tr_member(
-  userId 			varchar2(15)  		not null 	primary key,    	-- 아이디
-  userPass 		varchar2(100) 	not null,							-- 비밀번호
-  userName 	varchar2(12) 		not null,							-- 이름
-  userEmail 		varchar2(100),												-- 이메일
+  userId 			varchar2(15)  		not null 	primary key,  	-- 아이디
+  userPass 		varchar2(100) 		not null,							-- 비밀번호
+  userName 		varchar2(12) 		not null,							-- 이름
+  userEmail 		varchar2(100),											-- 이메일
   userPhone 	varchar2(11) 		not null,							-- 전화번호
-  userAddr 		varchar2(300) 	not null,							-- 주소
+  userAddr 		varchar2(300) 		not null,							-- 주소
   userBday 		Date 					not null,							-- 생일
-  verify 			Number 				not null								-- 관리자 구분(1: 사용자)
+  verify 			Number 				not null							-- 관리자 구분(1: 사용자)
 );
 
 
@@ -33,7 +33,6 @@ create table tr_order(
 );
 
 alter table tr_order ADD CONSTRAINT tr_order_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
-alter Table tr_order ADD Foreign Key(oId) REFERENCES tr_member(userId);
 
 
 

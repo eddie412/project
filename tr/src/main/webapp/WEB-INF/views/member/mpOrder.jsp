@@ -25,8 +25,18 @@
 #main th {
 	background: #B28EF7;
 }
-
 </style>
+<script type="text/javascript">
+$(document).ready(function(e){
+	genRowspan("row");
+});
+
+function genRowspan(className){
+	$("." + className).each(function(){
+		var rows = $("." + className + ":contains('")
+	});
+}
+</script>
 <body>
 	<!-- 헤드 -->
 	<header>
@@ -57,7 +67,7 @@
 		<c:forEach var="order" items="${order}">
 			<tr>
 				<td><fmt:formatDate value="${order.oDate}" pattern="yyyy.MM.dd" /></td>
-				<td><a href='mpOrderDetail?oId=${order.oId}'>${order.oId}</a></td>
+				<td class="row"><a href='mpOrderDetail?oId=${order.oId}'>${order.oId}</a></td>
 				<td><a href='/product/product?pno=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a></td>
 				<td>${order.pName}</td>
 				<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원</td>
