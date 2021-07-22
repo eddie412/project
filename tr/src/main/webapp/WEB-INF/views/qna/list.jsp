@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,20 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="../resources/qnaScript.js"></script>
 </head>
+											<script type="text/javascript">
+function passCheck(){
+	var result = prompt("비밀번호를 입력해주세요.");
+	
+var passCom = '<%=(int)session.getAttribute("pass")%>';
+
+	if(result == passCom){
+		return true;
+	}else{
+		alert('비밀번호 동일안함');
+		return false;
+	}
+}
+</script>
 <body>
 <div id="root">
 <header id = "header">
@@ -37,17 +51,18 @@
 					<table>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						
-						
-						<c:forEach items="${list}" var = "list">
+						<c:forEach items="${list}" var = "list" varStatus="vs">
 							<tr>
-								<td><c:out value="${list.pNO}"/></td>
+								<td><c:out value="${pageMaker.totalCount-((scri.page-1)*5)-vs.count+1}"/></td>
 								<td>
-								<a href="/qna/readView?qno=${list.qno}&
+								
+								<span onclick="return passCheck()"><a href="/qna/readView?qno=${list.qno}&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&
 															searchType=${scri.searchType}&
 															keyword=${scri.keyword}">
-									<c:out value="${list.title}" /></a>
+									${list.title}</a></span>
+
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy.MM.dd hh:mm"/></td>
@@ -99,5 +114,7 @@
 			</div>
 		</footer>
 		</div>
+		
+
 </body>
 </html>

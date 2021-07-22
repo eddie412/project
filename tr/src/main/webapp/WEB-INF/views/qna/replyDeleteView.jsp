@@ -18,7 +18,8 @@
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
 					   + "&keyword=${scri.keyword}";
-			})
+			});
+			
 			
 		})
 		

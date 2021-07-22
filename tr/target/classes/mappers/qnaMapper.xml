@@ -69,13 +69,13 @@
 			  , qDATE
 			  , qpass
 		 FROM tr_qna q
-		
-		 WHERE qNO = #{qno}
+		 WHERE qNO = #{qno} 
 	</select>
 	
 	<!-- 수정 -->
    <update id="update" parameterType="com.tr.VO.QnaVO">
-  	 select qpass from tr_qna where qno=?;
+
+  	
 		UPDATE tr_qna
 		   SET qTITLE    =   #{title},
 		   	   qCONTENT  =   #{content}

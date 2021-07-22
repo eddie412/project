@@ -30,7 +30,7 @@
 				<form name="frm" method="post" action="/qna/write">
 					<table>
 						<tbody>
-<%-- 							<c:if test="${member.userId != null}"> --%>
+							<c:if test="${member.userId != null}">
 							<tr>
 								<td>
 									<label for="title">제목</label><input type="text" id="title" name="title" />
@@ -56,10 +56,13 @@
 									<input type="button" onclick="location.href='/qna/list'" value="취소">
 								</td>
 							</tr>
-<%-- 							</c:if> --%>
-<%-- 							<c:if test="${member.userId == null}"> --%>
-<!-- 								<p>로그인 후에 작성하실수 있습니다.</p> -->
-<%-- 							</c:if>			 --%>
+							</c:if>
+							<c:if test="${member.userId == null}">
+								<script>
+								alert("로그인 후에 작성하실수 있습니다.");
+								history.back();
+								</script>
+							</c:if>			
 						</tbody>			
 					</table>
 				</form>

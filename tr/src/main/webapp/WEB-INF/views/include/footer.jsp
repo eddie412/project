@@ -8,6 +8,7 @@
 		width:100%;
 		height:80px;
 		background-color: #ABAFB2;
+		margin-top:10%;
 	}
 	p{
 		margin-left: 5%;

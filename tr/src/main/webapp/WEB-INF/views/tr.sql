@@ -123,6 +123,13 @@ rNo number not null,						-- 답글 번호
 	rWriter varchar2(10) default '관리자',		-- 답글 작성자
 	rDate date default sysdate not null			-- 답글 작성날짜
 );
+
+create sequence sq_reply		
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
 drop table tr_reply;
 where qNo = 2;
 -------------------카테고리 테이블---------------------
@@ -148,5 +155,15 @@ create table tr_comment(
 alter table tr_comment ADD CONSTRAINT tr_comment_pNo FOREIGN KEY(pNo) REFERENCES tr_product(pNo);
 alter table tr_comment ADD CONSTRAINT tr_comment_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
 
+create sequence sq_comment		
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
 
 drop sequence sq_qna;
+
+
+
+insert into tr_member values('a','1','d','ds@dd','3424','ddd','00/04/23', 1);
+

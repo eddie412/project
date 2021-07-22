@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +40,14 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 	
 	// 게시판 글 작성
 		@RequestMapping(value = "/write", method = RequestMethod.POST)
-		public String write(QnaVO qnaVO) throws Exception{
+		public String write(QnaVO qnaVO, HttpSession session) throws Exception{
 			logger.info("write");
 			
 			service.write(qnaVO);
+			
+			//비밀번호 저장
+			int pass = qnaVO.getQpass();
+			session.setAttribute("pass", pass);
 			
 			return "redirect:/qna/list";
 		}
@@ -82,6 +87,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 		public String updateView(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri , Model model) throws Exception{
 			logger.info("updateView");
+			
 			
 			model.addAttribute("update", service.read(qnaVO.getQno()));
 			model.addAttribute("scri",scri);
@@ -154,7 +160,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 			
 			service.updateReply(vo);
 			
-			rttr.addAttribute("bno", vo.getQno());
+			rttr.addAttribute("qno", vo.getQno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -181,7 +187,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 			
 			service.deleteReply(vo);
 			
-			rttr.addAttribute("bno", vo.getQno());
+			rttr.addAttribute("qno", vo.getQno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());

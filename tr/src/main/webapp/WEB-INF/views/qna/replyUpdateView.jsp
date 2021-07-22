@@ -16,7 +16,17 @@
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
 					   + "&keyword=${scri.keyword}";
-			})
+			
+			
+			});
+			$(".updateBtn").on("click", function(){
+				location.href = "/qna/readView?qno=${read.qno}"
+								+ "&page=${scri.page}"
+								+ "&perPageNum=${scri.perPageNum}"
+								+ "&searchType=${scri.searchType}"
+								+ "&keyword=${scri.keyword}"
+								+ "&rno="+$(this).attr("data-rno");
+			});
 			
 		})
 		

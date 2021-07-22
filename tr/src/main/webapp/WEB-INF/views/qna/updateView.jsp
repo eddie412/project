@@ -13,13 +13,17 @@
 <body>
 <div id="root">
 			<header>
-				<h1> 게시판</h1>
+				<h1> 문의사항</h1>
 			</header>
 			<hr />
 	
 			<section id="container">
-				<form name="frm" role="updateForm" method="post" action="/board/update">
-					<input type="hidden" name="qno" value="${update.qno}" readonly="readonly"/>
+				<form name="frm" role="updateForm" method="post" action="/qna/update">
+					<input type="hidden" id="qno"name="qno" value="${update.qno}" readonly="readonly"/>
+					<input type="hidden" id="page" name="page" value="${scri.page}"> 
+					<input type="hidden" id="perPageNum" name="perPageNum"value="${scri.perPageNum}"> 
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 					<table>
 						<tbody>
 							<tr>
@@ -29,7 +33,7 @@
 							</tr>	
 							<tr>
 								<td>
-									<label for="pass">비밀번호</label><input type="password" id="pass" name="pass" />
+									<label for="pass">비밀번호</label><input type="password" id="pass" name="qpass" value="${update.qpass }" readonly="readonly" />
 								</td>
 							</tr>	
 							<tr>
@@ -51,8 +55,8 @@
 						</tbody>			
 					</table>
 					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="submit" class="cancle_btn">취소</button>
+						<button  onclick="return qnaCheck()">저장</button>
+						<button class="cancle_btn">취소</button>
 					</div>
 				</form>
 			</section>
