@@ -58,7 +58,7 @@ public class ProductDAOImpl  implements ProductDAO{
 		@Override
 		public List<ProductVO> list(int cateCode) throws Exception {
 			
-			return sqlSession.selectList("product.category");
+			return sqlSession.selectList("product.category",cateCode);
 		}
 	
 	

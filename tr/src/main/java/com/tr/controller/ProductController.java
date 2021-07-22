@@ -54,13 +54,16 @@ public class ProductController {
 
 		//카테고리별 상품리스트
 		@RequestMapping(value="/list",method=RequestMethod.GET)
-		public void getList(@RequestParam("c") int cateCode, Model model) throws Exception{
+		public ModelAndView getList(@RequestParam("c") int cateCode, ModelAndView model) throws Exception{
 			logger.info("get list");
 			
 			List<ProductVO> list=null;
 			list = productService.list(cateCode);
 			
-			model.addAttribute("list",list);
+			model.setViewName("product/shopList");
+			model.addObject("",list);
+			
+			return model;
 		}
 
 }

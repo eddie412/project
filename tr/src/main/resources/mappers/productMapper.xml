@@ -37,12 +37,13 @@
 	</insert>
 	
 	<!-- 카데고리  호출-->
-		<select id="list" resultType="com.tr.VO.ProductVO">
+		<select id="category" resultType="com.tr.VO.ProductVO">
+	
 		select
-		    p.pno, p.pName, se, c.cateName, pPrice, pImg, pInfo
-		 from tr_pro p
+		    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo
+		 from tr_product p
 		            inner join tr_category c
-		                on p.pCode = c.cateCode           
-		            where p.pCode = #{cateCode}
+		                on select substr(p.pno,1,1) from tr_product = c.cateCode           
+		            where select substr(p.pno,1,1) from tr_product = #{cateCode}
 		</select>
  </mapper>

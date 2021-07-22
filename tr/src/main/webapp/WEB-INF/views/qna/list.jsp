@@ -17,9 +17,9 @@
 function passCheck(){
 	var result = prompt("비밀번호를 입력해주세요.");
 	
-var passCom = '<%=(int)session.getAttribute("pass")%>';
+var passCom = $("#pass").val();
 
-	if(result == passCom){
+	if(result.equals(passCom)){
 		return true;
 	}else{
 		alert('비밀번호 동일안함');
@@ -50,8 +50,8 @@ var passCom = '<%=(int)session.getAttribute("pass")%>';
 				<form role="form" method="get">
 					<table>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
-						
 						<c:forEach items="${list}" var = "list" varStatus="vs">
+						<input type="hidden" id="pass" name="qpass" value="${list.qpass}"/>
 							<tr>
 								<td><c:out value="${pageMaker.totalCount-((scri.page-1)*5)-vs.count+1}"/></td>
 								<td>

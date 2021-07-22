@@ -5,6 +5,12 @@
      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<style>
+ section#content ul li { display:inline-block; margin:10px; }
+ section#content div.goodsThumb img { width:200px; height:200px; }
+ section#content div.goodsName { padding:10px 0; text-align:center; }
+ section#content div.goodsName a { color:#000; }
+</style>
 	<title>전통 이酒 </title>
 </head>
 <body>
@@ -27,10 +33,13 @@
 					<c:forEach items="${list}" var="list">
 						<li>
 							<div class="goodsThumb">
-								<img src="${list.pImg}">
+								<a href="/shop/view?n=${list.pNO}"><img src="${list.pImg}"></a>
 							</div>
 							<div class="goodsName">
-								<a href="/shop/view?n=${list.pNO}">${list.pName}</a>
+								${list.pName}
+							</div>
+							<div class="goodsPrice">
+								<fmt:formatNumber pattern="###,###,###" value="${list.pPrice}"/>	
 							</div>
 						</li>
 					</c:forEach>

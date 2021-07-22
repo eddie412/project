@@ -64,11 +64,11 @@
 		<div class="menu">
 			<div style="width:80%; text-align: right"
 			 onclick="HideMenu()">닫기</div>
-			<div><a href="list?cateCode=m"> 막걸리</a></div>
-			<div><a href="list?cateCode=s">  소주</a></div>
-			<div><a href="list?cateCode=y">  약주/탁주</a></div>
-			<div><a href="list?cateCode=f">  과실주</a></div>
-			<div><a href="list?cateCode=n">  안주</a></div>
+			<div><a href="/product/list?c=m"> 막걸리</a></div>
+			<div><a href="/product/list?c=s">  소주</a></div>
+			<div><a href="/product/list?c=y">  약주/탁주</a></div>
+			<div><a href="/product/list?c=f">  과실주</a></div>
+			<div><a href="/product/list?c=n">  안주</a></div>
 		</div>
 	</div>
 </body>

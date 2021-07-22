@@ -52,6 +52,7 @@ public class ProductServiceImpl  implements ProductService{
 	}
 	
 //	--------------------------------사용자
+//	카테고리
 	@Override
 	public List<ProductVO> list(int cateCode) throws Exception {
 		return productDao.list(cateCode);

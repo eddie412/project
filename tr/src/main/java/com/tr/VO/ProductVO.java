@@ -9,21 +9,7 @@ public class ProductVO {
 	private int pCount;
 	private String pInfo;
 	private int pSales;
-	private int pId;
-	private String pcode;
 	
-	public String getPcode() {
-		return pcode;
-	}
-	public void setPcode(String pcode) {
-		this.pcode = pcode;
-	}
-	public int getpId() {
-		return pId;
-	}
-	public void setpId(int pId) {
-		this.pId = pId;
-	}
 	public String getpImg() {
 		return pImg;
 	}
