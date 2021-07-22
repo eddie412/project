@@ -18,36 +18,38 @@
 	</aside>
 	<br><hr>
 	<h2>주문 상세 내역</h2>
-	<form role="form" method="post" autocomplete="off">
-	<input type="hidden" name="n" value="${order.oId}" />
+		<form role="form" method="post" autocomplete="off">
+		<input type="hidden" name="n" value="${info.oId}" />
 	
 		<div class="inputArea">
 			<label for="oId">주문번호</label>
-			<span>${order.oId}</span>
+			<span>${info.oId}</span>
 		</div>
 		--------------- 주문자정보 ----------------
 		<div class="inputArea">
 			<label for="userName">주문자</label>
-			<span> ${order.userName}</span>
+			<span> ${info.userName}</span>
 		</div>
 		<div class="input_area">
 			<label for="phone">연락처</label>
-			<span> ${order.userPhone}</span>
+			<span> ${info.userPhone}</span>
 		</div>
 		-------------- 받는사람정보 --------------
 		<div class="inputArea">
 			<label for="rName">받는 사람</label>
-			<span> ${order.rName}</span>
+			<span> ${info.rName}</span>
 		</div>
 		<div class="input_area">
 			<label for="rPhone">연락처</label>
-			<span> ${order.rPhone}</span>
+			<span> ${info.rPhone}</span>
 		</div>
+		
 		-------------- 배송정보 --------------
 		<div class="input_area">
 			<label for="rAddr">배송지</label>
-			<span> ${order.rAddr}</span>
+			<span> ${info.rAddr}</span>
 		</div>
+	<c:forEach var="order"  items="${orderView}" varStatus="status">
 		<div class="input_area">
 			<label for="pName">상품명</label>
 			<span> ${order.pName}</span>
@@ -56,20 +58,24 @@
 			<label for="count">수량</label>
 			<span> ${order.count}</span>
 		</div>
+	</c:forEach>
 		<div class="input_area">
 			<label for="oDate">주문일</label>
-			<span> ${order.oDate}</span>
+			<span> ${info.oDate}</span>
 		</div>
 		<div class="input_area">
 			<label for="delivery">상태</label>
-			<span>${order.delivery}</span>
+			<span>${info.delivery}</span>
 		</div>
-		
+		</form>
 		<div class="input_area">
 			<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
 			<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
-			<button type="reset" onclick="location.href='orderList'">취소</button>
-			
+			<button type="reset" onclick="location.href='orderList'">취소</button>	
+		</div>
+		
+		
+		
 			<script>
 				var formObj = $("form[role='form']");
 				
@@ -89,8 +95,8 @@
 					}	
 				});
 			</script>
-		</div>
-	</form>
+		
+	
 </body>
 </html>
 

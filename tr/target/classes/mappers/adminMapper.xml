@@ -13,10 +13,11 @@
 	
 	<!-- 관리자용 주문 내역 불러오기 -->
 	<select id="orderList" resultType="com.tr.VO.OrderVO">
-		Select o.oId,m.userName,o.rAddr,o.rPhone,p.pName, o.count, o.oDate, o.delivery 
-		FROM TR_ORDER o,tr_member m,tr_product p
-		where p.pNo=o.pNo
+		Select o.oId,m.userName,o.rAddr,o.rPhone,p.pName, d.count, o.oDate, o.delivery 
+		FROM TR_ORDER o,tr_member m,tr_product p, tr_orderDetails d
+		where p.pNo=d.pNo
 		and m.userId=o.userId
+
 	</select>
 	
 	<!-- 관리자용 상품관리 -->
@@ -55,19 +56,24 @@
 	delete	tr_product
 	where pNo = #{pNo}
 	</delete>
-	<!-- 주문 처리 -->
+	
+	<!-- 배송 처리 -->
 	<update id="delivery">
 		update TR_ORDER
 			set DELIVERY=#{delivery}
 		where oId=#{oId}
 	</update>
+	
 	<!-- 주문 내역 조회 -->
 	<select id="orderView" resultType="com.tr.VO.OrderVO">
-		Select o.oId,m.userName,m.userPhone,o.rAddr,o.rName,o.rPhone,o.rAddr,p.pName,o.count,oDate,delivery
-		from tr_order o,tr_member m,tr_product p
-		where oId=#{oId}
-		and p.pNo=o.pNo
+		Select o.oId,m.userName,m.userPhone,o.rName,o.rPhone,o.rAddr,p.pName,d.count,o.oDate,o.delivery
+		from tr_order o,tr_member m,tr_product p,tr_orderDetails d
+		where o.oId=#{oId}
 		and m.userId=o.userId
+		<!-- and d.oId=#{oId}
+		and d.pNo=p.pNo -->
+		
+		
 	</select>
 	<!-- 주문 수정 -->
 	<update id="orderModify">
@@ -76,9 +82,9 @@
 			rName=#{rName},
 			rPhone=#{rPhone},
 			rAddr=#{rAddr},
-			count=#{count}
 		where oId=#{oId}
 	</update>
+	
 	<!-- 제품 삭제	 -->
 	<delete id="orderDelete">
 	delete	tr_order

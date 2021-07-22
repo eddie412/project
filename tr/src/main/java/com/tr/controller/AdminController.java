@@ -39,17 +39,29 @@ public class AdminController {
 		logger.info("get admin");
 	}
 
-	// 주문내역 관리
+	// 관리자용 주문 내역
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.GET)
 	public String order(OrderVO orderVo, Model model) throws Exception {
 		logger.info("get order");
-
+		logger.info(orderVo.toString());
 		List<OrderVO> orderList = aService.orderList(orderVo);
+		logger.info(orderList.toString());
 		model.addAttribute("orderList", orderList);
 
 		return "admin/order/orderList";
 	}
 
+	// 주문 내역 상세 조회
+	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
+	public void getOrderView(@RequestParam("oId") String oId, Model model) throws Exception {
+		logger.info("Get orderView");
+		
+		List<OrderVO> orderView = aService.orderView(oId);
+		logger.info(orderView.toString());
+		model.addAttribute("orderView", orderView);
+		model.addAttribute("info",orderView.get(0));
+	}
+	
 	// 주문 배송 처리
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.POST)
 	public String delivery(OrderVO orderVo) throws Exception {
@@ -61,22 +73,16 @@ public class AdminController {
 		return "redirect:/admin/order/orderList";
 	}
 
-	// 주문 내역 조회
-	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void getOrderView(@RequestParam("n") int no, Model model) throws Exception {
-		logger.info("Get orderView");
-
-		OrderVO order = aService.orderView(no);
-		model.addAttribute("order", order);
-	}
 
 	// 주문 수정 GET
 	@RequestMapping(value = "/order/orderModify", method = RequestMethod.GET)
-	public void getOrderModify(@RequestParam("n") int no, Model model) throws Exception {
+	public void getOrderModify(@RequestParam("n") String oId, Model model) throws Exception {
 		logger.info("Get orderModify");
 
-		OrderVO order = aService.orderView(no);
-		model.addAttribute("order", order);
+		List<OrderVO> order = aService.orderView(oId);
+		model.addAttribute("orderView", order);
+		model.addAttribute("info",order.get(0));
+		
 	}
 
 	// 주문 수정 POST
@@ -86,16 +92,15 @@ public class AdminController {
 		logger.info(vo.toString());
 		aService.orderModify(vo);
 		
-
 		return "redirect:/admin/order/orderList";
 	}
 
 	// 주문 삭제
 	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
-	public String getOrderDelete(@RequestParam("n") int no, Model model) throws Exception {
+	public String getOrderDelete(@RequestParam("n") String oId, Model model) throws Exception {
 		logger.info("Get orderDelete");
 
-		aService.orderDelete(no);
+		aService.orderDelete(oId);
 
 		return "redirect:/admin/order/orderList";
 	}

@@ -22,11 +22,11 @@ public interface AdminService {
 	public void productDelete(String pNo) throws Exception;
 	
 	//주문 내역 조회
-	public OrderVO orderView(int no) throws Exception;
+	public List<OrderVO> orderView(String oId) throws Exception;
 	//주문 수정
 	public void orderModify(OrderVO vo) throws Exception;
 	//상품 삭제
-	public void orderDelete(int no) throws Exception;
+	public void orderDelete(String oId) throws Exception;
 	
 	//회원 조회
 	public MemberVO memberView(String userId) throws Exception;

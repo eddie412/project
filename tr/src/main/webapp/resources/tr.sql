@@ -45,7 +45,7 @@ drop sequence sq_order;
 drop table tr_order;
 
 insert into tr_order(oId,userId,count,pNo,rName,rAddr,rPhone,oMemo,oTotal)
-values (sq_order.nextval,'aa',1,'m1','주영','상계동',010,'배송',200);
+values (sq_order.nextval,'aaa',1,'m1','주영','상계동',010,'배송',200);
 
 select * from tr_order;
 
@@ -65,7 +65,7 @@ nocache;
 
 alter table tr_orderDetails ADD CONSTRAINT tr_orderDetials_oId FOREIGN KEY(oId) REFERENCES tr_order(oId);
 
-
+drop table tr_orderDetails;
 
 -------------------- 장바구니 테이블 ------------------------
 create table tr_cart(
@@ -89,7 +89,8 @@ drop table tr_cart;
 
 insert into tr_cart(cId,userId,pNo,count) values (sq_cart.nextval,'aa','m14',1);
 
-
+INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'aaa', 'W001', 5);
+INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'aaa', 'M001', 2);
 
 ----------------------상품 테이블--------------------------------
 create table tr_product(
@@ -103,8 +104,10 @@ create table tr_product(
 );
 
 drop table tr_product;
+drop table tr_product CASCADE CONSTRAINTS;
 select * from tr_product;
 
+drop sequence sq_b;
 create sequence sq_m		--시퀀스 for 막걸리
 increment by 1
 start with 1
@@ -128,6 +131,9 @@ values ('m'||sq_product.nextval,'와인',1000,2,'요구루트',3);
 
 insert into tr_product(pNO,pNAME,pPrice,pCount,pInfo,pSales)
 values ('m1','막걸리',1000,2,'요구루트',3);
+
+INSERT INTO tr_product VALUES('M001', '장수막걸리', 2500, 10, '백미를 사용해 장기저온숙성 방식으로 만들어져 영양이 풍부하고 자연발효에 의한 탄산과 어울려 감칠맛과 청량감이 일품인 막걸리', 0, 'M_jangsu.jpg');
+INSERT INTO tr_product VALUES('W001', '세븐 폴스, 카베르네 소비뇽', 19000, 10, '진한 과일 풍미에 묵직한 바디감이 느껴지는 레드와인', 5, 'W_Seven Falls.jpg');
 
 
 --------------------------문의사항 테이블--------------------------

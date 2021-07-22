@@ -1,35 +1,46 @@
 package com.tr.VO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class OrderVO {
-	private String oId; 		// 주문 번호
-	private Date oDate; 		// 주문날짜
-	private String userId; 		// 아이디
-	private int count; 			// 상품수량
-	private String pNo; 		// 상품번호
-	private String delivery; 	//주문 처리
-	private String rName;		 //주문자
-	private String rAddr;		 //주문자 주소
-	private String rPhone; 		//주문자 번호
-	private String oMemo;		 // 상품명
-	private int oTotal; 			// 상품총금액
-	private String userName;
-	private String pName;
-	private String userPhone;
+	private int cId;					//장바구니 번호
+	private String oId;				//주문번호
+	private int orderDetailsId;		//주문내역상세 번호
+	private String userId;			//사용자 아이디
+	private String userName; 		// 사용자이름
+	private String userAddr;			// 사용자 주소
+	private String userPhone;		// 사용자 번호
+	private String rName;			//보내는분 이름
+	private String rAddr;			//보내는분 주소
+	private String rPhone;			//보내는분 번호
+	private String oMemo;			//요구사항
+	private String pNo;				//상품번호
+	private String pImg;				//상품이미지
+	private String pName;			//상품이름
+	private String pInfo;			//상품정보
+	private int pPrice;				//상품 가격
+	private int count;				//구매 수량
+	private int oTotal;				//총 결제금액
+	private Date oDate;				//구매날짜
+	private String delivery;			//결제상태
 	
-	
+	public int getcId() {
+		return cId;
+	}
+	public void setcId(int cId) {
+		this.cId = cId;
+	}
 	public String getoId() {
 		return oId;
 	}
 	public void setoId(String oId) {
 		this.oId = oId;
 	}
-	public Date getoDate() {
-		return oDate;
+	public int getOrderDetailsId() {
+		return orderDetailsId;
 	}
-	public void setoDate(Date oDate) {
-		this.oDate = oDate;
+	public void setOrderDetailsId(int orderDetailsId) {
+		this.orderDetailsId = orderDetailsId;
 	}
 	public String getUserId() {
 		return userId;
@@ -37,23 +48,23 @@ public class OrderVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getCount() {
-		return count;
+	public String getUserName() {
+		return userName;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getpNo() {
-		return pNo;
+	public String getUserAddr() {
+		return userAddr;
 	}
-	public void setpNo(String pNo) {
-		this.pNo = pNo;
+	public void setUserAddr(String userAddr) {
+		this.userAddr = userAddr;
 	}
-	public String getDelivery() {
-		return delivery;
+	public String getUserPhone() {
+		return userPhone;
 	}
-	public void setDelivery(String delivery) {
-		this.delivery = delivery;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 	public String getrName() {
 		return rName;
@@ -79,17 +90,17 @@ public class OrderVO {
 	public void setoMemo(String oMemo) {
 		this.oMemo = oMemo;
 	}
-	public int getoTotal() {
-		return oTotal;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setoTotal(int oTotal) {
-		this.oTotal = oTotal;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
-	public String getUserName() {
-		return userName;
+	public String getpImg() {
+		return pImg;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
 	}
 	public String getpName() {
 		return pName;
@@ -97,20 +108,51 @@ public class OrderVO {
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-	public String getUserPhone() {
-		return userPhone;
+	public String getpInfo() {
+		return pInfo;
 	}
-	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
+	public void setpInfo(String pInfo) {
+		this.pInfo = pInfo;
 	}
+	public int getpPrice() {
+		return pPrice;
+	}
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getoTotal() {
+		return oTotal;
+	}
+	public void setoTotal(int oTotal) {
+		this.oTotal = oTotal;
+	}
+	public Date getoDate() {
+		return oDate;
+	}
+	public void setoDate(Date oDate) {
+		this.oDate = oDate;
+	}
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+	
 	@Override
 	public String toString() {
-		return "OrderVO [oId=" + oId + ", oDate=" + oDate + ", userId=" + userId + ", count=" + count + ", pNo=" + pNo
-				+ ", delivery=" + delivery + ", rName=" + rName + ", rAddr=" + rAddr + ", rPhone=" + rPhone + ", oMemo="
-				+ oMemo + ", oTotal=" + oTotal + ", userName=" + userName + ", pName=" + pName + ", userPhone="
-				+ userPhone + "]";
+		return "OrderVO [cId=" + cId + ", oId=" + oId + ", orderDetailsId=" + orderDetailsId + ", userId=" + userId
+				+ ", userName=" + userName + ", userAddr=" + userAddr + ", userPhone=" + userPhone + ", rName=" + rName
+				+ ", rAddr=" + rAddr + ", rPhone=" + rPhone + ", oMemo=" + oMemo + ", pNo=" + pNo + ", pImg=" + pImg
+				+ ", pName=" + pName + ", pInfo=" + pInfo + ", pPrice=" + pPrice + ", count=" + count + ", oTotal="
+				+ oTotal + ", oDate=" + oDate + ", delivery=" + delivery + "]";
 	}
-	
-	
+
 	
 }

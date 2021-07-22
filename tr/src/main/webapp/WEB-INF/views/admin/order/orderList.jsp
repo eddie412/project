@@ -7,9 +7,7 @@
 <meta charset="UTF-8">
 <title>OrderList</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-<style type="text/css">
-	<link rel="stylesheet" type="text/css" href="../../resources/adminStyle.css">
-</style>
+<link rel="stylesheet" type="text/css" href="../../resources/adminStyle.css">
 </head>
 <body>
 	<header id="header">
@@ -23,14 +21,16 @@
 	<br><hr>
 	<ul class="orderList">
 		<c:forEach var="order"  items="${orderList}" varStatus="status">
-			<p><span>주문번호 </span><a href="orderView?n=${order.oId}">${order.oId}</a></p>
-			<p><span>주문자 </span>${order.userName}</p>
-			<p><span>배송지 </span>${order.rAddr}</p>
-			<p><span>전화번호 </span>${order.rPhone}</p>
-			<p><span>상품명 </span>${order.pName}</p>
-			<p><span>수량 </span>${order.count}</p>
-			<p><span>주문일 </span>${order.oDate}</p>
-			<p><span>상태 </span>${order.delivery}</p>
+			<c:if test="${status.first}">
+				<p><span>주문번호 </span><a href="orderView?oId=${order.oId}">${order.oId}</a></p>
+				<p><span>주문자 </span>${order.userName}</p>
+				<p><span>배송지 </span>${order.rAddr}</p>
+				<p><span>전화번호 </span>${order.rPhone}</p>
+				<p><span>상품명 </span>${order.pName}</p>
+				<p><span>수량 </span>${order.count}</p>
+				<p><span>주문일 </span>${order.oDate}</p>
+				<p><span>상태 </span>${order.delivery}</p>
+			
 
 			<div class="orderChange">
 			<form action="orderList" method="post" id="${order.oId}">
@@ -53,6 +53,7 @@
 				</script>
 				</form>
 			</div>
+			</c:if>
 		</c:forEach>
 	</ul>
 	

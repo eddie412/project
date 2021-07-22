@@ -48,10 +48,10 @@ public class AdminServiceImpl implements AdminService {
 		dao.productDelete(pNo);
 	}
 
-	// 주문 내역 조회
+	// 주문 내역 상세 조회
 	@Override
-	public OrderVO orderView(int no) throws Exception {
-		return dao.orderView(no);
+	public List<OrderVO> orderView(String oId) throws Exception {
+		return dao.orderView(oId);
 	}
 
 	// 주문 수정
@@ -62,8 +62,8 @@ public class AdminServiceImpl implements AdminService {
 
 	// 주문 삭제
 	@Override
-	public void orderDelete(int no) throws Exception {
-		dao.orderDelete(no);
+	public void orderDelete(String oId) throws Exception {
+		dao.orderDelete(oId);
 	}
 
 	// 회원 조회
