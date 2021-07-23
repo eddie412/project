@@ -67,6 +67,12 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<QnaVO> qna(String userId) throws Exception {
 		return sql.selectList("memberMapper.qna", userId);
 	}
+	
+	//마이페이지_문의사항 답변
+	@Override
+	public List<QnaVO> reply(int qNo) throws Exception {
+		return sql.selectList("memberMapper.reply", qNo);
+	}
 
 	// 마이페이지_회원정보수정
 	@Override
@@ -80,6 +86,8 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.delete("memberMapper.delete", vo);
 		
 	}
+
+	
 	
 	
 }

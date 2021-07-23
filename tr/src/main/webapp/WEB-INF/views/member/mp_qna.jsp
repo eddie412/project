@@ -9,12 +9,13 @@
 </head>
 <style type="text/css">
 #main {
-	position: fixed;
 	width: 70%;
-	margin-left: 400px;
+	overflow-y: scroll;
+	margin-right: 100px;
 	margin-top: 50px;
 	text-align: center;
 }
+
 
 #main, #main th, #main td {
 	border: 1px solid gray;
@@ -43,16 +44,18 @@
 			<th>날짜</th>
 			<th>제목</th>
 			<th>내용</th>
+			<th>답변</th>
 		</tr>
 		<c:if test="${empty qna}">
 			<td colspan="3">작성한 문의사항이 없습니다.</td>
 		</c:if>
 		<c:forEach var="qna" items="${qna}">
-			<tr>
+				<input type="hidden" name="qNo" value="${qna.qNo}">
+				<tr>
 				<td><fmt:formatDate value="${qna.qDate}" pattern="yyyy.MM.dd" /></td>
 				<td>${qna.qTitle}</td>
-				<td>${qna.qContent}</td>
-			</tr>
+				<td><a href="../member/reply?qNo=${qna.qNo}">${qna.qContent}</a></td>
+				</tr>
 		</c:forEach>
 	</table>
 </body>

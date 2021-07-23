@@ -29,9 +29,11 @@ public interface MemberDAO {
 	//마이페이지_회원정보
 	public MemberVO  info(String userId) throws Exception;
 
-
 	// 마이페이지_문의사항
 	public List<QnaVO> qna(String userId) throws Exception;
+	
+	//마이페이지_문의사항 답변
+	public List<QnaVO> reply(int qNo) throws Exception;
 
 	// 마이페이지_회원정보수정
 	public void update(MemberVO vo) throws Exception;

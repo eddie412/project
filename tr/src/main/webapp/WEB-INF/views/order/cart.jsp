@@ -91,7 +91,6 @@ input[type="button"] {
 							<td class="sum">
 								<fmt:formatNumber pattern="###,###,###"  value="${cart.count * cart.pPrice}" />원</td>
 							<td>
-								<!-- <a href="/shop/delete?cId=${cart.cId}" class="deleteCon">삭제</a> -->
 								<a href="deleteItem?cId=${cart.cId}" onclick="return confirm('선택하신 상품을 삭제하시겠습니까?')"><input type="button" value="삭제"></a>
 							</td>
 						</tr>

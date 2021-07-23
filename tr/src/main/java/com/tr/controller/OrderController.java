@@ -23,6 +23,7 @@ import com.tr.Service.OrderService;
 import com.tr.VO.MemberVO;
 import com.tr.VO.OrderDetailVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.ProductVO;
 
 @Controller
 @RequestMapping("/order/*")
@@ -93,14 +94,15 @@ public class OrderController {
 			  
 			  for(int i=0; i<values.length; i++) { 
 				  session.setAttribute("cId"+i, values[i]);
+				  
 				  map.put("item"+i, service.order(values[i]).get(0));
 				  
 				  total += service.order(values[i]).get(0).getCount() * service.order(values[i]).get(0).getpPrice();
+				  session.setAttribute("count"+i, service.order(values[i]).get(0).getCount());
+				  session.setAttribute("no"+i, service.order(values[i]).get(0).getpNo());
 			  }
-			  model.addAttribute("order", map); 
-			  model.addAttribute("num", values.length);
+			  session.setAttribute("order", map); 
 			  session.setAttribute("size", values.length);
-
 			
 			
 			//주문자 정보
@@ -120,7 +122,7 @@ public class OrderController {
 
 	//주문완료
 @RequestMapping(value="orderComplete", method = RequestMethod.POST)
-	public String orderInsert(HttpSession session, OrderVO vo, OrderDetailVO dvo, @RequestParam(value="cId") int[] values) throws Exception{
+	public String orderInsert(HttpSession session, OrderVO vo, OrderDetailVO dvo, ProductVO pvo, @RequestParam(value="cId") int[] values) throws Exception{
 	logger.info("★주문완료....orderComplete post");
 	
 		//사용자 아이디
@@ -155,10 +157,26 @@ public class OrderController {
 		for(int i=0; i<(Integer)session.getAttribute("size"); i++) {
 			vo.setcId(values[i]);
 			dvo.setcId(values[i]);
+
 			service.orderInsert(dvo);
 			service.orderDelete(vo);
 		}
 		
+		//구매한 상품 재고 및 판매수량 변경
+		int pSales, pCount = 0;
+		String no = null;
+		for(int i=0; i<(int)session.getAttribute("size") ;i++) {
+			pSales = (int)session.getAttribute("count"+i);
+			pCount = (int)session.getAttribute("count"+i);
+			no = (String)session.getAttribute("no"+i);
+			
+			pvo.setpNO(no);
+			pvo.setpSales(pSales);
+			pvo.setpCount(pCount);
+			
+			service.orderUpdate(pvo);
+		}
+
 	
 		return "order/orderComplete";
 	}

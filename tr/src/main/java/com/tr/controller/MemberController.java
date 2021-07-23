@@ -1,6 +1,8 @@
 package com.tr.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import com.tr.Service.MemberService;
 import com.tr.VO.MemberVO;
 import com.tr.VO.OrderVO;
 import com.tr.VO.QnaVO;
+import com.tr.VO.ReplyVO;
 
 @Controller
 @RequestMapping("/member/*")
@@ -131,7 +134,6 @@ public class MemberController {
 		vo.setoId(oId);
 		
 		List<OrderVO> orderDetail = service.orderDetail(vo);
-		logger.info("★값="+orderDetail);
 		model.addAttribute("orderDetail", orderDetail);
 		
 		return "member/mpOrderDetail";
@@ -140,11 +142,14 @@ public class MemberController {
 	// 마이페이지_문의사항 get
 	@RequestMapping(value = "/mp_qna", method = RequestMethod.GET)
 	public String qna(Model model, HttpSession session) throws Exception {
+		logger.info("★마이페이지(문의사항)....qna get");
+		
 		String userId = (String) session.getAttribute("userId");
 
 		List<QnaVO> qna = service.qna(userId);
+		
+		
 		model.addAttribute("qna", qna);
-
 		return "member/mp_qna";
 	}
 

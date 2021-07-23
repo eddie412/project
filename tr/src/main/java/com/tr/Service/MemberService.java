@@ -31,8 +31,13 @@ public interface MemberService {
 
 	//마이페이지_문의사항
 	public List<QnaVO> qna(String userId) throws Exception;
+	
+	//마이페이지_문의사항 답변
+	public List<QnaVO> reply(int qNo) throws Exception;
+	
 	//마이페이지_회원정보수정
 	public void update(MemberVO vo) throws Exception;
+	
 	//마이페이지_회원정보삭제
 	public void delete(MemberVO vo) throws Exception;
 

@@ -61,14 +61,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.info(userId);
 	}
 	
-
-
 	// 마이페이지_문의사항
 	@Override
 	public List<QnaVO> qna(String userId) throws Exception {
 		return dao.qna(userId);
 	}
-
+	
+	//마이페이지_문의사항 답변
+	@Override
+	public List<QnaVO> reply(int qNo) throws Exception{
+		return dao.reply(qNo);
+	}
+	
 	// 마이페이지_회원정보수정
 	@Override
 	public void update(MemberVO vo) throws Exception {

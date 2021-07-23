@@ -3,8 +3,8 @@ package com.tr.VO;
 public class ReplyVO {
 	private int qNO;
 	private int rNO;
-	private int rContent;
-	private int qWriter;
+	private String rContent;
+	private String qWriter;
 	
 	public int getqNO() {
 		return qNO;
@@ -18,16 +18,16 @@ public class ReplyVO {
 	public void setrNO(int rNO) {
 		this.rNO = rNO;
 	}
-	public int getrContent() {
+	public String getrContent() {
 		return rContent;
 	}
-	public void setrContent(int rContent) {
+	public void setrContent(String rContent) {
 		this.rContent = rContent;
 	}
-	public int getqWriter() {
+	public String getqWriter() {
 		return qWriter;
 	}
-	public void setqWriter(int qWriter) {
+	public void setqWriter(String qWriter) {
 		this.qWriter = qWriter;
 	}
 	

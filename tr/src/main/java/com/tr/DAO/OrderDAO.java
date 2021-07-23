@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.tr.VO.OrderDetailVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.ProductVO;
+import com.tr.VO.ProductVO;
 
 public interface OrderDAO {
 	
@@ -24,6 +26,9 @@ public interface OrderDAO {
 	
 	//주문 완료
 	public void orderComplete(OrderVO vo) throws Exception;
+	
+	//상품수량 변경
+	public void orderUpdate(ProductVO vo) throws Exception;
 	
 	//주문 내역 삽입
 	public void orderInsert(OrderDetailVO vo) throws Exception;

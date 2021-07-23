@@ -28,7 +28,7 @@
 <div>
 <p>주문상품</p>
 <table> 
-<c:forEach var="i" begin="0" end="${num-1}" >
+<c:forEach var="i" begin="0" end="${size-1}" >
 <c:set var="item" value="item${i}"/>
 	<input type="hidden"  name="cId" value="${order[item].cId}">
 	<tr>
@@ -85,7 +85,7 @@
 	</tr>
 	<tr>
 		<th>상품 금액</th>
-		<c:forEach var="i" begin="0" end="${num-1}" >
+		<c:forEach var="i" begin="0" end="${size-1}" >
 		<c:set var="item" value="item${i}"/>
 		<tr>
 			<td>┕ ${order[item].pName}</td>

@@ -93,6 +93,7 @@ create table tr_product(
 
 select * from tr_product;
 
+
 drop table tr_product;
 
 
@@ -128,13 +129,24 @@ create table tr_reply(
 );
 
 
+		SELECT		r.rNo, r.rContent
+		FROM		tr_qna q, tr_reply r
+		WHERE		r.qNO = 2
+		AND			qWriter = 'test';
+
+create sequence sq_reply
+increment by 1
+start with 1
+maxvalue 1000	
+nocache;
+
 
 alter table tr_reply 
 ADD Foreign Key(qNo) REFERENCES tr_qna(qNo);
 
 drop table tr_reply;
 
-
+select * from tr_reply;
 -------------------카테고리 테이블---------------------
 create table tr_category( 
 	cateCode 		varchar2(10) 	not null 	primary key,	-- 카테고리 코드
@@ -171,10 +183,19 @@ INSERT INTO tr_member VALUES('apple', 'pass01', '사과', 'apple@example.com', '
 INSERT INTO tr_member VALUES('rain_row', 'rain01@', '비주륵', 'rain@naver.com','01021549865', '경기도 사랑동 가족동 128', '98/04/12');
 INSERT INTO tr_member VALUES('aaa', 'aaa', '비주륵', 'rain@naver.com','01021549865', '경기도 사랑동 가족동 128', '98/04/12');
 
+
 INSERT INTO tr_product VALUES('M001', '장수막걸리', 2500, 10, '백미를 사용해 장기저온숙성 방식으로 만들어져 영양이 풍부하고 자연발효에 의한 탄산과 어울려 감칠맛과 청량감이 일품인 막걸리', 0, 'M_jangsu.jpg');
 INSERT INTO tr_product VALUES('W001', '세븐 폴스, 카베르네 소비뇽', 19000, 10, '진한 과일 풍미에 묵직한 바디감이 느껴지는 레드와인', 5, 'W_Seven Falls.jpg');
 
 INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'W001', 5);
-INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'M001', 2);
+INSERT INTO tr_cart VALUES(sq_cart.NEXTVAL, 'test', 'M001', 1);
 
 INSERT INTO tr_cart(cId, userId, pNo, cPrice, cCount) VALUES(1, 'test', 'C012', 2500, 5);
+
+INSERT INTO tr_qna(qNo, qTitle, qWriter, qDate, qContent, qPass) VALUES(sq_qna.NEXTVAL, '상품 가격 오르나요?', 'test', sysdate, '다음달부터 상품 가격이 오른다고 공지가 있던데 얼마정도 오를까요?', 1234);
+INSERT INTO tr_qna(qNo, qTitle, qWriter, qDate, qContent, qPass) VALUES(sq_qna.NEXTVAL, '반품시키고싶습니다.', 'test', sysdate, '상품 포장상태가 별로네요. 찝찝해서 반품합니다.', 1234);
+INSERT INTO tr_qna(qNo, qTitle, qWriter, qDate, qContent, qPass) VALUES(sq_qna.NEXTVAL, '유통기한 문의', 'test', sysdate, '유통기한은 언제까지인지 안써져있네요. 궁금하네요.', 1234);
+
+INSERT INTO tr_reply(qNo, rNo, rContent, rWriter, rDate) VALUES(1, sq_reply.NEXTVAL, '다음달부터 가격이 1000원 오릅니다. :)', DEFAULT, sysdate);
+INSERT INTO tr_reply(qNo, rNo, rContent, rWriter, rDate) VALUES(2, sq_reply.NEXTVAL, '다음달부터 가격이 1000원 오릅니다. :)', DEFAULT, sysdate);
+

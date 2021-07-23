@@ -26,17 +26,26 @@
 	background: #B28EF7;
 }
 </style>
-<script type="text/javascript">
-$(document).ready(function(e){
-	genRowspan("row");
-});
 
-function genRowspan(className){
-	$("." + className).each(function(){
-		var rows = $("." + className + ":contains('")
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(e){
+		    genRowspan("row");
+		  genRowspan("date");
 	});
-}
+		 
+	function genRowspan(className){
+	    $("." + className).each(function() {
+	        var rows = $("." + className + ":contains('" + $(this).text() + "')");
+	        if (rows.length > 1) {
+	            rows.eq(0).attr("rowspan", rows.length);
+	            rows.not(":eq(0)").remove();
+	        }
+	    });
+	}
 </script>
+
+
 <body>
 	<!-- 헤드 -->
 	<header>
@@ -47,10 +56,10 @@ function genRowspan(className){
 
 	<h2 align="center">주문상세내역</h2>
 	<!-- 사이드 메뉴 -->
-	<%@ include file="../include/mypageNav.jsp" %>
-	
-	<!-- 메인 -->>
-		<table id="main" align="right">
+	<%@ include file="../include/mypageNav.jsp"%>
+
+	<!-- 메인 -->
+	<table id="main" align="right">
 		<tr>
 			<th>주문날짜</th>
 			<th>주문번호</th>
@@ -64,19 +73,23 @@ function genRowspan(className){
 		<c:if test="${empty order}">
 			<td colspan="7">상품을 구매한적이 없습니다.</td>
 		</c:if>
-		<c:forEach var="order" items="${order}">
-			<tr>
-				<td><fmt:formatDate value="${order.oDate}" pattern="yyyy.MM.dd" /></td>
-				<td class="row"><a href='mpOrderDetail?oId=${order.oId}'>${order.oId}</a></td>
-				<td><a href='/product/product?pno=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a></td>
-				<td>${order.pName}</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원</td>
-				<td>${order.count}개</td>
-				<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice * order.count}" />원</td>
-				<td>${order.delivery}</td>
-			</tr>
-		</c:forEach>
+		<tbody>
+			<c:forEach var="order" items="${order}">
+				<tr>
+					<td class="date"><fmt:formatDate value="${order.oDate}" pattern="yyyy.MM.dd" /></td>
+					<td class="row"><a href='mpOrderDetail?oId=${order.oId}'>${order.oId}</a></td>
+					<td>
+						<a href='/product/product?pno=${order.pNo}'>
+						<img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지"></a>
+					</td>
+					<td>${order.pName}</td>
+					<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원</td>
+					<td>${order.count}개</td>
+					<td><fmt:formatNumber pattern="###,###,###" value="${order.pPrice * order.count}" />원</td>
+					<td>${order.delivery}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
-
 </body>
-</html>
+</html>	
