@@ -169,9 +169,40 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 
 							</p>
 
-							<p class="addToCart">
-								<button type="button">카트에 담기</button>
-							</p>
+								<p class="addToCart">
+								 <button type="button" class="addCart_btn">카트에 담기</button>
+								 
+								 <script>
+								  $(".addCart_btn").click(function(){
+								   var gdsNum = $("#gdsNum").val();
+								   var cartStock = $(".numBox").val();
+								      
+								   var data = {
+										   pNO : gdsNum,
+								     cartStock : cartStock
+								     };
+								   
+								   $.ajax({
+								    url : "/shop/view/addCart",
+								    type : "post",
+								    data : data,
+								    success : function(result){
+								    	if(result == 1){
+								     alert("카트 담기 성공");
+								     $(".numBox").val("1");
+								    	}else{
+								    		alert("회원만 사용할수 있습니다.")
+								    		$(".numBox").val("1");
+								    	}
+								    },
+								    error : function(){
+								     alert("카트 담기 실패");
+								    }
+								   });
+								  });
+								 </script>
+								</p>
+															
 							<span>상세내용</span>
 							<div class="gdsDes">${shopList.pInfo}</div>
 						</div>
