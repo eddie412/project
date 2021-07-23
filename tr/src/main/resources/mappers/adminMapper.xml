@@ -70,8 +70,8 @@
 		from tr_order o,tr_member m,tr_product p,tr_orderDetails d
 		where o.oId=#{oId}
 		and m.userId=o.userId
-		<!-- and d.oId=#{oId}
-		and d.pNo=p.pNo -->
+		and d.oId=#{oId}
+		and d.pNo=p.pNo
 		
 		
 	</select>

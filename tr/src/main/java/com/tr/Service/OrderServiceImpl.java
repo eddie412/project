@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tr.DAO.OrderDAO;
 import com.tr.VO.OrderDetailVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.ProductVO;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -64,6 +65,14 @@ public class OrderServiceImpl implements OrderService{
 	public void orderDelete(OrderVO vo) throws Exception {
 		dao.orderDelete(vo);
 	}
+
+	//상품수량 변경
+	@Override
+	public void orderUpdate(ProductVO vo) throws Exception {
+		dao.orderUpdate(vo);
+	}
+	
+	
 
 	
 	

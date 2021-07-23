@@ -15,9 +15,9 @@
 			<%@ include file="../../include/header.jsp"%>
 		</div>
 	</header>
-	<aside>
+	<nav>
 		<%@ include file="../aside.jsp"%>
-	</aside>
+	</nav>
 	<br><hr>
 	<ul class="orderList">
 		<c:forEach var="order"  items="${orderList}" varStatus="status">
@@ -28,7 +28,7 @@
 				<p><span>전화번호 </span>${order.rPhone}</p>
 				<p><span>상품명 </span>${order.pName}</p>
 				<p><span>수량 </span>${order.count}</p>
-				<p><span>주문일 </span>${order.oDate}</p>
+				<p><span>주문일 </span><fmt:formatDate pattern="yyyy-MM-dd"	value="${order.oDate}"/></p>
 				<p><span>상태 </span>${order.delivery}</p>
 			
 

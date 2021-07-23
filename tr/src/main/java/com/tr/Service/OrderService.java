@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tr.VO.OrderDetailVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.ProductVO;
 
 public interface OrderService {
 
@@ -30,4 +31,7 @@ public interface OrderService {
 	
 	//주문완료상품 삭제
 	public void orderDelete(OrderVO vo) throws Exception;
+	
+	//상품수량 변경
+	public void orderUpdate(ProductVO vo) throws Exception;
 }

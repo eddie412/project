@@ -1,14 +1,12 @@
 @charset "UTF-8";
 
-aside {
-    width: 40%;
-    padding-left: .5rem;
-    margin-left: .5rem;
-    float: left;
-    box-shadow: inset 5px 0 5px -5px #29627e;
-    font-style: italic;
-    color: #29627e;
-}
+nav {
+		width: 580px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid #bcbcbc;
+	}
 
 aside > p {
     margin: .5rem;

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>멤버 목록</title>
 <style type="text/css">
 </style>
 
@@ -22,7 +22,6 @@
 	<br><hr>
 	<table>
 		<tr>
-			<th>번호</th>
 			<th>아이디</th>
 			<th>이름</th>
 			<th>이메일</th>
@@ -32,7 +31,6 @@
 		</tr>
 	<c:forEach var="member"  items="${memberList}">
 		<tr>
-			<td>나중에</td>
 			<td><a href="memberView?n=${member.userId}">${member.userId}</a></td>
 			<td>${member.userName}</td>
 			<td>${member.userEmail}</td>

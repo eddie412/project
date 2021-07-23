@@ -48,6 +48,15 @@
 		VALUES(#{oId}, #{userId}, #{rName}, #{rAddr}, #{rPhone}, #{oMemo}, #{oDate}, #{oTotal}, DEFAULT)
 	</insert>
 	
+	<!-- 상품 수량 변경 -->
+	<update id="orderUpdate">
+		UPDATE tr_product
+		SET		pCount=pCount - #{pCount},
+				pSales= pSales + #{pSales}
+		Where pNo = #{pNo}
+	</update>
+	
+	
 	<!-- 주문내역 삽입 -->
 	<insert id="orderInsert">
 		INSERT INTO tr_orderDetails(oNo, oId, pNo, count)
@@ -62,5 +71,7 @@
 		WHERE userId = #{userId}
 		AND	cId = #{cId}
 	</delete>
+	
+	
 
 </mapper>

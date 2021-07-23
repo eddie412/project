@@ -5,6 +5,7 @@
 <head>
 <title>sideMenu</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../../resources/adminStyle.css">
 <body>
 	<h2>관리자 페이지</h2>
 	<aside>

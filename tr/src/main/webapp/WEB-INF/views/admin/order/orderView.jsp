@@ -61,7 +61,7 @@
 	</c:forEach>
 		<div class="input_area">
 			<label for="oDate">주문일</label>
-			<span> ${info.oDate}</span>
+			<span> <fmt:formatDate pattern="yyyy-MM-dd"	value="${info.oDate}"/></span>
 		</div>
 		<div class="input_area">
 			<label for="delivery">상태</label>

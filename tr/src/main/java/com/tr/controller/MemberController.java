@@ -132,7 +132,17 @@ public class MemberController {
 
 		List<OrderVO> orderDetail = service.orderDetail(vo);
 		logger.info("★값=" + orderDetail);
+		
+		
+		int total = 0;
+		for(int i=0; i<orderDetail.size(); i++) {
+			total += orderDetail.get(i).getoTotal();
+			logger.info("total" + total);
+		}
+		
+		model.addAttribute("no", orderDetail.get(0));
 		model.addAttribute("orderDetail", orderDetail);
+		model.addAttribute("total", total);
 
 		return "member/orderDetail";
 	}
