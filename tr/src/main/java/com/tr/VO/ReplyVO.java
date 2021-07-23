@@ -1,38 +1,51 @@
 package com.tr.VO;
 
+import java.util.Date;
+
 public class ReplyVO {
-	private int qNO;
-	private int rNO;
-	private int rContent;
-	private int qWriter;
+	private String pNO;
+	private int cNO;
+	private String cContent;
+	private Date cDate;
+	private String userId;
 	
-	public int getqNO() {
-		return qNO;
+	public String getpNO() {
+		return pNO;
 	}
-	public void setqNO(int qNO) {
-		this.qNO = qNO;
+	public void setpNO(String pNO) {
+		this.pNO = pNO;
 	}
-	public int getrNO() {
-		return rNO;
+	public int getcNO() {
+		return cNO;
 	}
-	public void setrNO(int rNO) {
-		this.rNO = rNO;
+	public void setcNO(int cNO) {
+		this.cNO = cNO;
 	}
-	public int getrContent() {
-		return rContent;
+	public String getcContent() {
+		return cContent;
 	}
-	public void setrContent(int rContent) {
-		this.rContent = rContent;
+	public void setcContent(String cContent) {
+		this.cContent = cContent;
 	}
-	public int getqWriter() {
-		return qWriter;
+	public Date getcDate() {
+		return cDate;
 	}
-	public void setqWriter(int qWriter) {
-		this.qWriter = qWriter;
+	public void setcDate(Date cDate) {
+		this.cDate = cDate;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	@Override
+	public String toString() {
+		return "ReplyVO [pNO=" + pNO + ", cNO=" + cNO + ", cContent=" + cContent + ", cDate=" + cDate + ", userId="
+				+ userId + "]";
 	}
 	
-	
-	
+
 	
 
 }

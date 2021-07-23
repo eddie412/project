@@ -11,18 +11,18 @@
 	 	width : 40px;
 	 	margin-right: 600px;
 	}
-	a {
+	header a {
 		text-decoration: none;
 	}
 	
-	a:link{ color: #ABAFB2;}
+	header a:link{ color: #ABAFB2;}
 	
-	td > ul{
+	header td > ul{
 		list-style: none;
 		margin-left: 50px;
 	}
 	
-	ul > li{
+	header ul > li{
 		float: left;
 		color: #ABAFB2;
 		margin-right: 50px;

@@ -163,7 +163,10 @@ nocache;
 
 drop sequence sq_qna;
 
+		 select 
+		 	pNo, cNo, cContent, cDate, userId
+		  from tr_comment 
+		  where pNo = 'm1';
 
-
-insert into tr_member values('a','1','d','ds@dd','3424','ddd','00/04/23', 1);
+insert into tr_member values('b','1','d','ds@dd','3424','ddd','00/04/23', 1);
 

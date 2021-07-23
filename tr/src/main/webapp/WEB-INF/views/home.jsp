@@ -14,25 +14,7 @@ div.con{width:1000px; height: 600px;}
 /*   section#content div.goodsPrice { padding:10px 0; text-align:center; } */
 /*  section#content div.goodsName a { color:#000; } */
 </style>
-<script>
-	$.ajax({
-		type: "GET",
-		url:"/shop/hlist",
-		data:{
-			pImg:pImg,
-			pName:pName,
-			pPrice:pPrice
-		}
-		dataType:"text",
-		success: function(result){
-			
-		},
-		error: function(){
-			
-		}
-	
-	});
-</script>
+
 	<title>전통 이酒 </title>
 </head>
 <body>

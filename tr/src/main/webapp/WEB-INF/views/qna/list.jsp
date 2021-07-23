@@ -13,7 +13,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="../resources/qnaScript.js"></script>
 </head>
-											<script type="text/javascript">
+<script type="text/javascript">
 function passCheck(){
 	var result = prompt("비밀번호를 입력해주세요.");
 	

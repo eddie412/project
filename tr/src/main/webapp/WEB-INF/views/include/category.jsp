@@ -13,7 +13,7 @@
 	.menu { position:absolute; top:0px; left:0px; 
 		width:40%; height: 100%; background-color:#DDD; }
 	.menu > div { padding: 10%; }
-	a {
+	div#menu_1 {
 		text-decoration: none;
 		color: black;
 	}
@@ -40,22 +40,6 @@
 				} );
 	}
 
-    // 확장 메뉴를 보여주거나 닫는다.
-	function ShowSubMenu( strId ){
-		var lySubMenu = $( strId );
-
-		if( lySubMenu.first().is( ":hidden" ) ){
-			$( strId ).slideDown( 300 );
-		}
-		else{
-			$( strId ).slideUp( 300 );
-		}
-	}
-
-	$( document ).ready( function()
-	{
-		$('.menu_2' ).hide();
-	} );
 </script>
 </head>
 <body>
@@ -64,11 +48,11 @@
 		<div class="menu">
 			<div style="width:80%; text-align: right"
 			 onclick="HideMenu()">닫기</div>
-			<div><a href="/product/list?c=m"> 막걸리</a></div>
-			<div><a href="/product/list?c=s">  소주</a></div>
-			<div><a href="/product/list?c=y">  약주/탁주</a></div>
-			<div><a href="/product/list?c=f">  과실주</a></div>
-			<div><a href="/product/list?c=n">  안주</a></div>
+			<div id="menu_1"><a href="/product/cateList?c=m"> 막걸리</a></div>
+			<div id="menu_1"><a href="/product/cateList?c=s">  소주</a></div>
+			<div id="menu_1"><a href="/product/cateList?c=y">  약주/탁주</a></div>
+			<div id="menu_1"><a href="/product/cateList?c=f">  과실주</a></div>
+			<div id="menu_1"><a href="/product/cateList?c=n">  안주</a></div>
 		</div>
 	</div>
 </body>

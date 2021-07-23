@@ -5,6 +5,7 @@ package com.tr.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.ProductService;
+import com.tr.VO.MemberVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 import com.tr.VO.SearchCriteria;
@@ -53,17 +55,111 @@ public class ProductController {
 	  
 
 		//카테고리별 상품리스트
-		@RequestMapping(value="/list",method=RequestMethod.GET)
-		public ModelAndView getList(@RequestParam("c") int cateCode, ModelAndView model) throws Exception{
-			logger.info("get list");
-			
-			List<ProductVO> list=null;
-			list = productService.list(cateCode);
+		@RequestMapping(value="/cateList",method=RequestMethod.GET)
+		public ModelAndView cateList(@RequestParam("c") String cateCode, ModelAndView model) throws Exception{
+			logger.info("get cate list");
 			
 			model.setViewName("product/shopList");
-			model.addObject("",list);
+			model.addObject("cateList",productService.cateList(cateCode));
 			
 			return model;
 		}
+		
+		  //상품 조회
+		  
+		  @RequestMapping(value="/view",method=RequestMethod.GET) public ModelAndView
+		  getView(@RequestParam("n") String pNO,ModelAndView model) throws Exception{
+		  logger.info("get shop view");
+		  
+		  model.setViewName("product/shopView");
+		  model.addObject("shopList",productService.shopList(pNO));
+		  
+			
+			/*
+			 * List<ReplyVO> reply=productService.replyList(pNO);
+			 * model.addObject("shopReply",reply);
+			 */
+		  return model;
+		  
+		  } 
+			/*
+			 * //상품평 작성
+			 * 
+			 * @RequestMapping(value="/replyView",method = RequestMethod.POST) public String
+			 * registReply(ReplyVO vo,HttpSession session) throws Exception{
+			 * logger.info("regist reply");
+			 * 
+			 * MemberVO member=(MemberVO) session.getAttribute("member");
+			 * vo.setUserId(member.getUserId());
+			 * 
+			 * productService.registReply(vo);
+			 * 
+			 * return "redirect:/product/view?n="+vo.getpNO(); }
+			 */
+		  
+		// 상품 소감(댓글) 작성
+		  @ResponseBody
+		  @RequestMapping(value = "/view/registReply", method = RequestMethod.POST)
+		  public void registReply(ReplyVO reply, HttpSession session) throws Exception {
+		   logger.info("regist reply");
+		   
+		   MemberVO member = (MemberVO)session.getAttribute("member");
+		   reply.setUserId(member.getUserId());
+		   
+		   productService.registReply(reply);
+		  } 
+		  
+			  //상품소감 목록
+			  @ResponseBody
+			  @RequestMapping(value="/view/replyList",method = RequestMethod.GET) public
+			  List<ReplyVO> getReplyList(@RequestParam("n") String pNO)throws Exception{
+			  logger.info("get reply list");
+			  
+			  List<ReplyVO> reply=productService.replyList(pNO);
+			  
+			  return reply; 
+			  }
+			  
+			// 상품 소감(댓글) 삭제
+			  @ResponseBody
+			  @RequestMapping(value = "/view/deleteReply", method = RequestMethod.POST)
+			  public int getReplyList(ReplyVO reply, HttpSession session) throws Exception {
+			   logger.info("post delete reply");
 
+			   int result = 0;
+			   
+			   MemberVO member = (MemberVO)session.getAttribute("member");
+			   String userId = productService.idCheck(reply.getcNO());
+			     
+			   if(member.getUserId().equals(userId)) {
+			    
+			    reply.setUserId(member.getUserId());
+			    productService.deleteReply(reply);
+			    
+			    result = 1;
+			   }
+			   
+			   return result; 
+			  }
+			// 상품 소감(댓글) 수정
+			  @ResponseBody
+			  @RequestMapping(value = "/view/modifyReply", method = RequestMethod.POST)
+			  public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
+			   logger.info("modify reply");
+			   
+			   int result = 0;
+			   
+			   MemberVO member = (MemberVO)session.getAttribute("member");
+			   String userId = productService.idCheck(reply.getcNO());
+			   
+			   if(member.getUserId().equals(userId)) {
+			    
+			    reply.setUserId(member.getUserId());
+			    productService.modifyReply(reply);
+			    result = 1;
+			   }
+			   
+			   return result;
+			  } 
+			 
 }

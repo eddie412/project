@@ -6,10 +6,11 @@
 <html>
 <head>
 <style>
- section#content ul li { display:inline-block; margin:10px; }
- section#content div.goodsThumb img { width:200px; height:200px; }
- section#content div.goodsName { padding:10px 0; text-align:center; }
- section#content div.goodsName a { color:#000; }
+ section#container div#lin { display:inline-block; margin:10px; }
+ section#container div.goodsThumb img { width:200px; height:200px; }
+ section#container div.goodsName { padding:10px 0; text-align:center; }
+ section#container div.goodsName a { color:#000; }
+  section#container div.goodsPrice {text-align:center;} 
 </style>
 	<title>전통 이酒 </title>
 </head>
@@ -29,21 +30,24 @@
 		<br>
 		<section id="container">
 			<div id="container_box" style="width: 80; height: 300;">
-				<ul>
-					<c:forEach items="${list}" var="list">
-						<li>
+				<div id="content">
+				
+					<c:forEach items="${cateList}" var="list">
+						<div id="lin">
 							<div class="goodsThumb">
-								<a href="/shop/view?n=${list.pNO}"><img src="${list.pImg}"></a>
+								<a href="/product/view?n=${list.pNO}"><img src="${list.pImg}"></a>
 							</div>
 							<div class="goodsName">
 								${list.pName}
 							</div>
 							<div class="goodsPrice">
-								<fmt:formatNumber pattern="###,###,###" value="${list.pPrice}"/>	
+								<fmt:formatNumber pattern="###,###,###" value="${list.pPrice}"/>
+								원	
 							</div>
-						</li>
+						</div>
 					</c:forEach>
-				</ul>
+			
+					</div>
 			</div>
 
 		</section>

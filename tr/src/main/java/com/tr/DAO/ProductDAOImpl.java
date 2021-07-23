@@ -22,8 +22,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품상세
 	@Override
-	public ProductVO detailProduct(String pNo) {
-		return sqlSession.selectOne("product.detailProduct",pNo);
+	public ProductVO detailProduct(String pNO) {
+		return sqlSession.selectOne("product.detailProduct",pNO);
 	}
 	//상품수정
 	@Override
@@ -32,8 +32,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품삭제
 	@Override
-	public void deleteProduct(String pNo) {
-		sqlSession.delete("product.deleteProduct",pNo);
+	public void deleteProduct(String pNO) {
+		sqlSession.delete("product.deleteProduct",pNO);
 	}
 	//상품추가
 	@Override
@@ -42,24 +42,54 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품이비니 삭제를 위한 이미지파일 정보
 	@Override
-	public String fileInfo(String pNo) {
-		return sqlSession.selectOne("product.fileInfo",pNo);
+	public String fileInfo(String pNO) {
+		return sqlSession.selectOne("product.fileInfo",pNO);
 	}
 
 //	---------------------- 사용자 관점
-	//상품평
+	//상품평 작성
 		@Override
-		public void productReply(ReplyVO vo) throws Exception {
-			// TODO Auto-generated method stub
+		public void registReply(ReplyVO vo) throws Exception {
+			sqlSession.insert("product.registReply",vo);
 			
 		}
 		
 		//카테고리
 		@Override
-		public List<ProductVO> list(int cateCode) throws Exception {
+		public List<ProductVO> cateList(String cateCode) throws Exception {
 			
-			return sqlSession.selectList("product.category",cateCode);
+			return sqlSession.selectList("product.cateList",cateCode);
+		}
+		//상품조회
+		@Override
+		public ProductVO shopList(String pNO) throws Exception {
+			//return sqlSession.selectOne("adminMapper.shopList",pNO);
+			return sqlSession.selectOne("product.shopList",pNO);
+		}
+		//상품평 리스트
+		@Override
+		public List<ReplyVO> replyList(String pNO) throws Exception {
+			
+			return sqlSession.selectList("product.replyList",pNO);
 		}
 	
+		//상품평 삭제
+		@Override
+		public void deleteReply(ReplyVO vo) throws Exception{
+			sqlSession.delete("product.deleteReply",vo);
+		}
+		
+		//아이디 체크
+		@Override
+		public String idCheck(int cNO) throws Exception {
+			
+			return sqlSession.selectOne("product.replyUserIdCheck", cNO);
+		}
+		//상품평 수정
+		@Override
+		public void modifiyReply(ReplyVO vo) throws Exception {
+			sqlSession.update("product.modifyReply", vo);
+		}
+		
 	
 }
