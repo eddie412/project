@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<html>
+    pageEncoding="UTF-8"%> --%>
+<%-- <html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -266,10 +266,10 @@
         <!-- Core theme JS-->
         <script src="<%=request.getContextPath()%>/resources/js/scripts.js"></script>
     </body>
-</html>
+</html> --%>
 
 
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
@@ -306,4 +306,3 @@
 
 </body>
 </html>
- --%>

@@ -20,6 +20,9 @@ public interface MemberDAO {
 	// 아이디 중복 체크
 	public int idChk(MemberVO vo) throws Exception;
 
+	// 나이 체크
+	public int ageChk(MemberVO vo) throws Exception;
+
 	// 회원 관리
 	public List<MemberVO> memberList(MemberVO memberVo) throws Exception;
 

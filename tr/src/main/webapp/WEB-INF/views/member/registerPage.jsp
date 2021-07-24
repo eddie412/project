@@ -23,7 +23,32 @@ function fn_idChk(){
 		}
 	})
 }
-	</script>
+function fn_ageChk(){
+	let userBday = $("#userBday").val();
+	console.log(userBday);
+	if(userBday<19){
+		$.ajax({
+			
+			url : "/member/ageChk",
+			type : "post",
+			dataType : "json",
+			data : {userBday : userBday}, 
+			success : function(data){
+				if(data <= 19){
+					alert("미성년자는 가입이 불가능 합니다.");
+				}else if(data > 19){
+					$("#idChk").attr("value", "Y");
+					alert("가입이 가능합니다.");
+				}
+			}
+		})
+		
+		
+		
+	}
+	
+}
+</script>
 <title>register</title>
 </head>
 <body>
@@ -64,6 +89,7 @@ function fn_idChk(){
  		 <div class="input_area">
   			<label for="userBday">생년월일</label>
    			<input type="date" id="userBday" name="userBday" placeholder="미성년자는 회원가입 불가" />
+   			<button class ="ageChk" type="button" id="ageChk" onclick="fn_ageChk();" value="N">나이체크</button>
  		 </div>
   
   		<button class="btn btn-success" type="submit" id="submit">회원가입</button>

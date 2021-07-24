@@ -20,6 +20,9 @@ public interface MemberService {
 	// 아이디 체크
 	public int idChk(MemberVO vo) throws Exception;
 
+	// 나이 체크
+	public int ageChk(MemberVO vo) throws Exception;
+
 	// 회원 관리
 	public List<MemberVO> memberList(MemberVO vo) throws Exception;
 

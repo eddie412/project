@@ -38,6 +38,12 @@ public class MemberDAOImpl implements MemberDAO{
 		int result=sql.selectOne("memberMapper.idChk", vo);
 		return result;
 	}
+	//나이 체크
+	@Override
+	public int ageChk(MemberVO vo) throws Exception {
+		int result=sql.selectOne("memberMapper.ageChk", vo);
+		return result;
+	}
 	//회원 관리
 	@Override
 	public List<MemberVO> memberList(MemberVO memberVo) throws Exception {
@@ -80,5 +86,6 @@ public class MemberDAOImpl implements MemberDAO{
 			sql.delete("memberMapper.delete", vo);
 			
 		}
+	
 
 }

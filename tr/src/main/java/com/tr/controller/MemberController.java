@@ -104,6 +104,14 @@ public class MemberController {
 		return result;
 	}
 
+	// 나이 체크
+	@ResponseBody
+	@RequestMapping(value = "/ageChk", method = RequestMethod.POST)
+	public int ageChk(MemberVO vo) throws Exception {
+		int result = service.ageChk(vo);
+		return result;
+	}
+
 	// 마이페이지_주문내역
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String order(Model model, HttpSession session, OrderVO vo) throws Exception {
@@ -132,14 +140,13 @@ public class MemberController {
 
 		List<OrderVO> orderDetail = service.orderDetail(vo);
 		logger.info("★값=" + orderDetail);
-		
-		
+
 		int total = 0;
-		for(int i=0; i<orderDetail.size(); i++) {
+		for (int i = 0; i < orderDetail.size(); i++) {
 			total += orderDetail.get(i).getoTotal();
 			logger.info("total" + total);
 		}
-		
+
 		model.addAttribute("no", orderDetail.get(0));
 		model.addAttribute("orderDetail", orderDetail);
 		model.addAttribute("total", total);

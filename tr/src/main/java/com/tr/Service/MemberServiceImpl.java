@@ -41,6 +41,12 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.idChk(vo);
 		return result;
 	}
+	// 나이 체크
+	@Override
+	public int ageChk(MemberVO vo) throws Exception {
+		int result = dao.ageChk(vo);
+		return 0;
+	}
 
 	// 회원 관리
 	@Override
@@ -83,5 +89,6 @@ public class MemberServiceImpl implements MemberService {
 	public void delete(MemberVO vo) throws Exception {
 		dao.delete(vo);
 	}
+	
 
 }
