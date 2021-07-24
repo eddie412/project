@@ -45,12 +45,6 @@
 		 And USERID = #{userId}
 	</select>
 	
-	<!-- 나이 체크 -->
-	<select id="ageChk" resultType="int">
-		SELECT COUNT(*) FROM TR_MEMBER
-		WHERE USERBDAY = #{userBday}
-	</select>
-	
 	<!-- 회원 관리 -->
 	<select id="memberList" resultType="com.tr.VO.MemberVO">
 		Select *
