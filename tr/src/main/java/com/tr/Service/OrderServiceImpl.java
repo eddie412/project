@@ -18,7 +18,6 @@ public class OrderServiceImpl implements OrderService{
 	@Inject
 	OrderDAO dao;
 	
-	
 	// 장바구니
 	@Override
 	public List<OrderVO> cart(String userId) throws Exception {
@@ -54,12 +53,6 @@ public class OrderServiceImpl implements OrderService{
 	public void orderComplete(OrderVO vo) throws Exception {
 		dao.orderComplete(vo);
 	}
-	
-	//상품수량 변경
-	@Override
-	public void orderUpdate(ProductVO vo) throws Exception{
-		dao.orderUpdate(vo);
-	}
 
 	//주문내역 삽입
 	@Override
@@ -72,6 +65,14 @@ public class OrderServiceImpl implements OrderService{
 	public void orderDelete(OrderVO vo) throws Exception {
 		dao.orderDelete(vo);
 	}
+
+	//상품수량 변경
+	@Override
+	public void orderUpdate(ProductVO vo) throws Exception {
+		dao.orderUpdate(vo);
+	}
+	
+	
 
 	
 	

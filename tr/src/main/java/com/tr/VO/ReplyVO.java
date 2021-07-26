@@ -1,22 +1,25 @@
 package com.tr.VO;
 
+import java.sql.Date;
+
 public class ReplyVO {
-	private int qNO;
-	private int rNO;
+	private int qNo;
+	private int rNo;
 	private String rContent;
-	private String qWriter;
+	private String rWriter;
+	private Date rDate;
 	
-	public int getqNO() {
-		return qNO;
+	public int getqNo() {
+		return qNo;
 	}
-	public void setqNO(int qNO) {
-		this.qNO = qNO;
+	public void setqNo(int qNo) {
+		this.qNo = qNo;
 	}
-	public int getrNO() {
-		return rNO;
+	public int getrNo() {
+		return rNo;
 	}
-	public void setrNO(int rNO) {
-		this.rNO = rNO;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
 	public String getrContent() {
 		return rContent;
@@ -25,14 +28,21 @@ public class ReplyVO {
 		this.rContent = rContent;
 	}
 	public String getqWriter() {
-		return qWriter;
+		return rWriter;
 	}
 	public void setqWriter(String qWriter) {
-		this.qWriter = qWriter;
+		this.rWriter = qWriter;
+	}
+	public Date getrDate() {
+		return rDate;
+	}
+	public void setrDate(Date rDate) {
+		this.rDate = rDate;
+	}
+	@Override
+	public String toString() {
+		return "ReplyVO [qNo=" + qNo + ", rNo=" + rNo + ", rContent=" + rContent + ", rWriter=" + rWriter + ", rDate="
+				+ rDate + "]";
 	}
 	
-	
-	
-	
-
 }

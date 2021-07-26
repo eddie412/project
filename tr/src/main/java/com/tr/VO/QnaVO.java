@@ -1,6 +1,6 @@
 package com.tr.VO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class QnaVO {
 	private int qNo;
@@ -9,18 +9,7 @@ public class QnaVO {
 	private Date qDate;
 	private String qContent;
 	private int qPass;
-
-	private int rNO;
-	private String rContent;
-	private String rWriter;
-	private Date rDate;
 	
-	public Date getqDate() {
-		return qDate;
-	}
-	public void setqDate(Date qDate) {
-		this.qDate = qDate;
-	}
 	public int getqNo() {
 		return qNo;
 	}
@@ -51,37 +40,19 @@ public class QnaVO {
 	public void setqPass(int qPass) {
 		this.qPass = qPass;
 	}
-	public int getrNO() {
-		return rNO;
+	public Date getqDate() {
+		return qDate;
 	}
-	public void setrNO(int rNO) {
-		this.rNO = rNO;
+	public void setqDate(Date qDate) {
+		this.qDate = qDate;
 	}
-	public String getrContent() {
-		return rContent;
-	}
-	public void setrContent(String rContent) {
-		this.rContent = rContent;
-	}
-	public String getrWriter() {
-		return rWriter;
-	}
-	public void setrWriter(String rWriter) {
-		this.rWriter = rWriter;
-	}
-	public Date getrDate() {
-		return rDate;
-	}
-	public void setrDate(Date rDate) {
-		this.rDate = rDate;
-	}
-	
 	@Override
 	public String toString() {
-		return "QnaVO [qNo=" + qNo + ", qTitle=" + qTitle + ", qWriter=" + qWriter + ", qDate=" + qDate + ", qContent="
-				+ qContent + ", qPass=" + qPass + ", rNO=" + rNO + ", rContent=" + rContent + ", rWriter=" + rWriter
-				+ ", rDate=" + rDate + "]";
-	}
+		return "QnaVO [qNo=" + qNo + ", qTitle=" + qTitle + ", qWriter=" + qWriter + ", qContent=" + qContent
+				+ ", qPass=" + qPass + ", qDate=" + qDate + "]";
+	} 		
+	
+	
 	
 	
 }

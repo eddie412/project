@@ -19,26 +19,26 @@ public interface MemberDAO {
 
 	// 아이디 중복 체크
 	public int idChk(MemberVO vo) throws Exception;
-	
+
+	// 회원 관리
+	public List<MemberVO> memberList(MemberVO memberVo) throws Exception;
+
 	// 마이페이지_주문내역
 	public List<OrderVO> order(OrderVO vo) throws Exception;
-	
-	//마이페이지_주문내역상세
+
+	// 마이페이지_주문내역상세
 	public List<OrderVO> orderDetail(OrderVO vo) throws Exception;
-	
-	//마이페이지_회원정보
-	public MemberVO  info(String userId) throws Exception;
+
+	// 마이페이지_회원정보
+	public MemberVO info(String userId) throws Exception;
 
 	// 마이페이지_문의사항
 	public List<QnaVO> qna(String userId) throws Exception;
-	
-	//마이페이지_문의사항 답변
-	public List<QnaVO> reply(int qNo) throws Exception;
 
 	// 마이페이지_회원정보수정
 	public void update(MemberVO vo) throws Exception;
-	
-	//마이페이지_회원정보삭제
+
+	// 마이페이지_회원정보삭제
 	public void delete(MemberVO vo) throws Exception;
-	
+
 }

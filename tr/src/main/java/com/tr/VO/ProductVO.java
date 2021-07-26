@@ -3,16 +3,17 @@ package com.tr.VO;
 public class ProductVO {
 	private String pNo;
 	private String pName;
-	private String pImg;
 	private int pPrice;
 	private int pCount;
 	private String pInfo;
 	private int pSales;
+	private String pImg;
+	
 	
 	public String getpNo() {
 		return pNo;
 	}
-	public void setpNO(String pNo) {
+	public void setpNo(String pNo) {
 		this.pNo = pNo;
 	}
 	public String getpName() {
@@ -21,13 +22,6 @@ public class ProductVO {
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-	public String getpImg() {
-		return pImg;
-	}
-	public void setpImg(String pImg) {
-		this.pImg = pImg;
-	}
-	
 	public int getpPrice() {
 		return pPrice;
 	}
@@ -52,6 +46,18 @@ public class ProductVO {
 	public void setpSales(int pSales) {
 		this.pSales = pSales;
 	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
+	}
+	@Override
+	public String toString() {
+		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pCount=" + pCount + ", pInfo="
+				+ pInfo + ", pSales=" + pSales + ", pImg=" + pImg + "]";
+	}
+	
 	
 	
 	

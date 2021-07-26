@@ -2,8 +2,7 @@ package com.tr.Service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.MemberDAO;
@@ -14,8 +13,8 @@ import com.tr.VO.QnaVO;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
-	MemberDAO dao;
+	@Autowired
+	private MemberDAO dao;
 
 	// 회원가입
 	@Override
@@ -42,47 +41,47 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.idChk(vo);
 		return result;
 	}
-	
+
+	// 회원 관리
+	@Override
+	public List<MemberVO> memberList(MemberVO memberVo) throws Exception {
+		return dao.memberList(memberVo);
+	}
+
 	// 마이페이지_주문내역
 	@Override
 	public List<OrderVO> order(OrderVO vo) throws Exception {
 		return dao.order(vo);
 	}
-	
-	//마이페이지_주문내역상세
+
+	// 마이페이지_주문내역상세
 	@Override
 	public List<OrderVO> orderDetail(OrderVO vo) throws Exception {
 		return dao.orderDetail(vo);
 	}
-	
-	//마이페이지_회원정보 조회
+
+	// 마이페이지_회원정보 조회
 	@Override
 	public MemberVO info(String userId) throws Exception {
 		return dao.info(userId);
 	}
-	
+
 	// 마이페이지_문의사항
 	@Override
 	public List<QnaVO> qna(String userId) throws Exception {
 		return dao.qna(userId);
 	}
-	
-	//마이페이지_문의사항 답변
-	@Override
-	public List<QnaVO> reply(int qNo) throws Exception{
-		return dao.reply(qNo);
-	}
-	
+
 	// 마이페이지_회원정보수정
 	@Override
 	public void update(MemberVO vo) throws Exception {
 		dao.update(vo);
 	}
 
-	//마이페이지_회원정보삭제
+	// 마이페이지_회원정보삭제
 	@Override
 	public void delete(MemberVO vo) throws Exception {
 		dao.delete(vo);
 	}
-	
+
 }

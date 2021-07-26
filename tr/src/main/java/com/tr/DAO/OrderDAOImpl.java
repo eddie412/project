@@ -52,13 +52,6 @@ public class OrderDAOImpl implements OrderDAO{
 	public void orderComplete(OrderVO vo) throws Exception {
 		sql.insert("orderMapper.orderComplete", vo);
 	}
-	
-	//상품수량 변경
-	@Override
-	public void orderUpdate(ProductVO vo) throws Exception {
-		sql.update("orderMapper.orderUpdate", vo);
-	}
-
 
 	//주문 내역 삽입
 	@Override 
@@ -71,8 +64,14 @@ public class OrderDAOImpl implements OrderDAO{
 	public void orderDelete(OrderVO vo) throws Exception {
 		sql.delete("orderMapper.orderDelete", vo);
 	}
+	//상품수량 변경
 
-
+	@Override
+	public void orderUpdate(ProductVO vo) throws Exception {
+		sql.update("orderMapper.orderUpdate",vo);
+		
+	}
+	
 
 	
 
