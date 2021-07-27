@@ -5,7 +5,30 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<script type="text/javascript" src="../resources/qnaScript.js"></script>
+<script type="text/javascript" >
+function qnaCheck(){
+	if(document.frm.qTitle.value.length ==0){
+		alert("제목을 입력하세요.");
+		document.frm.qTitle.focus();
+		return false;	
+	}
+	if(document.frm.qContent.value.length == 0){
+		alert("내용을 입력하세요.");
+		document.frm.qContent.focus();
+		return false;
+	}
+	if(document.frm.qPass.value.length == 0){
+		alert("비밀번호를 입력하세요.");
+		document.frm.qPass.focus();
+		return false;
+	}else if(isNaN(document.frm.qPass.value)){
+		alert("비밀번호는 숫자로 입력하세요.");
+		document.frm.qPass.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 </head>
 <body>
 <div id="root">
@@ -33,22 +56,22 @@
 							<c:if test="${member.userId != null}">
 							<tr>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" />
+									<label for="qTitle">제목</label><input type="text" id="qTitle" name="qTitle" />
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="pass">비밀번호</label><input type="password" id="pass" name="qpass" />
+									<label for="qPass">비밀번호</label><input type="password" id="qPass" name="qPass" />
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content" ></textarea>
+									<label for="qContent">내용</label><textarea id="qContent" name="qContent" ></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${member.userId}" readonly="readonly"/>
+									<label for="qWriter">작성자</label><input type="text" id="qWriter" name="qWriter" value="${member.userId}" readonly="readonly"/>
 								</td>
 							<tr>
 								<td>						

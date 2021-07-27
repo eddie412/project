@@ -24,7 +24,7 @@
 			pPrice,
 			pInfo
 	From tr_pro
-	WHERE pNO =#{pNO}
+	WHERE pNO =#{pNo}
  	</select>
 
   	<!-- 상품 소감(댓글) 작성 -->
@@ -32,13 +32,13 @@
 	 insert into tr_comment (
 	 				pno, userId, cno, ccontent)
 	     values (
-	     #{pNO}, #{userId}, sq_comment.nextval, 
+	     #{pNo}, #{userId}, sq_comment.nextval, 
 	     #{cContent})
 	</insert>
 	
 	<!-- 상품 소감(댓글) 리스트 -->
-	<select id="replyList" resultType="com.tr.VO.ReplyVO">
-	 select * from tr_comment where pNO = #{pNO}
+	<select id="replyList" resultType="com.tr.VO.ProductVO">
+	 select * from tr_comment where pNO = #{pNo}
 	</select>
 	
 	<!-- 상품 소감(댓글) 삭제 -->
@@ -67,15 +67,5 @@
 	            where (select substr(p.pno,1,1) from tr_product) = #{cateCode}
 	</select>
 		
-<!-- 상품 조회 + 카테고리 조인 -->
-<select id="shopList" resultType="com.tr.VO.ProductVO" >
 
-	<!-- admin으로 변경 -->
-	select
-	    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo,pCount,pSales
-	 from tr_product p
-	            inner join tr_category c
-	                on (select substr(p.pno,1,1) from tr_product) = c.cateCode           
-	            where p.pno= #{pNO}
-</select>
  </mapper>

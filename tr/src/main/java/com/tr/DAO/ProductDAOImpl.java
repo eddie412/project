@@ -22,8 +22,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품상세
 	@Override
-	public ProductVO detailProduct(String pNO) {
-		return sqlSession.selectOne("product.detailProduct",pNO);
+	public ProductVO detailProduct(String pNo) {
+		return sqlSession.selectOne("product.detailProduct",pNo);
 	}
 	//상품수정
 	@Override
@@ -32,8 +32,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품삭제
 	@Override
-	public void deleteProduct(String pNO) {
-		sqlSession.delete("product.deleteProduct",pNO);
+	public void deleteProduct(String pNo) {
+		sqlSession.delete("product.deleteProduct",pNo);
 	}
 	//상품추가
 	@Override
@@ -42,14 +42,14 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	//상품이비니 삭제를 위한 이미지파일 정보
 	@Override
-	public String fileInfo(String pNO) {
-		return sqlSession.selectOne("product.fileInfo",pNO);
+	public String fileInfo(String pNo) {
+		return sqlSession.selectOne("product.fileInfo",pNo);
 	}
 
 //	---------------------- 사용자 관점
 	//상품평 작성
 		@Override
-		public void registReply(ReplyVO vo) throws Exception {
+		public void registReply(ProductVO vo) throws Exception {
 			sqlSession.insert("product.registReply",vo);
 			
 		}
@@ -62,20 +62,19 @@ public class ProductDAOImpl  implements ProductDAO{
 		}
 		//상품조회
 		@Override
-		public ProductVO shopList(String pNO) throws Exception {
-			//return sqlSession.selectOne("adminMapper.shopList",pNO);
-			return sqlSession.selectOne("product.shopList",pNO);
+		public ProductVO shopList(String pNo) throws Exception {
+			return sqlSession.selectOne("adminMapper.shopList",pNo);
 		}
 		//상품평 리스트
 		@Override
-		public List<ReplyVO> replyList(String pNO) throws Exception {
+		public List<ProductVO> replyList(String pNo) throws Exception {
 			
-			return sqlSession.selectList("product.replyList",pNO);
+			return sqlSession.selectList("product.replyList",pNo);
 		}
 	
 		//상품평 삭제
 		@Override
-		public void deleteReply(ReplyVO vo) throws Exception{
+		public void deleteReply(ProductVO vo) throws Exception{
 			sqlSession.delete("product.deleteReply",vo);
 		}
 		
@@ -87,7 +86,7 @@ public class ProductDAOImpl  implements ProductDAO{
 		}
 		//상품평 수정
 		@Override
-		public void modifiyReply(ReplyVO vo) throws Exception {
+		public void modifiyReply(ProductVO vo) throws Exception {
 			sqlSession.update("product.modifyReply", vo);
 		}
 		

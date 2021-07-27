@@ -3,89 +3,54 @@ package com.tr.VO;
 import java.util.Date;
 
 public class QnaVO {
+	private int qNo;
+	private String qTitle;
+	private String qWriter;
+	private Date qDate;
+	private String qContent;
+	private int qPass;
 	
-	private int qno;
-	private String qtitle;
-	private String qcontent;
-	private String qwriter;
-	private Date qdate;
-	private int qpass;
-//	---------------------------------
-	private int rno;
-	private String rcontent;
-	private String rwriter;
-	private Date rdate;
-
-	
+	public int getqNo() {
+		return qNo;
+	}
+	public void setqNo(int qNo) {
+		this.qNo = qNo;
+	}
+	public String getqTitle() {
+		return qTitle;
+	}
+	public void setqTitle(String qTitle) {
+		this.qTitle = qTitle;
+	}
+	public String getqWriter() {
+		return qWriter;
+	}
+	public void setqWriter(String qWriter) {
+		this.qWriter = qWriter;
+	}
+	public Date getqDate() {
+		return qDate;
+	}
+	public void setqDate(Date qDate) {
+		this.qDate = qDate;
+	}
+	public String getqContent() {
+		return qContent;
+	}
+	public void setqContent(String qContent) {
+		this.qContent = qContent;
+	}
+	public int getqPass() {
+		return qPass;
+	}
+	public void setqPass(int qPass) {
+		this.qPass = qPass;
+	}
 	@Override
 	public String toString() {
-		return "QnaVO [qno=" + qno + ", qtitle=" + qtitle + ", qcontent=" + qcontent + ", qwriter=" + qwriter
-				+ ", qdate=" + qdate + ", rno=" + rno + ", rcontent=" + rcontent + ", rwriter=" + rwriter + ", rdate="
-				+ rdate + "]";
+		return "QnaVO [qNo=" + qNo + ", qTitle=" + qTitle + ", qWriter=" + qWriter + ", qDate=" + qDate + ", qContent="
+				+ qContent + ", qPass=" + qPass + "]";
 	}
 	
-	public int getRno() {
-		return rno;
-	}
-	public void setRno(int rno) {
-		this.rno = rno;
-	}
-	public String getRcontent() {
-		return rcontent;
-	}
-	public void setRcontent(String rcontent) {
-		this.rcontent = rcontent;
-	}
-	public String getRwriter() {
-		return rwriter;
-	}
-	public void setRwriter(String rwriter) {
-		this.rwriter = rwriter;
-	}
-	public Date getRdate() {
-		return rdate;
-	}
-	public void setRdate(Date rdate) {
-		this.rdate = rdate;
-	}
-//	------------------------------------------------
-	public int getQno() {
-		return qno;
-	}
-	public void setQno(int qno) {
-		this.qno = qno;
-	}
-	public String getTitle() {
-		return qtitle;
-	}
-	public void setTitle(String title) {
-		this.qtitle = title;
-	}
-	public String getContent() {
-		return qcontent;
-	}
-	public void setContent(String content) {
-		this.qcontent = content;
-	}
-	public String getWriter() {
-		return qwriter;
-	}
-	public void setWriter(String writer) {
-		this.qwriter = writer;
-	}
-	public Date getRegdate() {
-		return qdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.qdate = regdate;
-	}
-
-	public int getQpass() {
-		return qpass;
-	}
-
-	public void setQpass(int qpass) {
-		this.qpass = qpass;
-	}
 	
 }

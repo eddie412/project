@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.tr.VO.QnaVO;
+import com.tr.VO.ReplyVO;
 import com.tr.VO.SearchCriteria;
 
 @Repository
@@ -24,8 +25,8 @@ public class QnaDAOImpl implements QnaDAO{
 
 	// 게시물 조회
 	@Override
-	public QnaVO read(int qno) throws Exception {
-		return sqlSession.selectOne("qnaMapper.read", qno);
+	public QnaVO read(int qNo) throws Exception {
+		return sqlSession.selectOne("qnaMapper.read", qNo);
 	}
 	
 	//수정
@@ -35,8 +36,8 @@ public class QnaDAOImpl implements QnaDAO{
 	}
 	//삭제
 	@Override
-	public void delete(int qno) throws Exception {
-		sqlSession.delete("qnaMapper.delete", qno);
+	public void delete(int qNo) throws Exception {
+		sqlSession.delete("qnaMapper.delete", qNo);
 	}
 	//목록
 	@Override
@@ -52,36 +53,43 @@ public class QnaDAOImpl implements QnaDAO{
 	}
 	//댓글 조회
 	@Override
-	public List<QnaVO> readReply(int qno) throws Exception {
-		return sqlSession.selectList("qnaMapper.readReply", qno);
+	public List<ReplyVO> readReply(int qNo) throws Exception {
+		return sqlSession.selectList("qnaMapper.readReply", qNo);
 	}
 
 	//댓글 작성
 	@Override
-	public void writeReply(QnaVO vo) throws Exception {
+	public void writeReply(ReplyVO vo) throws Exception {
 		sqlSession.insert("qnaMapper.writeReply", vo);
 		
 	}
 
 	//댓글 수정
 	@Override
-	public void updateReply(QnaVO vo) throws Exception {
+	public void updateReply(ReplyVO vo) throws Exception {
 		sqlSession.update("qnaMapper.updateReply", vo);
 		
 	}
 
 	//댓글 삭제
 	@Override
-	public void deleteReply(QnaVO vo) throws Exception {
+	public void deleteReply(ReplyVO vo) throws Exception {
 		sqlSession.delete("qnaMapper.deleteReply", vo);
 		
 	}
 
 	//댓글 선택 조회
 	@Override
-	public QnaVO selectReply(int rno) throws Exception {
+	public ReplyVO selectReply(int rNo) throws Exception {
 	
-		return sqlSession.selectOne("qnaMapper.selectReply", rno);
+		return sqlSession.selectOne("qnaMapper.selectReply", rNo);
+	}
+
+	//댓글 개수
+	@Override
+	public int count(int qNo) throws Exception {
+	
+		return sqlSession.selectOne("qnaMapper.countReply", qNo);
 	}
 	
 }

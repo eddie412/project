@@ -45,10 +45,10 @@ public class ProductController {
 		
 	  //2. 상품 상세보기
 	  
-	  @RequestMapping("detail/{pNO}")  
-	  public ModelAndView detail(@PathVariable("pNO") String pNO, ModelAndView mav) {
+	  @RequestMapping("detail/{pNo}")  
+	  public ModelAndView detail(@PathVariable("pNo") String pNo, ModelAndView mav) {
 		  mav.setViewName("product/productDetail");
-		  mav.addObject("vo",productService.detailProduct(pNO)); 
+		  mav.addObject("vo",productService.detailProduct(pNo)); 
 		  
 				 return mav; 
 	  }
@@ -68,39 +68,22 @@ public class ProductController {
 		  //상품 조회
 		  
 		  @RequestMapping(value="/view",method=RequestMethod.GET) public ModelAndView
-		  getView(@RequestParam("n") String pNO,ModelAndView model) throws Exception{
+		  getView(@RequestParam("n") String pNo,ModelAndView model) throws Exception{
 		  logger.info("get shop view");
 		  
 		  model.setViewName("product/shopView");
-		  model.addObject("shopList",productService.shopList(pNO));
+		  model.addObject("shopList",productService.shopList(pNo));
 		  
 			
-			/*
-			 * List<ReplyVO> reply=productService.replyList(pNO);
-			 * model.addObject("shopReply",reply);
-			 */
 		  return model;
 		  
 		  } 
-			/*
-			 * //상품평 작성
-			 * 
-			 * @RequestMapping(value="/replyView",method = RequestMethod.POST) public String
-			 * registReply(ReplyVO vo,HttpSession session) throws Exception{
-			 * logger.info("regist reply");
-			 * 
-			 * MemberVO member=(MemberVO) session.getAttribute("member");
-			 * vo.setUserId(member.getUserId());
-			 * 
-			 * productService.registReply(vo);
-			 * 
-			 * return "redirect:/product/view?n="+vo.getpNO(); }
-			 */
+		
 		  
 		// 상품 소감(댓글) 작성
 		  @ResponseBody
 		  @RequestMapping(value = "/view/registReply", method = RequestMethod.POST)
-		  public void registReply(ReplyVO reply, HttpSession session) throws Exception {
+		  public void registReply(ProductVO reply, HttpSession session) throws Exception {
 		   logger.info("regist reply");
 		   
 		   MemberVO member = (MemberVO)session.getAttribute("member");
@@ -112,10 +95,10 @@ public class ProductController {
 			  //상품소감 목록
 			  @ResponseBody
 			  @RequestMapping(value="/view/replyList",method = RequestMethod.GET) public
-			  List<ReplyVO> getReplyList(@RequestParam("n") String pNO)throws Exception{
+			  List<ProductVO> getReplyList(@RequestParam("n") String pNo)throws Exception{
 			  logger.info("get reply list");
 			  
-			  List<ReplyVO> reply=productService.replyList(pNO);
+			  List<ProductVO> reply=productService.replyList(pNo);
 			  
 			  return reply; 
 			  }
@@ -123,7 +106,7 @@ public class ProductController {
 			// 상품 소감(댓글) 삭제
 			  @ResponseBody
 			  @RequestMapping(value = "/view/deleteReply", method = RequestMethod.POST)
-			  public int getReplyList(ReplyVO reply, HttpSession session) throws Exception {
+			  public int getReplyList(ProductVO reply, HttpSession session) throws Exception {
 			   logger.info("post delete reply");
 
 			   int result = 0;
@@ -144,7 +127,7 @@ public class ProductController {
 			// 상품 소감(댓글) 수정
 			  @ResponseBody
 			  @RequestMapping(value = "/view/modifyReply", method = RequestMethod.POST)
-			  public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
+			  public int modifyReply(ProductVO reply, HttpSession session) throws Exception {
 			   logger.info("modify reply");
 			   
 			   int result = 0;

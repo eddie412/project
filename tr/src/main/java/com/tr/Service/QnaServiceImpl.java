@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tr.DAO.QnaDAO;
 import com.tr.VO.QnaVO;
+import com.tr.VO.ReplyVO;
 import com.tr.VO.SearchCriteria;
 
 @Service
@@ -24,8 +25,8 @@ public class QnaServiceImpl implements QnaService{
 
 	//조회
 	@Override
-	public QnaVO read(int qno) throws Exception {
-		return dao.read(qno);
+	public QnaVO read(int qNo) throws Exception {
+		return dao.read(qNo);
 	}
 	//수정
 	@Override
@@ -34,8 +35,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 	//삭제
 	@Override
-	public void delete(int qno) throws Exception {
-		dao.delete(qno);
+	public void delete(int qNo) throws Exception {
+		dao.delete(qNo);
 	}
 	// 게시물 목록
 	@Override
@@ -50,33 +51,40 @@ public class QnaServiceImpl implements QnaService{
 
 	//댓글 조회
 	@Override
-	public List<QnaVO> readReply(int qno) throws Exception {
-		return dao.readReply(qno);
+	public List<ReplyVO> readReply(int qNo) throws Exception {
+		return dao.readReply(qNo);
 	}
 
 	//댓글 작성
 	@Override
-	public void writeReply(QnaVO vo) throws Exception {
+	public void writeReply(ReplyVO vo) throws Exception {
 		dao.writeReply(vo);
 		
 	}
 
 	//댓글 수정
 	@Override
-	public void updateReply(QnaVO vo) throws Exception {
+	public void updateReply(ReplyVO vo) throws Exception {
 		dao.updateReply(vo);
 	}
 
 	//댓글 삭제
 	@Override
-	public void deleteReply(QnaVO vo) throws Exception {
+	public void deleteReply(ReplyVO vo) throws Exception {
 		dao.deleteReply(vo);
 	}
 
 	//댓글 선택 조회
 	@Override
-	public QnaVO selectReply(int rno) throws Exception {
-		return dao.selectReply(rno);
+	public ReplyVO selectReply(int rNo) throws Exception {
+		return dao.selectReply(rNo);
+	}
+
+	//댓글 개수
+	@Override
+	public int count(int qNo) throws Exception {
+	
+		return dao.count(qNo);
 	}
 
 }

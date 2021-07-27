@@ -3,6 +3,7 @@ package com.tr.Service;
 import java.util.List;
 
 import com.tr.VO.QnaVO;
+import com.tr.VO.ReplyVO;
 import com.tr.VO.SearchCriteria;
 
 public interface QnaService {
@@ -15,27 +16,30 @@ public interface QnaService {
 	//총개수
 	public int listCount(SearchCriteria scri) throws Exception;
 	// 게시물 조회
-	public QnaVO read(int qno) throws Exception;
+	public QnaVO read(int qNo) throws Exception;
 	
 	// 게시물 수정
 	public void update(QnaVO qnaVO) throws Exception;
 		
 	// 게시물 삭제
-	public void delete(int qno) throws Exception;
+	public void delete(int qNo) throws Exception;
 	
 	//댓글 조회
-	public List<QnaVO> readReply(int qno) throws Exception;
+	public List<ReplyVO> readReply(int qNo) throws Exception;
 	
 	//댓글 작성
-	public void writeReply(QnaVO vo) throws Exception;
+	public void writeReply(ReplyVO vo) throws Exception;
 	
 	//댓글 수정
-	public void updateReply(QnaVO vo) throws Exception;
+	public void updateReply(ReplyVO vo) throws Exception;
 	
 	//댓글 삭제
-	public void deleteReply(QnaVO vo) throws Exception;
+	public void deleteReply(ReplyVO vo) throws Exception;
 	
 	//댓글 선택 조회
-	public QnaVO selectReply(int rno) throws Exception;
-	
+	public ReplyVO selectReply(int rNo) throws Exception;
+
+	//댓글 개수
+	public int count(int qNo)throws Exception;
+
 }

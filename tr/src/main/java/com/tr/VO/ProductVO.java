@@ -1,27 +1,78 @@
 package com.tr.VO;
 
+import java.util.Date;
 
 public class ProductVO {
-	private String pNO;
+	private String pNo;
 	private String pName;
 	private String pImg;
 	private int pPrice;
-	private int pCount;
-	private String pInfo;
-	private int pSales;
+	private int pCount;//상품재고
+	private String pInfo;//상세정보
+	private int pSales;//판매량
+
+//	---------------------------------------------카테고리
 	
+	private String cateName;
+	private String cateCode;
+
+//----------------------------------------------상품평
+	private int cNO;
+	private String cContent;
+	private Date cDate;
+	private String userId;
+	
+	public int getcNO() {
+		return cNO;
+	}
+	public void setcNO(int cNO) {
+		this.cNO = cNO;
+	}
+	public String getcContent() {
+		return cContent;
+	}
+	public void setcContent(String cContent) {
+		this.cContent = cContent;
+	}
+	public Date getcDate() {
+		return cDate;
+	}
+	public void setcDate(Date cDate) {
+		this.cDate = cDate;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	
+	public String getCateName() {
+		return cateName;
+	}
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
+	public String getCateCode() {
+		return cateCode;
+	}
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+
 	public String getpImg() {
 		return pImg;
 	}
 	public void setpImg(String pImg) {
 		this.pImg = pImg;
 	}
-	public String getpNO() {
-		return pNO;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setpNO(String pNO) {
+	public void setpNo(String pNo) {
 		
-		this.pNO = pNO;
+		this.pNo = pNo;
 	}
 	public String getpName() {
 		return pName;
@@ -53,25 +104,15 @@ public class ProductVO {
 	public void setpSales(int pSales) {
 		this.pSales = pSales;
 	}
+	@Override
+	public String toString() {
+		return "ProductVO [pNo=" + pNo + ", pName=" + pName + ", pImg=" + pImg + ", pPrice=" + pPrice + ", pCount="
+				+ pCount + ", pInfo=" + pInfo + ", pSales=" + pSales + ", cateName=" + cateName + ", cateCode="
+				+ cateCode + ", cNO=" + cNO + ", cContent=" + cContent + ", cDate=" + cDate + ", userId=" + userId
+				+ "]";
+	}
 	
-//	---------------------------------------------카테고리
-	
-	private String cateName;
-	private String cateCode;
 
-	public String getCateName() {
-		return cateName;
-	}
-	public void setCateName(String cateName) {
-		this.cateName = cateName;
-	}
-	public String getCateCode() {
-		return cateCode;
-	}
-	public void setCateCode(String cateCode) {
-		this.cateCode = cateCode;
-	}
 
-	
 	
 }

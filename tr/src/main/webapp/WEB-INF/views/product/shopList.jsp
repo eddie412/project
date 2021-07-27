@@ -35,7 +35,7 @@
 					<c:forEach items="${cateList}" var="list">
 						<div id="lin">
 							<div class="goodsThumb">
-								<a href="/product/view?n=${list.pNO}"><img src="${list.pImg}"></a>
+								<a href="/product/view?n=${list.pNo}"><img src="${list.pImg}"></a>
 							</div>
 							<div class="goodsName">
 								${list.pName}

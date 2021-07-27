@@ -5,13 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>문의사항</title>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/qna/readView?qno=${replyUpdate.qno}"
+				location.href = "/qna/readView?qno=${replyUpdate.qNo}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
@@ -20,7 +21,7 @@
 			
 			});
 			$(".updateBtn").on("click", function(){
-				location.href = "/qna/readView?qno=${read.qno}"
+				location.href = "/qna/readView?qno=${read.qNo}"
 								+ "&page=${scri.page}"
 								+ "&perPageNum=${scri.perPageNum}"
 								+ "&searchType=${scri.searchType}"
@@ -31,7 +32,7 @@
 		})
 		
 	</script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <meta charset="UTF-8">
 
 </head>
@@ -44,8 +45,8 @@
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/qna/replyUpdate">
-					<input type="hidden" name="qno" value="${replyUpdate.qno}" readonly="readonly"/>
-					<input type="hidden" id="rno" name="rno" value="${replyUpdate.rno}" />
+					<input type="hidden" name="qNo" value="${replyUpdate.qNo}" readonly="readonly"/>
+					<input type="hidden" id="rNo" name="rNo" value="${replyUpdate.rNo}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -54,7 +55,7 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="rcontent">댓글 내용</label><input type="text" id="rcontent" name="rcontent" value="${replyUpdate.rcontent}"/>
+									<label for="rContent">내용</label><input type="text" id="rContent" name="rContent" value="${replyUpdate.rContent}"/>
 								</td>
 							</tr>	
 							

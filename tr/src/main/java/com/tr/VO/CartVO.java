@@ -1,49 +1,40 @@
 package com.tr.VO;
 
+
 public class CartVO {
 	private String cId;
-	private String cNo;
-	private String cInfo;
-	private int cPrice;
-	private int cCount;
-	private int Totla;
-	
+	private String userId;
+	private String pNo;
+	private int count;
 	public String getcId() {
 		return cId;
 	}
 	public void setcId(String cId) {
 		this.cId = cId;
 	}
-	public String getcNo() {
-		return cNo;
+	public String getUserId() {
+		return userId;
 	}
-	public void setcNo(String cNo) {
-		this.cNo = cNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getcInfo() {
-		return cInfo;
+	public String getpNo() {
+		return pNo;
 	}
-	public void setcInfo(String cInfo) {
-		this.cInfo = cInfo;
+	public void setpNo(String pNo) {
+		this.pNo = pNo;
 	}
-	public int getcPrice() {
-		return cPrice;
+	public int getCount() {
+		return count;
 	}
-	public void setcPrice(int cPrice) {
-		this.cPrice = cPrice;
+	public void setCount(int count) {
+		this.count = count;
 	}
-	public int getcCount() {
-		return cCount;
+	@Override
+	public String toString() {
+		return "CartVO [cId=" + cId + ", userId=" + userId + ", pNo=" + pNo + ", count=" + count + "]";
 	}
-	public void setcCount(int cCount) {
-		this.cCount = cCount;
-	}
-	public int getTotla() {
-		return Totla;
-	}
-	public void setTotla(int totla) {
-		Totla = totla;
-	}
+	
 	
 	
 }

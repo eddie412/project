@@ -32,7 +32,7 @@
 						<td colspan="2">
 							<form name="form1" method="post"
 								action="${path}/shop/cart/insert.do">
-								<input type="hidden" name="productId" value="${vo.pNO}">
+								<input type="hidden" name="productId" value="${vo.pNo}">
 								<select name="amount">
 									<c:forEach begin="1" end="10" var="i">
 										<option value="${i}">${i}</option>

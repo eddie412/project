@@ -8,8 +8,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script> 
 function replyList(){
- var pNO = "${shopList.pNO}";
- $.getJSON("/product/view/replyList" + "?n=" + pNO, function(data){
+ var pNo = "${shopList.pNo}";
+ $.getJSON("/product/view/replyList" + "?n=" + pNo, function(data){
   var str = "";
   
   $(data).each(function(){
@@ -107,7 +107,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 
 				<section id="content">
 					<form role="form" method="post">
-						<input type="hidden" name="pNO" value="${shopList.pNO}" />
+						<input type="hidden" name="pNo" value="${shopList.pNo}" />
 					</form>
 
 					<div class="goods">
@@ -178,7 +178,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 								   var cartStock = $(".numBox").val();
 								      
 								   var data = {
-										   pNO : gdsNum,
+										   pNo : gdsNum,
 								     cartStock : cartStock
 								     };
 								   
@@ -220,7 +220,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 				<c:if test="${member != null}">
 					<section class="replyForm">
 						<form role="form" method="post" autocomplete="off" action="/product/replyView">
-							<input type="hidden" name="pNO" id="gdsNum" value="${shopList.pNO}">
+							<input type="hidden" name="pNo" id="gdsNum" value="${shopList.pNo}">
 							<div class="input_area">
 								<textarea name="cContent" id="repCon"></textarea>
 							</div>
@@ -236,7 +236,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 							  var repCon = $("#repCon").val()
 							  
 							  var data = {
-								  pNO : gdsNum,
+								  pNo : gdsNum,
 								  cContent : repCon
 							    };
 							  
@@ -259,16 +259,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 
 				<section class="replyList">
 					<ol>
-					<%-- 	<c:forEach items="${shopReply}" var="reply">
-							<li>   
-								<div class="userInfo">
-									    <span class="userId">${reply.userId}</span>     
-									<span class="date"><fmt:formatDate value="${reply.cDate}"
-											pattern="yyyy.MM.dd" /></span>    
-								</div>    
-								<div class="replyContent">${reply.cContent}</div>  
-							</li>
-  						 </c:forEach> --%>
+				
 					</ol>
 					<script> 
 						replyList();
@@ -276,7 +267,6 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 					
 					<script>
 						$(document).on("click", ".modify", function(){
-						// $(".replyModal").attr("style", "display:block;");
 						$(".replyModal").fadeIn(200);
 						
 						 var cNO = $(this).attr("data-cNO");
@@ -376,7 +366,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 			});
 
 		$(".modal_cancel").click(function(){
-// 		 $(".replyModal").attr("style", "display:none;");
+
 		 $(".replyModal").fadeOut(200);
 		});
 		</script>

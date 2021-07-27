@@ -112,18 +112,20 @@ create table tr_qna(
 
 create sequence sq_qna
 
-alter table tr_qna modify qWriter varchar2(10);
+ 
 
 drop table tr_qna;
 -------------------답글 테이블---------------------
 create table tr_reply( 
 	qNo number not null,						-- 문의사항 번호
-rNo number not null,						-- 답글 번호
+	rNo number not null,						-- 답글 번호
 	rContent varchar2(1000) not null,			-- 답글 내용				
 	rWriter varchar2(10) default '관리자',		-- 답글 작성자
 	rDate date default sysdate not null			-- 답글 작성날짜
 );
-
+alter table tr_reply modify qno number(10);
+ alter table tr_reply ADD FOREIGN KEY(qNo) REFERENCES tr_qna(qNo);
+ 
 create sequence sq_reply		
 increment by 1
 start with 1
@@ -168,5 +170,5 @@ drop sequence sq_qna;
 		  from tr_comment 
 		  where pNo = 'm1';
 
-insert into tr_member values('b','1','d','ds@dd','3424','ddd','00/04/23', 1);
+insert into tr_member values('c','1','d','ds@dd','3424','ddd','00/04/23', 9);
 

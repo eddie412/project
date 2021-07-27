@@ -8,11 +8,7 @@
 <style>
 .moreProdInfo{ float:left;display:inline-block; border:solid 1px navy; width:200px; margin: 10px;}
 div.con{width:1000px; height: 600px;}
-/*  section#content div.con div.con_2{ float:left; border-style:solid; border-width:1px; } */
-/*  section#content div.goodsThumb img { width:200px; height:200px;} */
-/*  section#content div.goodsName { padding:10px 0; text-align:center; } */
-/*   section#content div.goodsPrice { padding:10px 0; text-align:center; } */
-/*  section#content div.goodsName a { color:#000; } */
+
 </style>
 
 	<title>전통 이酒 </title>

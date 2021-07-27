@@ -11,19 +11,23 @@
 			#li {list-style: none; float: left; padding: 6px;}
 </style>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="../resources/qnaScript.js"></script>
 </head>
 <script type="text/javascript">
 function passCheck(){
-	var result = prompt("비밀번호를 입력해주세요.");
-	
-var passCom = $("#pass").val();
-
-	if(result.equals(passCom)){
+	if("${member.verify}"==9){
 		return true;
 	}else{
+	var result = prompt("비밀번호를 입력해주세요.");
+	
+var passCom = $("#qPass").val();
+	if(result==passCom){
+		return true;
+	}
+	else{
+		
 		alert('비밀번호 동일안함');
 		return false;
+	}
 	}
 }
 </script>
@@ -51,21 +55,22 @@ var passCom = $("#pass").val();
 					<table>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						<c:forEach items="${list}" var = "list" varStatus="vs">
-						<input type="hidden" id="pass" name="qpass" value="${list.qpass}"/>
+						<input type="hidden" id="qPass" name="qPass" value="${list.qPass}"/>
+						<input type="hidden" id="qNo" name="qNo" value="${list.qNo}"/>
 							<tr>
-								<td><c:out value="${pageMaker.totalCount-((scri.page-1)*5)-vs.count+1}"/></td>
+								<td><c:out  value="${pageMaker.totalCount-((scri.page-1)*5)-vs.count+1}"/></td>
 								<td>
 								
-								<span onclick="return passCheck()"><a href="/qna/readView?qno=${list.qno}&
+								<span onclick="return passCheck()"><a href="/qna/readView?qno=${list.qNo}&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&
 															searchType=${scri.searchType}&
 															keyword=${scri.keyword}">
-									${list.title}</a></span>
+									${list.qTitle}</a></span>
 
 								</td>
-								<td><c:out value="${list.writer}" /></td>
-								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy.MM.dd hh:mm"/></td>
+								<td><c:out value="${list.qWriter}" /></td>
+								<td><fmt:formatDate value="${list.qDate}" pattern="yyyy.MM.dd hh:mm"/></td>
 							</tr>
 						</c:forEach>
 						

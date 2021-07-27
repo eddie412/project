@@ -18,7 +18,7 @@
 	<c:forEach var="row" items="${list}">
 	<tr>
 		<td>
-			<a href="${path}/product/detail/${row.pNO}">
+			<a href="${path}/product/detail/${row.pNo}">
 			<img src="${path}/images/${row.pImg}" width="100px" height="110px"></a>
 		</td>		
 	</tr>

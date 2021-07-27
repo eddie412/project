@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tr.VO.MemberVO;
+import com.tr.VO.OrderVO;
+import com.tr.VO.QnaVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
@@ -43,4 +45,41 @@ public class MemberDAOImpl implements MemberDAO{
 		public List<MemberVO> memberList(MemberVO memberVo) throws Exception {
 			return sql.selectList("memberList",memberVo);
 		}
+		// 마이페이지_주문내역
+				@Override
+				public List<OrderVO> order(OrderVO vo) throws Exception {
+					return sql.selectList("memberMapper.order", vo);
+				}
+
+				//마이페이지_주문내역상세
+				@Override
+				public List<OrderVO> orderDetail(OrderVO vo) throws Exception{
+					return sql.selectList("memberMapper.orderDetail", vo);
+				}
+				
+				//마이페이지_회원정보 조회
+				@Override
+				public MemberVO info(String userId) throws Exception {
+					return sql.selectOne("memberMapper.info", userId);
+				}
+
+
+				// 마이페이지_문의사항
+				@Override
+				public List<QnaVO> qna(String userId) throws Exception {
+					return sql.selectList("memberMapper.qna", userId);
+				}
+
+				// 마이페이지_회원정보수정
+				@Override
+				public void update(MemberVO vo) throws Exception {
+					sql.update("memberMapper.update", vo);
+				}
+
+				//마이페이지_회원정보삭제
+				@Override
+				public void delete(MemberVO vo) throws Exception {
+					sql.delete("memberMapper.delete", vo);
+					
+				}
 }

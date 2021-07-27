@@ -14,11 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.QnaService;
 import com.tr.VO.QnaVO;
-
+import com.tr.VO.ReplyVO;
 import com.tr.VO.PageMaker;
 import com.tr.VO.SearchCriteria;
 
@@ -29,6 +30,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 	
 	@Inject
 	QnaService service;
+	
 	
 	
 	// 게시판 글 작성 화면
@@ -46,8 +48,8 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 			service.write(qnaVO);
 			
 			//비밀번호 저장
-			int pass = qnaVO.getQpass();
-			session.setAttribute("pass", pass);
+			int pass = qnaVO.getqPass();
+			session.setAttribute("qPass", pass);
 			
 			return "redirect:/qna/list";
 		}
@@ -72,14 +74,20 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		
 		// 게시판 조회
 		@RequestMapping(value = "/readView", method = {RequestMethod.GET,RequestMethod.POST})
-		public String read(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri ,Model model) throws Exception{
-			logger.info("read");
+		public String read(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri ,Model model, @RequestParam("qno") int qNo) throws Exception{
+			logger.info("read.....");
 			
-			model.addAttribute("read", service.read(qnaVO.getQno()));
+			qnaVO.setqNo(qNo);
+			logger.info("qno값=" + qNo);
+			
+			model.addAttribute("read", service.read(qnaVO.getqNo()));
 			model.addAttribute("scri",scri);
 			
-			List<QnaVO> replyList=service.readReply(qnaVO.getQno());
+			List<ReplyVO> replyList=service.readReply(qnaVO.getqNo());
 			model.addAttribute("replyList",replyList);
+			//댓글개수 
+			model.addAttribute("count", service.count(qNo));
+			
 			return "qna/readView";
 		}
 		
@@ -88,8 +96,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		public String updateView(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri , Model model) throws Exception{
 			logger.info("updateView");
 			
-			
-			model.addAttribute("update", service.read(qnaVO.getQno()));
+			model.addAttribute("update", service.read(qnaVO.getqNo()));
 			model.addAttribute("scri",scri);
 			
 			return "qna/updateView";
@@ -115,7 +122,7 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		public String delete(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr ) throws Exception{
 			logger.info("delete");
 			
-			service.delete(qnaVO.getQno());
+			service.delete(qnaVO.getqNo());
 			
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
@@ -127,12 +134,12 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		
 		//댓글 작성
 		@RequestMapping(value="/replyWrite", method=RequestMethod.POST)
-		public String replyWrite(QnaVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception{
+		public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 			logger.info("reply Write");
 			
 			service.writeReply(vo);
 			
-			rttr.addAttribute("qno",vo.getQno());
+			rttr.addAttribute("qno",vo.getqNo());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -144,23 +151,28 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		
 		//댓글 수정 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
-		public String replyUpdateView(QnaVO vo, SearchCriteria scri, Model model) throws Exception {
+		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model, @RequestParam("qno") int qNo, @RequestParam("rno") int rNo) throws Exception {
 			logger.info("reply update view");
 			
-			model.addAttribute("replyUpdate", service.selectReply(vo.getRno()));
+			vo.setqNo(qNo);
+			vo.setrNo(rNo);
+						
+			model.addAttribute("replyUpdate", service.selectReply(vo.getrNo()));
 			model.addAttribute("scri", scri);
+			logger.info(".."+vo.getqNo());
 			
 			return "qna/replyUpdateView";
 		}
 		
 		//댓글 수정 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
-		public String replyUpdate(QnaVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+		public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply update");
 			
 			service.updateReply(vo);
 			
-			rttr.addAttribute("qno", vo.getQno());
+			
+			rttr.addAttribute("qno", vo.getqNo());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -170,10 +182,13 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		}
 		//댓글 삭제 GET
 		@RequestMapping(value="/replyDeleteView", method = RequestMethod.GET)
-		public String replyDeleteView(QnaVO vo, SearchCriteria scri, Model model) throws Exception {
+		public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model, @RequestParam("qno") int qNo, @RequestParam("rno") int rNo) throws Exception {
 			logger.info("reply delete view");
 			
-			model.addAttribute("replyDelete", service.selectReply(vo.getRno()));
+			vo.setqNo(qNo);
+			vo.setrNo(rNo);
+			
+			model.addAttribute("replyDelete", service.selectReply(vo.getrNo()));
 			model.addAttribute("scri", scri);
 			
 
@@ -182,12 +197,12 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		
 		//댓글 삭제
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
-		public String replyDelete(QnaVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+		public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply delete");
 			
 			service.deleteReply(vo);
 			
-			rttr.addAttribute("qno", vo.getQno());
+			rttr.addAttribute("qno", vo.getqNo());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());

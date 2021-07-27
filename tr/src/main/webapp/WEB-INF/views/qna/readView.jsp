@@ -25,6 +25,11 @@
 
 			// 삭제
 			$(".delete_btn").on("click", function(){
+				var count ="${count}";
+				if(count>0){
+					alert("댓글이 있는 게시물은 삭제할 수 없습니다.")
+					return;
+				}
 				var deleteYN = confirm("삭제하시겠습니까?");
 				
 				if(deleteYN ==true){
@@ -49,7 +54,7 @@
 			
 			//댓글 수정 View
 			$(".replyUpdateBtn").on("click", function(){
-				location.href = "/qna/replyUpdateView?qno=${read.qno}"
+				location.href = "/qna/replyUpdateView?qno=${read.qNo}"
 								+ "&page=${scri.page}"
 								+ "&perPageNum=${scri.perPageNum}"
 								+ "&searchType=${scri.searchType}"
@@ -59,7 +64,7 @@
 					
 		//댓글 삭제 View
 			$(".replyDeleteBtn").on("click", function(){
-				location.href = "/qna/replyDeleteView?qno=${read.qno}"
+				location.href = "/qna/replyDeleteView?qno=${read.qNo}"
 					+ "&page=${scri.page}"
 					+ "&perPageNum=${scri.perPageNum}"
 					+ "&searchType=${scri.searchType}"
@@ -80,7 +85,7 @@
 		<section id="container">
 			<form role="readForm" method="post">
 
-				<input type="hidden" id="qno" name="qno" value="${read.qno}" /> 
+				<input type="hidden" id="qNo" name="qNo" value="${read.qNo}" /> 
 				<input type="hidden" id="page" name="page" value="${scri.page}"> 
 				<input type="hidden" id="perPageNum" name="perPageNum"value="${scri.perPageNum}"> 
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
@@ -89,24 +94,24 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><label for="qno">번호</label><input type="text" id="qno"
-								name="qno" value="${read.qno}" /></td>
+							<td><label for="qNo">번호</label><input type="text" id="qNo"
+								name="qNo" value="${read.qNo}" /></td>
 						</tr>
 						<tr>
-							<td><label for="title">제목</label><input type="text"
-								id="title" name="title" value="${read.title}" /></td>
+							<td><label for="qTitle">제목</label><input type="text"
+								id="qTitle" name="qTitle" value="${read.qTitle}" /></td>
 						</tr>
 						<tr>
-							<td><label for="content">내용</label> <textarea id="content"
-									name="content"><c:out value="${read.content}" /></textarea></td>
+							<td><label for="qContent">내용</label> <textarea id="qContent"
+									name="qContent"><c:out value="${read.qContent}" /></textarea></td>
 						</tr>
 						<tr>
-							<td><label for="writer">작성자</label><input type="text"
-								id="writer" name="writer" value="${read.writer}" /></td>
+							<td><label for="qWriter">작성자</label><input type="text"
+								id="qWriter" name="qWriter" value="${read.qWriter}" /></td>
 						</tr>
 						<tr>
-							<td><label for="date">작성일</label> <fmt:formatDate
-									value="${read.regdate}" pattern="yyyy.MM.dd hh:mm" /></td>
+							<td><label for="qDate">작성일</label> <fmt:formatDate
+									value="${read.qDate}" pattern="yyyy.MM.dd hh:mm" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -122,41 +127,46 @@
 					<c:forEach items="${replyList}" var="replyList">
 						<li>
 							<p>
-								작성자 : ${replyList.rwriter}<br /> 작성일 :
-								<fmt:formatDate value="${replyList.rdate}"
+								작성자 : ${replyList.rWriter}<br /> 
+								작성일 : <fmt:formatDate value="${replyList.rDate}"
 									pattern="yyyy.MM.dd hh:mm" />
 							</p>
 
-							<p>${replyList.rcontent}</p>
+							<p>${replyList.rContent}</p>
 							<div>
-								<button type="button" class="replyUpdateBtn"
-									data-rno="${replyList.rno}">수정</button>
-								<button type="button" class="replyDeleteBtn"
-									data-rno="${replyList.rno}">삭제</button>
+							<c:if test="${member.verify == 9}">
+								<button type="button" class="replyUpdateBtn" data-rno="${replyList.rNo}">수정</button>
+								<button type="button" class="replyDeleteBtn" data-rno="${replyList.rNo}">삭제</button>
+							</c:if>
 							</div>
 						</li>
 					</c:forEach>
 				</ol>
 			</div>
+			<c:if test="${member.verify != 9}">
+				<p>댓글은 관리자만 작성할 수 있습니다.</p>
+			</c:if>
 			
-			<form name="replyForm" method="post">
-				<input type="hidden" id="qno" name="qno" value="${read.qno}" /> <input
-					type="hidden" id="page" name="page" value="${scri.page}"> <input
-					type="hidden" id="perPageNum" name="perPageNum"
-					value="${scri.perPageNum}"> <input type="hidden"
-					id="searchType" name="searchType" value="${scri.searchType}">
-				<input type="hidden" id="keyword" name="keyword"
-					value="${scri.keyword}">
+			<c:if test="${member.verify == 9 }">
+			<form name="replyForm" method="post" autocomplete="off">
+				<input type="hidden" id="qNo" name="qNo" value="${read.qNo}" /> 
+				<input type="hidden" id="page" name="page" value="${scri.page}"> 
+				<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}">
+				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
+				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 
 				<div>
-					<label for="rwriter">댓글 작성자</label><input type="text" id="rwriter"
-						name="rwriter" /> <br /> <label for="rcontent">댓글 내용</label><input
-						type="text" id="rcontent" name="rcontent" />
+					<label for="rWriter">작성자 </label><span>관리자</span>
+					<input type="hidden" id="rWriter" name="rWriter"/>
+					 <br /> 
+					 <label for="rcontent">내용 </label>
+					 <input type="text" id="rcontent" name="rContent" />
 				</div>
 				<div>
 					<button type="button" class="replyWriteBtn">작성</button>
 				</div>
 			</form>
+			</c:if>
 
 		</section>
 		<hr />

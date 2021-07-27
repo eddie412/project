@@ -13,7 +13,7 @@
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/qna/readView?qno=${replyDelete.qno}"
+				location.href = "/qna/readView?qno=${replyDelete.qNo}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
@@ -34,8 +34,8 @@
 
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/qna/replyDelete">
-					<input type="hidden" name="qno" value="${replyDelete.qno}" readonly="readonly"/>
-					<input type="hidden" id="rno" name="rno" value="${replyDelete.rno}" />
+					<input type="hidden" name="qNo" value="${replyDelete.qNo}" readonly="readonly"/>
+					<input type="hidden" id="rno" name="rNo" value="${replyDelete.rNo}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 

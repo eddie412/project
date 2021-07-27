@@ -13,10 +13,10 @@
 	   					      , qpass
 	   					     )
 	                 VALUES(    SQ_QNA.NEXTVAL 
-	                 		  , #{title}
-	                 		  , #{content}
-	                 		  , #{writer} 
-	                 		  , #{qpass}
+	                 		  , #{qTitle}
+	                 		  , #{qContent}
+	                 		  , #{qWriter} 
+	                 		  , #{qPass}
 	                 		  )
    </insert>
    
@@ -26,13 +26,15 @@
 		        qTITLE, 
 		        qCONTENT,
 		        qWRITER, 
-		        qDATE
+		        qDATE,
+		        qpass
 		 FROM ( 
 		        SELECT qNO, 
 		               qTITLE, 
 		               qCONTENT, 
 		               qWRITER, 
 		               qDATE,
+		               qpass,
 		               ROW_NUMBER() OVER (ORDER BY qNO DESC) AS RNUM
 		         FROM tr_qna 	
 		         WHERE 1=1 
@@ -69,32 +71,35 @@
 			  , qDATE
 			  , qpass
 		 FROM tr_qna q
-		 WHERE qNO = #{qno} 
+		 WHERE qNO = #{qNo} 
+	</select>
+	<!-- 게시글 삭제위한 댓글 개수 -->
+	<select id="countReply" resultType="int">
+		select count(*) from tr_reply where qno=#{qNo}
 	</select>
 	
 	<!-- 수정 -->
    <update id="update" parameterType="com.tr.VO.QnaVO">
 
-  	
 		UPDATE tr_qna
-		   SET qTITLE    =   #{title},
-		   	   qCONTENT  =   #{content}
-		 WHERE qNO = #{qno} 
+		   SET qTITLE    =   #{qTitle},
+		   	   qCONTENT  =   #{qContent}
+		 WHERE qNO = #{qNo} 
 	</update>
 	
 	<!-- 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE 
 		  FROM tr_qna
-		 WHERE qNO = #{qno}
+		 WHERE qNO = #{qNo}
 	</delete>
 	
 	<!-- 댓글 조회-->
-	<select id="readReply" resultType="com.tr.VO.QnaVO">
+	<select id="readReply" resultType="com.tr.VO.ReplyVO">
     	SELECT
     		  RNO, rCONTENT, rWRITER, rDATE
     	 FROM tr_REPLY
-    	WHERE qNO = #{qno}
+    	WHERE qNO = #{qNo}
 	</select>
 	<!-- 댓글 작성 -->
 	<insert id="writeReply">
@@ -105,26 +110,26 @@
 			, rWRITER
 			
 			)
-			VALUES(    #{qno}
+			VALUES(    #{qNo}
 				, sq_reply.NEXTVAL
-				, #{rcontent}
-				, #{rwriter}	)
+				, #{rContent}
+				, #{rWriter}	)
 	
 	</insert>
 	<!-- 댓글 수정 -->
-	<update id="updateReply" parameterType="com.tr.VO.QnaVO">
-		UPDATE tr_REPLY SET rCONTENT = #{rcontent}
-		WHERE RNO = #{rno}
+	<update id="updateReply" parameterType="com.tr.VO.ReplyVO">
+		UPDATE tr_REPLY SET rCONTENT = #{rContent}
+		WHERE RNO = #{rNo}
 	</update>
 	
 	<!-- 댓글 삭제 -->
-		<delete id="deleteReply" parameterType="com.tr.VO.QnaVO">
+		<delete id="deleteReply" parameterType="com.tr.VO.ReplyVO">
 			DELETE FROM tr_REPLY
-			WHERE RNO = #{rno}
+			WHERE RNO = #{rNo}
 		</delete>
 		
 	<!-- 선택된 댓글 조회 -->
-		<select id="selectReply" resultType="com.tr.VO.QnaVO">
+		<select id="selectReply" resultType="com.tr.VO.ReplyVO">
 			SELECT
 					qNO
 				  , RNO
@@ -132,7 +137,7 @@
 				  , rWRITER
 				  , RDATE
 			  FROM tr_REPLY
-			 WHERE RNO = #{rno}
+			 WHERE RNO = #{rNo}
 		</select>
   </mapper>
 

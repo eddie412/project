@@ -3,49 +3,47 @@ package com.tr.VO;
 import java.util.Date;
 
 public class ReplyVO {
-	private String pNO;
-	private int cNO;
-	private String cContent;
-	private Date cDate;
-	private String userId;
+	private int qNo;
+	private int rNo;
+	private String rContent;
+	private String rWriter;
+	private Date rDate;
 	
-	public String getpNO() {
-		return pNO;
+	public int getqNo() {
+		return qNo;
 	}
-	public void setpNO(String pNO) {
-		this.pNO = pNO;
+	public void setqNo(int qNo) {
+		this.qNo = qNo;
 	}
-	public int getcNO() {
-		return cNO;
+	public int getrNo() {
+		return rNo;
 	}
-	public void setcNO(int cNO) {
-		this.cNO = cNO;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
-	public String getcContent() {
-		return cContent;
+	public String getrContent() {
+		return rContent;
 	}
-	public void setcContent(String cContent) {
-		this.cContent = cContent;
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
 	}
-	public Date getcDate() {
-		return cDate;
+	public String getrWriter() {
+		return rWriter;
 	}
-	public void setcDate(Date cDate) {
-		this.cDate = cDate;
+	public void setrWriter(String rWriter) {
+		this.rWriter = rWriter;
 	}
-	public String getUserId() {
-		return userId;
+	public Date getrDate() {
+		return rDate;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setrDate(Date rDate) {
+		this.rDate = rDate;
 	}
 	@Override
 	public String toString() {
-		return "ReplyVO [pNO=" + pNO + ", cNO=" + cNO + ", cContent=" + cContent + ", cDate=" + cDate + ", userId="
-				+ userId + "]";
+		return "ReplyVO [qNo=" + qNo + ", rNo=" + rNo + ", rContent=" + rContent + ", rWriter=" + rWriter + ", rDate="
+				+ rDate + "]";
 	}
-	
 
 	
-
 }
