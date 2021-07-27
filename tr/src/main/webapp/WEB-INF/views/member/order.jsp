@@ -6,26 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Core theme CSS-->
+<link href="../resources/css/orderStyle.css" rel="stylesheet" />
 <title>마이페이지</title>
 </head>
-<style type="text/css">
-#main {
-	width: 70%;
-	overflow-y: scroll;
-	margin-right: 100px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#main, #main th, #main td {
-	border: 1px solid gray;
-	border-collapse: collapse;
-}
-
-#main th {
-	background: #B28EF7;
-}
-</style>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(e){
@@ -45,18 +29,15 @@ function genRowspan(className){
 </script>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
-
-	<h2 align="center">주문상세내역</h2>
-	<!-- 사이드 메뉴 -->
-	<%@ include file="../include/mypageNav.jsp" %>
+	<div id="header"></div>
 	
-	<!-- 메인 -->>
-		<table id="main" align="right">
+	<!-- 사이드 메뉴 -->
+    <%@ include file="../include/mypageNav.jsp" %>
+
+	<!-- 메인 -->
+	<div id="main">
+		<div class="title">마이페이지 > <span>주문상세내역</span></div>
+		<table id="content" align="right">
 		<tr>
 			<th>주문날짜</th>
 			<th>주문번호</th>
@@ -83,6 +64,7 @@ function genRowspan(className){
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 
 </body>
 </html>

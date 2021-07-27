@@ -4,26 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Core theme CSS-->
+<link href="../resources/css/updateStyle.css" rel="stylesheet" />
 <title>마이페이지</title>
 </head>
-<style type="text/css">
-#main {
-	position: fixed;
-	width: 70%;
-	margin-left: 400px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#main, #main th, #main td {
-	border: 1px solid gray;
-	border-collapse: collapse;
-}
-
-#main th {
-	background: #B28EF7;
-}
-</style>
 <script type="text/javascript">
 	function deleteCheck(){
 		var result = -1;
@@ -51,18 +35,13 @@
 </script>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
+	<div id="header"></div>
 
-	<h2 align="center">주문상세내역</h2>
 	<!-- 사이드 메뉴 -->
 	<%@ include file="../include/mypageNav.jsp" %>
 
 	<!-- 메인 -->
-	<form method="post" action="mp_delete" name="frm">
+	<form method="post" action="deleteSuccess" name="frm">
 		<table align="center" id="main">
 			<tr><th colspan="2">정말로 탈퇴하시겠습니까?</th></tr>
 			<tr><td colspan="2">탈퇴 후 회원정보가 모두 삭제됩니다. 아이디, 메일주소, 핸드폰 번호 등 회원정보가 모두 삭제되며, 삭제된

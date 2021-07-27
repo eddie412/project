@@ -28,11 +28,6 @@
 </style>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
 	
 	<H2>주문번호: ${no.oId}</H2>
 	<span>받는분: ${no.rName}</span><br>

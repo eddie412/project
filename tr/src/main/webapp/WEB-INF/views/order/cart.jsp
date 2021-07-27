@@ -49,11 +49,6 @@ input[type="button"] {
 </style>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
 
 	<h2 align="center">장바구니</h2>
 

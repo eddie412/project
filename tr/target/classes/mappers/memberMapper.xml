@@ -53,7 +53,7 @@
 	<!-- 마이페이지_주문내역-->
 	<select id="order" resultType="com.tr.VO.OrderVO">
 		SELECT 			o.oDate, o.oId, p.pName, p.pImg, p.pPrice, d.count, (p.pPrice * d.count), d.pNo, o.delivery
-		FROM			tr_order o
+		FROM				tr_order o
 		INNER JOIN		tr_orderDetails d ON o.oId = d.oId
 		INNER JOIN		tr_product p ON d.pNo = p.pNo
 		WHERE			o.userId = #{userId}

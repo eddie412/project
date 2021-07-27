@@ -5,37 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Core theme CSS-->
+<link href="../resources/css/qnaStyle.css" rel="stylesheet" />
 <title>마이페이지</title>
 </head>
-<style type="text/css">
-#main {
-	position: fixed;
-	width: 70%;
-	margin-left: 400px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#main, #main th, #main td {
-	border: 1px solid gray;
-	border-collapse: collapse;
-}
-
-#main th {
-	background: #B28EF7;
-}
-</style>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
+	<div id="header"></div>
 
-	<h2 align="center">문의사항</h2>
 	<!-- 사이드 메뉴 -->
-	<%@ include file="../include/mypageNav.jsp" %>
+    <%@ include file="../include/mypageNav.jsp" %>
 
 	<!-- 메인 -->
 	<table id="main" align="right">
@@ -43,16 +22,18 @@
 			<th>날짜</th>
 			<th>제목</th>
 			<th>내용</th>
+			<th>답변</th>
 		</tr>
 		<c:if test="${empty qna}">
 			<td colspan="3">작성한 문의사항이 없습니다.</td>
 		</c:if>
 		<c:forEach var="qna" items="${qna}">
-			<tr>
+				<input type="hidden" name="qNo" value="${qna.qNo}">
+				<tr>
 				<td><fmt:formatDate value="${qna.qDate}" pattern="yyyy.MM.dd" /></td>
 				<td>${qna.qTitle}</td>
-				<td>${qna.qContent}</td>
-			</tr>
+				<td><a href="../member/reply?qNo=${qna.qNo}">${qna.qContent}</a></td>
+				</tr>
 		</c:forEach>
 	</table>
 </body>

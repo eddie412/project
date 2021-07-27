@@ -15,11 +15,6 @@
 </style>
 <body>
 <!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
 	
 <!-- 주문서  -->
 <form method="POST" action="orderComplete" name="frm">

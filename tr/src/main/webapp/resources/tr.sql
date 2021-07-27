@@ -14,6 +14,8 @@ drop table tr_member;
 
 delete from tr_member where userName='aa';
 
+insert into tr_member values ('admin', '1111', '관리자', 'admin@test.com', '01011112222', '서울 땡땡이', '00/12/12', 9);
+
 
 
 -------------------- 주문 테이블 ------------------------

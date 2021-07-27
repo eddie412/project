@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 //숫자만 입력
 
@@ -78,44 +77,23 @@ function updateCheck(){
 }
 </script>
 <meta charset="UTF-8">
+<!-- Core theme CSS-->
+<link href="../resources/css/updateStyle.css" rel="stylesheet" />
 <title>마이페이지</title>
 </head>
-<style type="text/css">
-#main {
-	position: fixed;
-	width: 70%;
-	margin-left: 400px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#main, #main td, #main th {
-	border: 1px solid gray;
-	border-collapse: collapse;
-}
-
-#main th {
-	background: #B28EF7;
-}
-</style>
 <body>
 	<!-- 헤드 -->
-	<header>
-		<div id="header_box">
-			<%@ include file="../include/header.jsp"%>
-		</div>
-	</header>
+	<div id="header"></div>
 
-	<h2 align="center">회원정보수정</h2>
 	<!-- 사이드 메뉴 -->
-	<%@ include file="../include/mypageNav.jsp" %>
+    <%@ include file="../include/mypageNav.jsp" %>
 
 	<!-- 메인 -->
 	<form method="post" action="mp_update" name="frm">
 		<table id="main" align="right">
 			<tr>
 				<th>이름</th>
-				<td><input type="text" id="userName"  name="userName"value="${userName}"></td>
+				<td><input type="text" id="userName"  name="userName"value="${name}"></td>
 			</tr>
 			<tr>
 				<th>아이디</th>
@@ -124,25 +102,25 @@ function updateCheck(){
 			<tr>
 				<th>비밀번호</th>
 				<td>
-					<input type="text" id="userPass" name="userPass" value="${userPass}">
-					<input type="hidden"  id="passCheck" value="${userPass}">
+					<input type="text" id="userPass" name="userPass" value="${pass}">
+					<input type="hidden"  id="passCheck" value="${pass}">
 				</td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="email" id="userEmail" name="userEmail" value="${userEmail}"></td>
+				<td><input type="email" id="userEmail" name="userEmail" value="${email}"></td>
 			</tr>
 			<tr>
 				<th>휴대폰번호</th>
-				<td><input type="text" id="userPhone" name="userPhone" value="${userPhone}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
+				<td><input type="text" id="userPhone" name="userPhone" value="${phone}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><input type="text" id="userAddr" name="userAddr" value="${userAddr}" ></td>
+				<td><input type="text" id="userAddr" name="userAddr" value="${addr}" ></td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td><input type="date" id="userBday" name="userBday" value="${userBday}" /></td>
+				<td><input type="date" id="userBday" name="userBday" value="${bday}" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">
