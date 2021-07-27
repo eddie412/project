@@ -2,25 +2,12 @@ package com.tr.Service;
 
 import java.util.List;
 
-
+import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 
 public interface ProductService {
-	//상품목록
-	public List<ProductVO> listProduct();
-	//상품상세
-	public ProductVO detailProduct(String pNo);
-	//상품수정
-	public void updateProduct(ProductVO vo);
-	//상품 삭제
-	public void deleteProduct(String pNo);
-	//상품 추가
-	public void insertProduct(ProductVO vo);
-	//상품이미지 삭제를 위한 이미지파일정보
-	public String fileInfo(String pNo);
-	
-//	-------------------------사용자
+
 	//카테고리
 	public List<ProductVO> cateList(String cateCode) throws Exception;
 
@@ -41,4 +28,14 @@ public interface ProductService {
 	
 	//상품평 수정
 	public void modifyReply(ProductVO vo)throws Exception;
+	
+	//카트 담기
+	public void addCart(CartVO cart)throws Exception;
+	
+	//장바구니 상품 존재 확인
+	public int countCart(String pNo,String userId)throws Exception;
+	
+	
+	//장바구니 상품 수량 변경
+	public void updateCart(CartVO cart)throws Exception;
 }

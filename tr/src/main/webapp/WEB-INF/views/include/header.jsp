@@ -56,7 +56,7 @@
 			<td>
 				<ul>
 					<c:if test="${member ==null}">
-						<li><a href="../member/loginPage">로그인</a></li>
+						<li><a href="/../../member/loginPage">로그인</a></li>
 					</c:if>
 					<c:if test="${member != null}">
 						<button id="logoutBtn" type="button">로그아웃</button>
@@ -64,9 +64,9 @@
 							<li><a href="/admin/adminPage">관리자 화면</a></li>
 						</c:if>
 						<c:if test="${member.verify != 9}">
-							<li>마이페이지</li>
+							<li><a href ="/member/order">마이페이지</a></li>
 							<br>
-							<li>장바구니</li>
+							<li><a href="/order/cart">장바구니</a></li>
 						</c:if>
 					</c:if>
 						<li><a href="qna/list">고객센터</a></li>

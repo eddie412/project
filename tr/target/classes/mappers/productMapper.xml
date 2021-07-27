@@ -4,28 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
  <mapper namespace="product">
- 	<!-- 01. 상품 전체 목록  -->
- 	<select id="listProduct" resultType="com.tr.VO.ProductVO">
- 		SELECT
- 			pNO,
- 			pName,
- 			pImg,
- 			pPrice,
- 			pInfo
- 		FROM tr_pro
- 		ORDER BY pName
- 	</select>
- 	<!-- 02.상품 상세보기 -->
- 	<select id="detailProduct" resultType="com.tr.VO.ProductVO">
-	SELECT
-			pNO,
-			pName,
-			pImg,
-			pPrice,
-			pInfo
-	From tr_pro
-	WHERE pNO =#{pNo}
- 	</select>
 
   	<!-- 상품 소감(댓글) 작성 -->
 	<insert id="registReply">
@@ -66,6 +44,27 @@
 	                on (select substr(p.pno,1,1) from tr_product) = c.cateCode           
 	            where (select substr(p.pno,1,1) from tr_product) = #{cateCode}
 	</select>
-		
+	
+	<!-- 장바구니 담기 -->
+	<insert id="addCart">
+		insert into tr_cart (cId,userId,pNo,count) 
+		values(sq_cart.nextval,#{userId},#{pNo},#{count})
+	</insert>
+	
+	<!-- 장바구니 동일 상품 존재 확인 -->
+	<select id="countCart" resultType="int">
+		select count(*)
+		from tr_cart
+		where userId= #{userId}
+		and pNo = #{pNo}
+	</select>
+	
+	<!-- 장바구니 상품 수량 변경 -->
+	<update id="updateCart">
+		update tr_cart
+		set count = count + #{count}
+		where userId= #{userId}
+		and pNo=#{pNo}
+	</update>
 
  </mapper>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.tr.DAO.ProductDAO;
+import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 
@@ -16,43 +17,7 @@ public class ProductServiceImpl  implements ProductService{
 	@Inject
 	ProductDAO productDao;
 
-	//상품목록
-	@Override
-	public List<ProductVO> listProduct() {
-		return productDao.listProduct();
-	}
 
-	//상품상세
-	@Override
-	public ProductVO detailProduct(String pNo) {
-		return productDao.detailProduct(pNo);
-	}
-
-	//상품수정
-	@Override
-	public void updateProduct(ProductVO vo) {
-		productDao.updateProduct(vo);
-	}
-
-	//상품삭제
-	@Override
-	public void deleteProduct(String pNo) {
-		productDao.deleteProduct(pNo);
-	}
-	
-	//상품추가
-	@Override
-	public void insertProduct(ProductVO vo) {
-		productDao.insertProduct(vo);
-	}
-
-	//상품이미지 삭제를 위한 이미지파일정보
-	@Override
-	public String fileInfo(String pNo) {
-		return productDao.fileInfo(pNo);
-	}
-	
-//	--------------------------------사용자
 //	카테고리
 	@Override
 	public List<ProductVO> cateList(String cateCode) throws Exception {
@@ -89,6 +54,25 @@ public class ProductServiceImpl  implements ProductService{
 	@Override
 	public void modifyReply(ProductVO vo) throws Exception {
 		productDao.modifiyReply(vo);
+	}
+	//카트담기
+	@Override
+	public void addCart(CartVO cart) throws Exception {
+		
+		productDao.addCart(cart);
+		
+	}
+	//장바구니 상품 수량 변경
+	@Override
+	public void updateCart(CartVO cart) throws Exception {
+		productDao.updateCart(cart);
+		
+	}
+	//장바구니 상품 존재 확인
+	@Override
+	public int countCart(String pNo, String userId) throws Exception {
+		
+		return productDao.countCart(pNo, userId);
 	}
 	
 }

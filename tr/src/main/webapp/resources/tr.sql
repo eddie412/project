@@ -62,10 +62,16 @@ pNo varchar2(10) not null,			-- 상품번호
 count number						-- 주문 수량
 );
 alter table tr_cart ADD FOREIGN key(userId) REFERENCES tr_member(userId);
+alter table tr_cart ADD FOREIGN key(pNo) REFERENCES tr_product(pNo);
 select * from TR_CART;
 drop table tr_cart;
 insert into tr_cart(cId,userId,pNo,count) values (sq_cart.nextval,'aa','m14',1);
 
+create sequence sq_cart		--시퀀스 for cart
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
 ----------------------상품 테이블--------------------------------
 create table tr_product(
 	pNo varchar2(10) not null primary key,   	--상품번호

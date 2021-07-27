@@ -1,12 +1,15 @@
 package com.tr.DAO;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
 
@@ -15,38 +18,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	
 	@Inject
 	SqlSession sqlSession;
-	//상품목록
-	@Override
-	public List<ProductVO> listProduct() {
-		return sqlSession.selectList("product.listProduct");
-	}
-	//상품상세
-	@Override
-	public ProductVO detailProduct(String pNo) {
-		return sqlSession.selectOne("product.detailProduct",pNo);
-	}
-	//상품수정
-	@Override
-	public void updateProduct(ProductVO vo) {
-		sqlSession.update("product.updateProduct",vo);
-	}
-	//상품삭제
-	@Override
-	public void deleteProduct(String pNo) {
-		sqlSession.delete("product.deleteProduct",pNo);
-	}
-	//상품추가
-	@Override
-	public void insertProduct(ProductVO vo) {
-		sqlSession.insert("product.insertProduct",vo);
-	}
-	//상품이비니 삭제를 위한 이미지파일 정보
-	@Override
-	public String fileInfo(String pNo) {
-		return sqlSession.selectOne("product.fileInfo",pNo);
-	}
 
-//	---------------------- 사용자 관점
 	//상품평 작성
 		@Override
 		public void registReply(ProductVO vo) throws Exception {
@@ -88,6 +60,26 @@ public class ProductDAOImpl  implements ProductDAO{
 		@Override
 		public void modifiyReply(ProductVO vo) throws Exception {
 			sqlSession.update("product.modifyReply", vo);
+		}
+		//카트 담기
+		@Override
+		public void addCart(CartVO cart) throws Exception {
+			sqlSession.insert("product.addCart", cart);
+			
+		}
+		//장바구니 상품 수량 변경
+		@Override
+		public void updateCart(CartVO cart) throws Exception {
+			sqlSession.update("product.updateCart", cart);
+			
+		}
+		//장바구니 동일상품 존재 확인
+		@Override
+		public int countCart(String pNo, String userId) throws Exception {
+			Map<String, Object>map = new HashMap<String, Object>();
+			map.put("pNo", pNo);
+			map.put("userId", userId);
+			return sqlSession.selectOne("product.countCart",map);
 		}
 		
 	

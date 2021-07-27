@@ -149,9 +149,9 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 								   var plusNum = Number(num) + 1;
 								   
 								   if(plusNum >= ${shopList.pCount}) {
-								    $(".numBox").val(num);
+								  	  $(".numBox").val(num);
 								   } else {
-								    $(".numBox").val(plusNum);          
+								  	  $(".numBox").val(plusNum);          
 								   }
 								  });
 								  
@@ -160,9 +160,9 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 								   var minusNum = Number(num) - 1;
 								   
 								   if(minusNum <= 0) {
-								    $(".numBox").val(num);
+								   	 $(".numBox").val(num);
 								   } else {
-								    $(".numBox").val(minusNum);          
+								   	 $(".numBox").val(minusNum);          
 								   }
 								  });
 								 </script>
@@ -170,7 +170,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 							</p>
 
 								<p class="addToCart">
-								 <button type="button" class="addCart_btn">카트에 담기</button>
+								 <button type="button" class="addCart_btn">장바구니에 담기</button>
 								 
 								 <script>
 								  $(".addCart_btn").click(function(){
@@ -179,24 +179,24 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 								      
 								   var data = {
 										   pNo : gdsNum,
-								     cartStock : cartStock
+								    	 count : cartStock
 								     };
 								   
 								   $.ajax({
-								    url : "/shop/view/addCart",
+								    url : "/product/view/addCart",
 								    type : "post",
 								    data : data,
 								    success : function(result){
 								    	if(result == 1){
-								     alert("카트 담기 성공");
-								     $(".numBox").val("1");
+								    			 alert("장바구니 담기 성공");
+								    			 $(".numBox").val("1");
 								    	}else{
 								    		alert("회원만 사용할수 있습니다.")
 								    		$(".numBox").val("1");
 								    	}
 								    },
 								    error : function(){
-								     alert("카트 담기 실패");
+								     alert("장바구니 담기 실패");
 								    }
 								   });
 								  });

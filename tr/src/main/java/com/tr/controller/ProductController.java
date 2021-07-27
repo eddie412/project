@@ -5,12 +5,14 @@ package com.tr.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.ProductService;
+import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
@@ -34,25 +37,6 @@ public class ProductController {
 	@Inject
 	ProductService productService;
 	
-	
-	//1.상품 전체 목록
-	@RequestMapping("/list.do")
-	public ModelAndView list(ModelAndView mav) {
-		mav.setViewName("product/productList");
-		mav.addObject("list",productService.listProduct());
-		return mav;
-	}
-		
-	  //2. 상품 상세보기
-	  
-	  @RequestMapping("detail/{pNo}")  
-	  public ModelAndView detail(@PathVariable("pNo") String pNo, ModelAndView mav) {
-		  mav.setViewName("product/productDetail");
-		  mav.addObject("vo",productService.detailProduct(pNo)); 
-		  
-				 return mav; 
-	  }
-	  
 
 		//카테고리별 상품리스트
 		@RequestMapping(value="/cateList",method=RequestMethod.GET)
@@ -144,5 +128,34 @@ public class ProductController {
 			   
 			   return result;
 			  } 
+			  
+			  //카트 담기
+			  @ResponseBody
+			  @RequestMapping(value="/view/addCart",method = RequestMethod.POST)
+			  public int addCart(@ModelAttribute CartVO cart, HttpSession session) throws Exception{
+				 String userId= (String) session.getAttribute("userId");
+				 cart.setUserId(userId);
+				 
+				 int result = 0;
+				 
+				 MemberVO member = (MemberVO)session.getAttribute("member");
+				 
+				 if(member != null) {
+				 
+					 //장바구니에 기존 상품이 있는 지 검사
+					 int count =productService.countCart(cart.getpNo(),userId);
+					 
+						 if(count == 0) {
+							 productService.addCart(cart);
+						 }else {
+							 productService.updateCart(cart);
+						 }
+					  
+					  cart.setUserId(member.getUserId());
+					 
+					  result=1;
+				  }
+				  return result;
+			  }
 			 
 }

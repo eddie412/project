@@ -64,6 +64,7 @@ public class MemberController {
 
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
+		String userId = vo.getUserId();
 
 		if (login == null) {
 			session.setAttribute("member", null);
@@ -71,6 +72,7 @@ public class MemberController {
 			return "redirect:/member/loginPage";
 		} else {
 			session.setAttribute("member", login);
+			session.setAttribute("userId", userId);
 			return "redirect:/";
 		}
 
