@@ -7,38 +7,38 @@
 
   	<!-- 상품 소감(댓글) 작성 -->
 	<insert id="registReply">
-	 insert into tr_comment (
-	 				pno, userId, cno, ccontent)
-	     values (
-	     #{pNo}, #{userId}, sq_comment.nextval, 
-	     #{cContent})
+		 insert into tr_comment (
+		 				pno, userId, cno, ccontent)
+		     values (
+		     #{pNo}, #{userId}, sq_comment.nextval, 
+		     #{cContent})
 	</insert>
 	
 	<!-- 상품 소감(댓글) 리스트 -->
 	<select id="replyList" resultType="com.tr.VO.ProductVO">
-	 select * from tr_comment where pNO = #{pNo}
+		 select * from tr_comment where pNO = #{pNo}
 	</select>
 	
 	<!-- 상품 소감(댓글) 삭제 -->
 	<delete id="deleteReply">
-	 delete tr_comment where cNO = #{cNO} and userId = #{userId}
+		 delete tr_comment where cNO = #{cNO} and userId = #{userId}
 	</delete>
 	
 	<!-- 아이디 체크 -->
 	<select id="replyUserIdCheck" resultType="String">
-	 select userId from tr_comment where cNO = #{cNO}
+		 select userId from tr_comment where cNO = #{cNO}
 	</select>
 	
 	<!-- 상품 소감(댓글) 수정 -->
 	<update id="modifyReply">
-	 update tr_comment set cContent = #{cContent} where cNO = #{cNO} and userId = #{userId}
+		 update tr_comment set cContent = #{cContent} where cNO = #{cNO} and userId = #{userId}
 	</update>
 
 	<!-- 카데고리  호출-->
 	<select id="cateList" resultType="com.tr.VO.ProductVO">
 
- 	select  substr(p.pno,1,1), p.pName, c.cateCode, c.cateName, pPrice, pImg, pInfo, p.pno
-	 from tr_product  p, tr_category c
+	 	select  substr(p.pno,1,1), p.pName, c.cateCode, c.cateName, pPrice, pImg, pInfo, p.pno
+		 from tr_product  p, tr_category c
 	       where  substr(p.pno,1,1) = c.cateCode and substr(p.pno,1,1) = #{cateCode}    
 	</select>
 	
@@ -63,5 +63,33 @@
 		where userId= #{userId}
 		and pNo=#{pNo}
 	</update>
+
+	<!-- 상품 검색 -->
+	<select id="goodsList" resultType="com.tr.VO.ProductVO">
+		SELECT  pNO, 
+			        pName, 
+			        pPrice,
+			        pInfo, 
+			        pImg,
+			        pSales
+	
+	 	 FROM tr_product 	
+		 	<if test="searchType != null">
+				   WHERE pName LIKE '%' || #{keyword} || '%'
+			</if>
+		ORDER BY pSales desc
+	</select>
+		
+	<!-- 상품 조회 + 카테고리 조인 -->
+<select id="shopList" resultType="com.tr.VO.ProductVO" >
+
+	select
+	    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo,pCount,pSales
+	 from tr_product p
+	            inner join tr_category c
+	                on substr(p.pno,1,1) = c.cateCode           
+	            where p.pno= #{pNo}
+</select>
+
 
  </mapper>

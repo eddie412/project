@@ -112,7 +112,7 @@ section.replyList div.replyFooter button { font-size:14px; border: 1px solid #99
 
 					<div class="goods">
 						<div class="goodsImg">
-							<img src="${shopList.pImg}">
+							<img src="../resources/images/${shopList.pImg}">
 						</div>
 
 						<div class="goodsInfo">

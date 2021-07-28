@@ -152,17 +152,7 @@
 		From tr_reply
 		where rNo=#{rNo}
 	</select>
-	<!-- 예린 추가 -->
-	<!-- 상품 조회 + 카테고리 조인 -->
-<select id="shopList" resultType="com.tr.VO.ProductVO" >
 
-	select
-	    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo,pCount,pSales
-	 from tr_product p
-	            inner join tr_category c
-	                on substr(p.pno,1,1) = c.cateCode           
-	            where p.pno= #{pNo}
-</select>
 	
 	
 	

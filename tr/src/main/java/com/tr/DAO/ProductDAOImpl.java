@@ -35,7 +35,7 @@ public class ProductDAOImpl  implements ProductDAO{
 		//상품조회
 		@Override
 		public ProductVO shopList(String pNo) throws Exception {
-			return sqlSession.selectOne("adminMapper.shopList",pNo);
+			return sqlSession.selectOne("product.shopList",pNo);
 		}
 		//상품평 리스트
 		@Override
@@ -81,6 +81,15 @@ public class ProductDAOImpl  implements ProductDAO{
 			map.put("userId", userId);
 			return sqlSession.selectOne("product.countCart",map);
 		}
+		//상품 검색
+
+		@Override
+		public List<ProductVO> mainSearch(ProductVO vo) throws Exception {
+		
+			return sqlSession.selectList("product.goodsList", vo);
+		}
+	
+		
 		
 	
 }

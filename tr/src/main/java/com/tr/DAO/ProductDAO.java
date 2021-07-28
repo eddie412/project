@@ -1,6 +1,7 @@
 package com.tr.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
@@ -38,4 +39,7 @@ public interface ProductDAO {
 	
 	//장바구니 상품 수량 변경
 	public void updateCart(CartVO cart)throws Exception;
+	
+	//상품검색
+	public List<ProductVO> mainSearch(ProductVO vo) throws Exception;
 }

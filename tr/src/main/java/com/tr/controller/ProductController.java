@@ -157,5 +157,18 @@ public class ProductController {
 				  }
 				  return result;
 			  }
+			  
+			  //상품 검색
+			  @RequestMapping(value="/search", method=RequestMethod.GET)
+			  public ModelAndView mainSearch(ModelAndView model,@ModelAttribute("sc") ProductVO vo)throws Exception{
+				
+				  logger.info("shop search");
+				  
+				  model.setViewName("product/shopSearch");
+				  model.addObject("search",productService.mainSearch(vo));
+				  
+				  return model;
+				  
+			  }
 			 
 }

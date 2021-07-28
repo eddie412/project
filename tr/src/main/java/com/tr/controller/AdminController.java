@@ -299,6 +299,7 @@ public class AdminController {
 		logger.info("POST productModify");
 		logger.info(vo.toString());
 		aService.productModify(vo);
+		logger.info(".."+vo);
 
 		return "redirect:/admin/product/productList";
 	}

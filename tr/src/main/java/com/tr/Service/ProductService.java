@@ -2,6 +2,8 @@ package com.tr.Service;
 
 import java.util.List;
 
+import org.springframework.security.access.method.P;
+
 import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
 import com.tr.VO.ReplyVO;
@@ -38,4 +40,7 @@ public interface ProductService {
 	
 	//장바구니 상품 수량 변경
 	public void updateCart(CartVO cart)throws Exception;
+	
+	//상품 검색
+	public List<ProductVO> mainSearch(ProductVO vo)throws Exception;
 }

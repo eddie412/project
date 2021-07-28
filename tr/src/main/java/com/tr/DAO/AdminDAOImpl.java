@@ -40,6 +40,7 @@ public class AdminDAOImpl implements AdminDAO {
 	// 상품 수정
 	public void productModify(ProductVO vo) throws Exception {
 		sql.update("adminMapper.productModify", vo);
+		System.out.println("modify");
 	}
 
 	// 상품 삭제

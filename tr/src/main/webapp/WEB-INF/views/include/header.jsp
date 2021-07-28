@@ -40,6 +40,11 @@
 			location.href = "member/myPage";
 		})
 	})
+	$(document).ready(function(){
+		$(".search_btn").on("click", function(){
+			location.href="product/search";
+		})
+	})
 </script>
 </head>
 <body>
@@ -51,7 +56,16 @@
 			<td>
 			<%@ include file = "category.jsp" %>
 			</td>
-			
+			<td>
+				<div class="search_wrap">
+					<form id="searchForm" action="../product/search" method="get">
+						<div name="searchType">
+							<input type="text" name="keyword" value="${keyword}"/>
+							<button class="search_btn">검색</button>
+						</div>					
+					</form>
+				</div>
+			</td>
 			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
 			<td>
 				<ul>

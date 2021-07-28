@@ -74,5 +74,11 @@ public class ProductServiceImpl  implements ProductService{
 		
 		return productDao.countCart(pNo, userId);
 	}
+	//상품검색
+	@Override
+	public List<ProductVO> mainSearch(ProductVO vo) throws Exception {
+	
+		return productDao.mainSearch(vo);
+	}
 	
 }

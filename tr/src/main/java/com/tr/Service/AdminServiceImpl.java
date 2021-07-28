@@ -40,6 +40,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void productModify(ProductVO vo) throws Exception {
 		dao.productModify(vo);
+		System.out.println("service modify");
 	}
 
 	// 상품 삭제
