@@ -25,7 +25,6 @@
 	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@300&display=swap"
 	rel="stylesheet">
 </head>
-<body>
 
 	<body>
 	<!-- Navigation-->
@@ -51,7 +50,7 @@
 				<c:when test="${member == null}">
  					 <a href="/member/order"><img
 							src="../resources/images/myPage.png" id="icon-mypage" /></a>
- 					 <a href="/order/cart"><img src="resources/images/cart.png"
+ 					 <a href="/order/cart"><img src="resources/images/cart.gif"
 							id="icon-cart" /></a>
  				</c:when>
  				<c:otherwise>
@@ -61,7 +60,7 @@
 						</c:if>
 					 <a href="/member/order"><img src="resources/images/myPage.png"
 							id="icon-mypage" /></a>
- 					 <a href="/order/cart"><img src="resources/images/cart.png"
+ 					 <a href="/order/cart"><img src="resources/images/cart.gif"
 							id="icon-cart" /></a>
 				 <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
  				</c:otherwise>

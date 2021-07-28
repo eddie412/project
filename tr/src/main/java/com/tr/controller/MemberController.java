@@ -118,6 +118,7 @@ public class MemberController {
 			List<OrderVO> order = service.order(vo);
 
 			model.addAttribute("order", order);
+			model.addAttribute("size", order.size());
 			model.addAttribute("name", mvo.getUserName());
 
 			return "member/order";

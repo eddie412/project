@@ -9,11 +9,10 @@
 	position: fixed;
 	width: auto;
 	padding: 0;
-	margin: 0;
+	margin-top: 7.6rem;
 	height: 100%;
 	overflow: auto;
 	text-align: center;
-	
 	border-right: 1px solid gray;
 }
 
@@ -36,6 +35,7 @@
 #nav span{
 	font-size: 14px;
 	margin-left: -4.1rem;
+	color: #312C29;
 }
 
 #nav b{
@@ -87,6 +87,7 @@
 			<li><a href="qna">문의사항</a></li>
 			<li><a href="update">회원정보수정</a></li>
 			<li><a href="delete">탈퇴하기</a></li>
+			<li><a href="logout">로그아웃</a></li>
 		</ul>
 	</div>
 </body>

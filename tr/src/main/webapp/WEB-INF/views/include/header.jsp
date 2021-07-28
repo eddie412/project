@@ -121,7 +121,7 @@
 	cursor: pointer;
 }
 
-검색창 * /
+/* 검색창 */
 #search-content {
 	position: absolute;
 	height: 50px;
@@ -289,7 +289,7 @@ input {
 				<c:when test="${member == null}">
 					<a href="/member/order"><img
 						src="../resources/images/myPage.png" id="icon-mypage" /></a>
-					<a href="/order/cart"><img src="resources/images/cart.png"
+					<a href="/order/cart"><img src="resources/images/cart.gif"
 						id="icon-cart" /></a>
 				</c:when>
 				<c:otherwise>
@@ -299,7 +299,7 @@ input {
 					</c:if>
 					<a href="/member/order"><img src="resources/images/myPage.png"
 						id="icon-mypage" /></a>
-					<a href="/order/cart"><img src="resources/images/cart.png"
+					<a href="/order/cart"><img src="resources/images/cart.gif"
 						id="icon-cart" /></a>
 					<!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
 				</c:otherwise>
