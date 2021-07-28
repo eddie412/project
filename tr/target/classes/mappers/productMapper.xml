@@ -37,12 +37,9 @@
 	<!-- 카데고리  호출-->
 	<select id="cateList" resultType="com.tr.VO.ProductVO">
 
-	select
-	    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo
-	 from tr_product p
-	            inner join tr_category c
-	                on (select substr(p.pno,1,1) from tr_product) = c.cateCode           
-	            where (select substr(p.pno,1,1) from tr_product) = #{cateCode}
+ 	select  substr(p.pno,1,1), p.pName, c.cateCode, c.cateName, pPrice, pImg, pInfo, p.pno
+	 from tr_product  p, tr_category c
+	       where  substr(p.pno,1,1) = c.cateCode and substr(p.pno,1,1) = #{cateCode}    
 	</select>
 	
 	<!-- 장바구니 담기 -->

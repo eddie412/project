@@ -160,7 +160,7 @@
 	    p.pno, p.pName, c.cateCode,c.cateName, pPrice, pImg, pInfo,pCount,pSales
 	 from tr_product p
 	            inner join tr_category c
-	                on (select substr(p.pno,1,1) from tr_product) = c.cateCode           
+	                on substr(p.pno,1,1) = c.cateCode           
 	            where p.pno= #{pNo}
 </select>
 	
