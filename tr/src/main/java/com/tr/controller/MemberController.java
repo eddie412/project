@@ -109,14 +109,21 @@ public class MemberController {
 		public String order(Model model, HttpSession session, OrderVO vo) throws Exception {
 			logger.info("★마이페이지(주문내역)....mpOrder get");
 			String userId = (String) session.getAttribute("userId");
+			
+			if(userId != null) {
+				MemberVO mvo = service.info(userId);
+				vo.setUserId(userId);
 
-			vo.setUserId(userId);
+				List<OrderVO> order = service.order(vo);
 
-			List<OrderVO> order = service.order(vo);
+				model.addAttribute("order", order);
+				model.addAttribute("size", order.size());
+				model.addAttribute("name", mvo.getUserName());
 
-			model.addAttribute("order", order);
-
-			return "member/order";
+				return "member/order";
+			}else {
+				return "redirect:/member/loginPage";
+			}
 		}
 
 		// 마이페이지_주문내역상세
@@ -127,24 +134,28 @@ public class MemberController {
 
 			String userId = (String) session.getAttribute("userId");
 
-			vo.setUserId(userId);
-			vo.setoId(oId);
+			if(userId != null) {
+				
+				vo.setUserId(userId);
+				vo.setoId(oId);
 
-			List<OrderVO> orderDetail = service.orderDetail(vo);
-			logger.info("★값=" + orderDetail);
-			
-			
-			int total = 0;
-			for(int i=0; i<orderDetail.size(); i++) {
-				total += orderDetail.get(i).getoTotal();
-				logger.info("total" + total);
+				List<OrderVO> orderDetail = service.orderDetail(vo);
+				
+				
+				int total = 0;
+				for(int i=0; i<orderDetail.size(); i++) {
+					total += orderDetail.get(i).getoTotal();
+					logger.info("total" + total);
+				}
+				
+				model.addAttribute("no", orderDetail.get(0));
+				model.addAttribute("orderDetail", orderDetail);
+				model.addAttribute("total", total);
+
+				return "member/orderDetail";
+			}else {
+				return "redirect:/member/loginPage";
 			}
-			
-			model.addAttribute("no", orderDetail.get(0));
-			model.addAttribute("orderDetail", orderDetail);
-			model.addAttribute("total", total);
-
-			return "member/orderDetail";
 		}
 
 		// 마이페이지_문의사항 get
@@ -152,26 +163,38 @@ public class MemberController {
 		public String qna(Model model, HttpSession session) throws Exception {
 			String userId = (String) session.getAttribute("userId");
 
-			List<QnaVO> qna = service.qna(userId);
-			model.addAttribute("qna", qna);
+			if(userId != null) {
+				List<QnaVO> qna = service.qna(userId);
+				MemberVO mvo = service.info(userId);
+				
+				model.addAttribute("qna", qna);
+				model.addAttribute("name" , mvo.getUserName());
 
-			return "member/qna";
+				return "member/qna";
+			}else {
+				return "redirect:/member/loginPage";
+			}
 		}
 
 		// 마이페이지_회원정보 조회 get
 		@RequestMapping(value = "/mp_update", method = RequestMethod.GET)
 		public String info(Model model, HttpSession session) throws Exception {
 
-			MemberVO member = service.info((String) session.getAttribute("userId"));
+			if(session.getAttribute("userId") != null) {
+				MemberVO member = service.info((String) session.getAttribute("userId"));
 
-			session.setAttribute("userPass", member.getUserPass());
-			session.setAttribute("userName", member.getUserName());
-			session.setAttribute("userEmail", member.getUserEmail());
-			session.setAttribute("userPhone", member.getUserPhone());
-			session.setAttribute("userAddr", member.getUserAddr());
-			session.setAttribute("userBday", member.getUserBday());
+				model.addAttribute("pass", member.getUserPass());
+				model.addAttribute("name", member.getUserName());
+				model.addAttribute("email", member.getUserEmail());
+				model.addAttribute("phone", member.getUserPhone());
+				model.addAttribute("addr", member.getUserAddr());
+				model.addAttribute("bday", member.getUserBday());
+				
 
-			return "member/update";
+				return "member/update";
+			}else {
+				return "redirect:/member/loginPage";			
+			}
 		}
 
 		// 마이페이지_회원정보 수정
@@ -186,10 +209,18 @@ public class MemberController {
 
 		// 마이페이지_회원정보 삭제 get
 		@RequestMapping(value = "mp_deleteview", method = RequestMethod.GET)
-		public String deleteview(HttpSession session) throws Exception {
+		public String deleteview(HttpSession session, Model model) throws Exception {
 			String userId = (String) session.getAttribute("userId");
-
-			return "member/delete";
+			
+			if(userId != null) {
+				MemberVO mvo = service.info(userId);
+				
+				model.addAttribute("name", mvo.getUserName());
+				
+				return "member/delete";
+			}else {
+				return "redirect:/member/loginPage";				
+			}
 		}
 
 		// 마이페이지_회원정보 삭제 post

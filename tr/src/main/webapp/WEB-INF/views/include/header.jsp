@@ -1,93 +1,50 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<style>
-	#menu {
-	 	width : 40px;
-	 	margin-right: 600px;
-	}
-	header a {
-		text-decoration: none;
-	}
-	
-	header a:link{ color: #ABAFB2;}
-	
-	header td > ul{
-		list-style: none;
-		margin-left: 50px;
-	}
-	
-	header ul > li{
-		float: left;
-		color: #ABAFB2;
-		margin-right: 50px;
-	}
-</style>
-<title>header</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#logoutBtn").on("click", function() {
-			location.href = "/member/logout";
-		})
-		$("#myPageBtn").on("click", function() {
-			location.href = "member/myPage";
-		})
-	})
-	$(document).ready(function(){
-		$(".search_btn").on("click", function(){
-			location.href="product/search";
-		})
-	})
-</script>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-</head>
+<!-- Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
+	rel="stylesheet" />
+
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="../resources/css/homeStyles.css" rel="stylesheet" />
 <body>
-	<table>
-		<tr>
-			<td>
-			<%@ include file = "category.jsp" %>
-			</td>
-			<td>
-				<div class="search_wrap">
-					<form id="searchForm" action="../product/search" method="get">
-						<div name="searchType">
-							<input type="text" name="keyword" value="${keyword}"/>
-							<button class="search_btn">검색</button>
-						</div>					
-					</form>
-				</div>
-			</td>
-			<td><img src="../resources/images/logo.PNG"  alt="로고" id="logo"></td>
-			<td>
-				<ul>
-					<c:if test="${member ==null}">
-						<li><a href="/../../member/loginPage">로그인</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container px-6  py-1 px-lg-7">
+		<!-- 햄버거 메뉴 -->
+		<%@include file="../include/category.jsp" %>
+		
+		<a class="navbar-brand" href="/">전통이酒</a>
+		<!-- 검색창 -->
+		<form id="search-content" action="../product/search" method="get">
+			<div name="searchType" id="search">
+			<input type="text" name="keyword" value="${keyword}" class="input" id="search-input">
+			<button type="reset" class="search" id="search-btn"></button>
+			</div>
+		</form>
+		<!-- 사용자 메뉴 -->
+		<div id="userMenu">
+			<c:choose>
+				<c:when test="${member == null}">
+					<a href="/member/order"><img
+						src="../resources/images/myPage.png" id="icon-mypage" /></a>
+					<a href="/order/cart"><img src="resources/images/cart.gif"
+						id="icon-cart" /></a>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${member.verify == 9}">
+						<a href="/admin/adminPage"><img
+							src="resources/images/admin.png"></a>
 					</c:if>
-					<c:if test="${member != null}">
-						<button id="logoutBtn" type="button">로그아웃</button>
-						<c:if test="${member.verify == 9}">
-							<li><a href="/admin/adminPage">관리자 화면</a></li>
-						</c:if>
-						<c:if test="${member.verify != 9}">
-							<li><a href ="/member/order">마이페이지</a></li>
-							<br>
-							<li><a href="/order/cart">장바구니</a></li>
-						</c:if>
-					</c:if>
-						<li><a href="qna/list">고객센터</a></li>
-				</ul>			
-			</td>
-		</tr>	
-	</table>
-	<hr>
+					<a href="/member/order"><img src="../resources/images/myPage.png"
+						id="icon-mypage" /></a>
+					<a href="/order/cart"><img src="../resources/images/cart.gif"
+						id="icon-cart" /></a>
+					<!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+</nav>
 </body>
-</html>

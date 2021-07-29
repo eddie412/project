@@ -43,4 +43,7 @@ public interface ProductService {
 	
 	//상품 검색
 	public List<ProductVO> mainSearch(ProductVO vo)throws Exception;
+	
+	//전체 상품 리스트
+	public List<ProductVO> homeList(ProductVO vo)throws Exception;
 }

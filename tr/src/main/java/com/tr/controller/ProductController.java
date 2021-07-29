@@ -170,5 +170,15 @@ public class ProductController {
 				  return model;
 				  
 			  }
-			 
+			 //전체상품 리스트
+			  @RequestMapping(value="/homeList",method=RequestMethod.GET)
+			  public ModelAndView homeList(ModelAndView model,ProductVO vo)throws Exception{
+				  
+				  logger.info("home list");
+				  
+				  model.setViewName("home");
+				  model.addObject("home",productService.homeList(vo));
+				  
+				  return model;
+			  }
 }

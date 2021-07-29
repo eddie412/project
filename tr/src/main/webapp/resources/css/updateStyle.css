@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+:root {
+  --bs-title: #3FB0C8;	
+  --bs-font: #5A443F;
+  --bs-bg: #E3D9CD;
+	
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+#header{
+	width: 100%;
+	height: 7.6rem;
+	background: #E3D9CD;
+}
+
+/* 사이드바 */
+#nav {
+	position: fixed;
+	width: auto;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	overflow: auto;
+	text-align: center;
+	
+	border-right: 1px solid gray;
+}
+
+#nav .nav_title {
+	width: auto;
+	height: 17%;
+	margin: 0.8rem;
+	font-size: 1.4rem;
+	font-weight: bold;
+	border-bottom: 2px solid lightgray;
+}
+
+#icon-mypage{
+	width: 3rem;
+	position: relative;
+	margin-bottom: 1.5rem;
+	margin-left: 0.8rem;
+}
+
+#nav span{
+	font-size: 14px;
+	margin-left: -4.1rem;
+}
+
+#nav b{
+	text-align: center;
+	font-size: 18px;
+	color: #3FB0C8;
+}
+
+
+#nav .nav_content{
+	list-style: none;
+	padding-right: 3rem;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.nav_content li{
+	display: block;
+	padding: auto;
+}
+
+.nav_content li:after{
+  display:block;
+  content: '';
+  border-bottom: solid 3px #3FB0C8;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+
+.nav_content li:hover:after { transform: scaleX(1); }
+
+#nav a {
+	display: inline-block;
+	margin: 1rem auto;
+	color:#5A443F;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+
+/* 메인 */
+#main {
+	position: fixed;
+	width: 70%;
+	margin-left: 400px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+#main, #main td, #main th {
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+#main th {
+	background: #B28EF7;
+}

@@ -88,6 +88,12 @@ public class ProductDAOImpl  implements ProductDAO{
 		
 			return sqlSession.selectList("product.goodsList", vo);
 		}
+		//전체 상품 목록
+		@Override
+		public List<ProductVO> homeList(ProductVO vo) throws Exception {
+		
+			return sqlSession.selectList("product.homeList",vo);
+		}
 	
 		
 		

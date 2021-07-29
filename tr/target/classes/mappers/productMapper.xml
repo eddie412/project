@@ -91,5 +91,9 @@
 	            where p.pno= #{pNo}
 </select>
 
+<!-- 전체상품 리스트 -->
+<select id="homeList" resultType="com.tr.VO.ProductVO" >
+	select * from tr_product order by pSales desc
+</select>
 
  </mapper>

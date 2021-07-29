@@ -11,9 +11,7 @@
 	<nav id ="navbar">
 		<div class="navbar_menu">
 			<ul class = "navbar_menu">
-				<li class = "navbar_menu_item">Home</li>
-				<li class = "navbar_menu_item"><a href="../member/login" >로그인</a></li>
-				<li class = "navbar_menu_item"><a href="../member/register">회원가입</a></li>
+				
 			</ul>
 		</div>
 	</nav>
