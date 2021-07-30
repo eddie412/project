@@ -12,7 +12,7 @@
 	$(document).ready(function() {
 		var formObj = $("form[name='updateForm']");
 
-		$(".cancel_btn").on("click", function() {
+		$("#cancel_btn").on("click", function() {
 			location.href = "qnaView?n=${replyUpdate.qNo}";
 		})
 
@@ -24,38 +24,32 @@
 			<%@ include file="../../include/header.jsp"%>
 		</div>
 	</header>
+	<div id="wrapper">
 	<aside>
 		<%@ include file="../aside.jsp"%>
 	</aside>
-	<br><hr>
-	<div id="root">
-		<header>
-			<h1>댓글 수정</h1>
-		</header>
-		<hr />
-
-		
-
-		<section id="container">
+	<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800" >댓글 수정</h1><br>
+	</div>
+		<div class="col-sm-12">
 			<form name="updateForm" role="form" method="post" action="replyUpdate">
 				<input type="hidden" name="qNo" value="${replyUpdate.qNo}"readonly="readonly" /> 
 				<input type="hidden" id="rNo" name="rNo"value="${replyUpdate.rNo}" /> 
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="content">댓글 내용</label>
-							<input type="text" id="rContent" name="rContent" value="${replyUpdate.rContent}" /></td>
-						</tr>
-
-					</tbody>
-				</table>
+				
+			<label for="content">댓글 내용</label>
+			<input type="text" id="rContent" name="rContent" value="${replyUpdate.rContent}" />
 				<div>
-					<button type="submit" class="update_btn">저장</button>
-					<button type="button" class="cancel_btn">취소</button>
+					<button type="submit" id="update_btn" class="btn btn-success btn-icon-split">저장</button>
+					<button type="button" id="cancel_btn" class="btn btn-secondary btn-icon-split">취소</button>
 				</div>
 			</form>
-		</section>
-		<hr />
+	</div>
+	</div>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

@@ -6,7 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>멤버 목록</title>
-<style type="text/css">
+<style>
+td{
+font-size:17px;
+}
+th{
+font-size:20px;
+}
 </style>
 
 </head>
@@ -16,11 +22,18 @@
 			<%@ include file="../../include/header.jsp"%>
 		</div>
 	</header>
+	<div id="wrapper">
 	<aside>
 		<%@ include file="../aside.jsp"%>
 	</aside>
-	<br><hr>
-	<table>
+	<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800" >회원 목록</h1><br>
+	</div>
+		<div class="col-sm-12">
+	<table class="table table-bordered dataTable" style="text-align:center;">
 		<tr>
 			<th>아이디</th>
 			<th>이름</th>
@@ -40,5 +53,10 @@
 		</tr>
 	</c:forEach>	
 	</table>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

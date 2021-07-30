@@ -14,7 +14,7 @@ drop table tr_member;
 
 delete from tr_member where userName='aa';
 
-
+select * from tr_member;
 
 -------------------- 주문 테이블 ------------------------
 create table tr_order(		
@@ -100,9 +100,11 @@ create table tr_product(
 	pCount number(10) default 0,				--재고
 	pInfo varchar2(1000),						--상품정보
 	pSales number(3) default 0,					--판매량
-	pImg varchar2(500)							--상품 이미지
+	pImg varchar2(500),							--상품 이미지
+	pThumbImg varchar(200)						--섬네일
 );
 
+alter table tr_product add(pThumbImg varchar(200));
 drop table tr_product;
 drop table tr_product CASCADE CONSTRAINTS;
 select * from tr_product;
@@ -135,14 +137,14 @@ values ('m'||sq_product.nextval,'와인',1000,2,'요구루트',3);
 insert into tr_product(pNO,pNAME,pPrice,pCount,pInfo,pSales)
 values ('m1','막걸리',1000,2,'요구루트',3);
 
-INSERT INTO tr_product VALUES('M001', '장수막걸리', 2500, 10, '백미를 사용해 장기저온숙성 방식으로 만들어져 영양이 풍부하고 자연발효에 의한 탄산과 어울려 감칠맛과 청량감이 일품인 막걸리', 0, 'M_jangsu.jpg');
-INSERT INTO tr_product VALUES('W001', '세븐 폴스, 카베르네 소비뇽', 19000, 10, '진한 과일 풍미에 묵직한 바디감이 느껴지는 레드와인', 5, 'W_Seven Falls.jpg');
+INSERT INTO tr_product VALUES('M001', '장수막걸리', 2500, 10, '백미를 사용해 장기저온숙성 방식으로 만들어져 영양이 풍부하고 자연발효에 의한 탄산과 어울려 감칠맛과 청량감이 일품인 막걸리', 0, 'M_jangsu.jpg','M_jangsu.jpg');
+INSERT INTO tr_product VALUES('W001', '세븐 폴스, 카베르네 소비뇽', 19000, 10, '진한 과일 풍미에 묵직한 바디감이 느껴지는 레드와인', 5, 'W_Seven Falls.jpg','W_Seven Falls.jpg');
 
 --------------------------문의사항 테이블--------------------------
 create table tr_qna(
 	qNo number(10) not null primary key,		-- 문의사항 번호
 	qTitle varchar2(100) not null ,				-- 제목
-	qWriter varchar2(100) not null ,			--작성자
+	qWriter varchar2(100) ,						--작성자
 	qDate date default sysdate,					-- 작성날짜
 	qContent varchar2(1000) not null, 			-- 내용
 	qPass number(12)							-- 비밀번호
@@ -155,10 +157,13 @@ maxvalue 1000
 nocache;
 
 insert into tr_qna(qNO,qTitle,qWriter,qContent,qPass)
-values (sq_qna.nextval,'문의사항입니다','주영','이거이상해요',1234);
+values (sq_qna.nextval,'문의사항입니다','aaa','이거이상해요',1234);
+
+insert into tr_qna(qNO,qTitle,qWriter,qContent)
+values (sq_qna.nextval,'문의사항입니다','aaa','이거이상해요');
 
 alter table tr_qna modify qWriter varchar2(10);
-
+select * from tr_qna;
 
 -------------------답글 테이블---------------------
 create table tr_reply( 

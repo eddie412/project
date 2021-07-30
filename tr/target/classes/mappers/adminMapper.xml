@@ -13,10 +13,8 @@
 	
 	<!-- 관리자용 주문 내역 불러오기 -->
 	<select id="orderList" resultType="com.tr.VO.OrderVO">
-		Select o.oId,m.userName,o.rAddr,o.rPhone,p.pName, d.count, o.oDate, o.delivery 
-		FROM TR_ORDER o,tr_member m,tr_product p, tr_orderDetails d
-		where p.pNo=d.pNo
-		and m.userId=o.userId
+		Select o.oId,o.userID,o.rAddr,o.rPhone, o.oDate, o.delivery 
+		FROM TR_ORDER o
 
 	</select>
 	
@@ -29,13 +27,13 @@
 	
 	<!-- 제품 등록 -->
 	<insert id="productAdd">
-		INSERT INTO TR_PRODUCT(PNO,PNAME,PPRICE,PCOUNT,PINFO)
-		VALUES (#{pNo}||sq_${pNo}.nextval,#{pName},#{pPrice},#{pCount},#{pInfo})
+		INSERT INTO TR_PRODUCT(PNO,PNAME,PPRICE,PCOUNT,PINFO,pImg,pThumbImg)
+		VALUES (#{pNo}||sq_${pNo}.nextval,#{pName},#{pPrice},#{pCount},#{pInfo},#{pImg},#{pThumbImg})
 	</insert>
 	
 	<!-- 제품 조회 -->
 	<select id="productView" resultType="com.tr.VO.ProductVO">
-		Select pNO,pName,pPrice,pCount,pInfo
+		Select pNO,pName,pPrice,pCount,pInfo,pImg,pThumbImg
 		from tr_product
 		where pNo=#{pNo}
 	</select>
@@ -81,7 +79,7 @@
 		SET oId=#{oId},
 			rName=#{rName},
 			rPhone=#{rPhone},
-			rAddr=#{rAddr},
+			rAddr=#{rAddr}
 		where oId=#{oId}
 	</update>
 	

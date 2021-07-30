@@ -27,11 +27,11 @@ public class ReplyVO {
 	public void setrContent(String rContent) {
 		this.rContent = rContent;
 	}
-	public String getqWriter() {
+	public String getrWriter() {
 		return rWriter;
 	}
-	public void setqWriter(String qWriter) {
-		this.rWriter = qWriter;
+	public void setrWriter(String rWriter) {
+		this.rWriter = rWriter;
 	}
 	public Date getrDate() {
 		return rDate;

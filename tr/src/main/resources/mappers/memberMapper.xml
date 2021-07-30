@@ -80,8 +80,8 @@
 	
 	<!-- 마이페이지_문의사항 -->
 	<select id="qna" resultType="com.tr.VO.QnaVO">
-		SELECT		qTitle, qDate, qContent
-		FROM			tr_qna
+		SELECT		qNo,qTitle, qDate, qContent
+		FROM		tr_qna
 		WHERE		qWriter = #{userId}
 		ORDER BY qDate DESC
 	</select>

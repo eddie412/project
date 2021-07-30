@@ -7,7 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>QnA view</title>
+<style>
+th{
+	border:3px;
+}
+</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../resources/css/sb-admin-2.css" rel="stylesheet" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header id="header">
@@ -15,40 +25,46 @@
 			<%@ include file="../../include/header.jsp"%>
 		</div>
 	</header>
+	<div id="wrapper">
 	<aside>
 			<%@ include file="../aside.jsp"%>
 	</aside>
-	<br><hr>
-	<h2>문의 사항 조회</h2>
+	<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800" >문의 사항 조회</h1><br>
+	</div>
+		<div class="col-sm-12">
+	<h5 class="m-0 font-weight-bold text-primary">댓글 내용</h5><br>
 	<form role="form" method="post" autocomplete="off">
 	<input type="hidden" name="n" value="${qna.qNo}" />
-	
-		<div class="inputArea">
-			<label for="qNo">문의번호</label>
-			<span> ${qna.qNo}</span>
+		<table class="table table-bordered dataTable" style="text-align:center;">
+				<tr>
+					<th class="title"><label for="qNo">문의번호</label></th>
+					<td><span> ${qna.qNo}</span></td>
+				</tr>
+				<tr>
+					<th class="title"><label for="qTitle">이름</label></th>
+					<td><span> ${qna.qTitle}</span></td>
+				</tr>
+				<tr>
+					<th class="title"><label for="qWriter">작성자</label></th>
+					<td><span> ${qna.qWriter}</span></td>
+				</tr>
+				<tr>
+					<th class="title"><label for="qContent">내용</label></th>
+					<td><span> ${qna.qContent}</span></td>
+				</tr>
+				<tr>
+					<th class="title"><label for="qDate">작성날짜</label></th>
+					<td><span> ${qna.qDate}</span></td>
+				</tr>
+		</table>
+		<div style="text-align:center;">
+			<button type="button" id="delete_btn" class="btn btn-danger btn-icon-split">삭제</button>
+			<button type="reset" onclick="location.href='qnaList'" class="btn btn-secondary btn-icon-split">취소</button>
 		</div>
-		<div class="input_area">
-			<label for="qTitle">이름</label>
-			<span> ${qna.qTitle}</span>
-		</div>
-		<div class="input_area">
-			<label for="qWriter">작성자</label>
-			<span> ${qna.qWriter}</span>
-		</div>
-		<div class="input_area">
-			<label for="qContent">내용</label>
-			<span> ${qna.qContent}</span>
-		</div>
-		<div class="input_area">
-			<label for="qDate">작성날짜</label>
-			<span> ${qna.qDate}</span>
-		</div>
-		
-		<div class="input_area">
-			<!-- <button type="button" id="modify_btn" class="btn btn-warning">수정</button> -->
-			<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
-			<button type="reset" onclick="location.href='qnaList'">취소</button>
-			
 			<script>
 				var formObj = $("form[role='form']");
 				
@@ -68,57 +84,72 @@
 					}	
 				});
 			</script>
-		</div>
 	</form>
+	<br>
 	<!-- 댓글 조회 -->
-	<div id="reply">
-		<ol class="replyList">
+	<h5 class="m-0 font-weight-bold text-primary">댓글 조회</h5><br>
 			<c:forEach items="${replyList}" var="replyList">
-				<li>
-				<p>
-				작성자: ${replyList.qWriter}<br/>
-				작성날짜: <fmt:formatDate value="${replyList.rDate}" pattern="yyyy-MM-dd" />
-				</p>
-				
-				<p>${replyList.rContent}</p>
-				<div>
-  				<button type="button" class="replyUpdateBtn" data-rNo="${replyList.rNo}">수정</button>
-  				<button type="button" class="replyDeleteBtn" data-rNo="${replyList.rNo}">삭제</button>
-</div>
-				</li>
-				</c:forEach>
-		</ol>
-	</div>
+				<table class="table table-bordered dataTable" style="text-align:center;">
+					<tr>
+						<th>작성자 </th>
+						<th>작성날짜 </th>
+						<th>내용</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td>${replyList.qWriter}</td>
+						<td><fmt:formatDate value="${replyList.rDate}" pattern="yyyy-MM-dd" /></td>
+						<td>${replyList.rContent}</td>	
+						<td>
+						<button type="button" id="replyUpdateBtn" data-rNo="${replyList.rNo}" class="btn btn-success btn-icon-split">수정</button>
+						<button type="button" id="replyDeleteBtn" data-rNo="${replyList.rNo}" class="btn btn-danger btn-icon-split">삭제</button>
+						</td>				
+					</tr>
+				</table>
+		</c:forEach>
 	<!-- 댓글 작성 -->
+	<h5 class="m-0 font-weight-bold text-primary">댓글 작성</h5><br>
 	<form name="replyForm" method="post">
 		<input type="hidden" id="qNo" name="qNo" value="${qna.qNo}" />
-		
-		<label for ="rWriter">댓글 작성자: </label><span>관리자</span><br>
-		<label for="rContent">댓글 내용: </label><input type="text" id="rContent" name="rContent" />
-		
-		<div>
- 	 		<button type="button" class="replyWriteBtn">작성</button>
-  		</div>
+		<table class="table table-bordered dataTable" style="text-align:center;">
+				<tr>
+					<th>댓글 작성자</th>
+					<th>댓글 내용</th>
+				</tr>
+				<tr>
+					<td><label for ="rWriter">관리자 </label></td>
+					<td><label for="rContent"><input type="text" id="rContent" name="rContent" /></label></td>
+				</tr>
+		</table>
+		<div style="text-align:center;">
+				<button type="button" id="replyWriteBtn" class="btn btn-success btn-icon-split">작성</button>
+		</div>
+  		
   		<script>
-  			$(".replyWriteBtn").on("click", function(){
+  			$("#replyWriteBtn").on("click", function(){
   		  		var formObj = $("form[name='replyForm']");
   		  		formObj.attr("action", "replyWrite");
   		  		formObj.submit();
   			});
   			
   		//댓글 수정 View
-  			$(".replyUpdateBtn").on("click", function(){
+  			$("#replyUpdateBtn").on("click", function(){
   				location.href = "replyUpdateView?qNo=${qna.qNo}"
   								+ "&rNo="+$(this).attr("data-rNo");
   			});
   					
   		//댓글 삭제 View
-  			$(".replyDeleteBtn").on("click", function(){
+  			$("#replyDeleteBtn").on("click", function(){
   				location.href = "replyDeleteView?qNo=${qna.qNo}"
   					+ "&rNo="+$(this).attr("data-rNo");
   			});
   		</script>
 	</form>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>
 

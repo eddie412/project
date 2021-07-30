@@ -5,33 +5,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<title>header</title>
 <style>
-#menu {
-	width: 40px;
-	margin-right: 600px;
+.navbar-brand {
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  text-align: center;
+  font-size: 3.5rem;
+  font-family: 'East Sea Dokdo', cursive;	
+  text-decoration: none;
+  white-space: nowrap;
+  color: #8B4513;
 }
-
-a {
-	text-decoration: none;
-}
-
-a:link {
-	color: #ABAFB2;
-}
-
-td>ul {
-	list-style: none;
-	margin-left: 50px;
-}
-
-ul>li {
-	float: left;
-	color: #ABAFB2;
-	margin-right: 50px;
+.log{
+	float: right;
+	padding: 25px;
+	padding-right:70px;
 }
 </style>
-<title>header</title>
+	<!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../resources/css/sb-admin-2.css" rel="stylesheet" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 </head>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -47,31 +43,22 @@ ul>li {
 	})
 </script>
 <body>
-	<table>
-		<tr>
-			<td><a href="../nav"><img
-					src="../../resources/images/Imenu.png" alt="메뉴" id="menu"></a></td>
-			<td><a href="/"><img src="../../resources/images/logo.PNG"
-					alt="로고" id="logo"></a></td>
-			<td>
-				<ul>
-					<c:if test="${member ==null}">
-						<li><a href="/../../member/loginPage">로그인</a></li>
+         <span class="container px-4 px-lg-5" style="margin:0;">
+			<a class="navbar-brand" href="/">전통이酒</a>	
+		</span>
+		<span class="log">
+			<c:if test="${member ==null}">
+				<a href="/../../member/loginPage">로그인</a>
+			</c:if>
+			<c:if test="${member != null}">
+				<a style="text-align:right;" href="/member/logout">로그아웃</a>
+					<%-- <c:if test="${member.verify == 9}">
+							<a href="/admin/orderList">관리자 화면</a>
+					</c:if> --%>
 					</c:if>
-					<c:if test="${member != null}">
-						<button id="logoutBtn" type="button">로그아웃</button>
-						<c:if test="${member.verify == 9}">
-							<li><a href="/admin/adminPage">관리자 화면</a></li>
-						</c:if>
-						<c:if test="${member.verify != 9}">
-							<li><a href ="/member/order">마이페이지</a></li><br>
-							<li><a href="/order/cart">장바구니</a></li>
-						</c:if>
-					</c:if>
-				</ul>
-			</td>
-		</tr>
-	</table>
-	<hr>
+		</span>
+		
+	
+
 </body>
 </html>

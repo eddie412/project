@@ -43,18 +43,23 @@ public class OrderController {
 		logger.info("★장바구니 진입....cart get");
 		String userId = (String) session.getAttribute("userId");
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		if (userId != null) {
+			Map<String, Object> map = new HashMap<String, Object>();
 
-		List<OrderVO> cartItems = service.cart(userId);
-		int total = service.total(userId);
+			List<OrderVO> cartItems = service.cart(userId);
+			int total = service.total(userId);
 
-		map.put("items", cartItems);
-		map.put("itemsYN", cartItems.size());
-		map.put("total", total);
+			map.put("items", cartItems);
+			map.put("itemsYN", cartItems.size());
+			map.put("total", total);
 
-		model.addAttribute("cart", map);
+			logger.info("얍" + map);
+			model.addAttribute("cart", map);
 
-		return "order/cart";
+			return "order/cart";
+		} else {
+			return "redirect:/member/loginPage";
+		}
 	}
 
 	// 장바구니 상품 개별삭제
@@ -96,8 +101,8 @@ public class OrderController {
 			map.put("item" + i, service.order(values[i]).get(0));
 
 			total += service.order(values[i]).get(0).getCount() * service.order(values[i]).get(0).getpPrice();
-			session.setAttribute("count"+i, service.order(values[i]).get(0).getCount());
-			session.setAttribute("no"+i, service.order(values[i]).get(0).getpNo());
+			session.setAttribute("count" + i, service.order(values[i]).get(0).getCount());
+			session.setAttribute("no" + i, service.order(values[i]).get(0).getpNo());
 		}
 		model.addAttribute("order", map);
 		model.addAttribute("num", values.length);
@@ -157,24 +162,26 @@ public class OrderController {
 			service.orderInsert(dvo);
 			service.orderDelete(vo);
 		}
-		
-		//구매한 상품 재고 및 판매수량 변경
-		int pSales, pCount =0;
-		String no=null;
-		for(int i=0; i<(int)session.getAttribute("size"); i++) {
-			pSales=(int)session.getAttribute("count"+i);
-			pCount=(int)session.getAttribute("count"+i);
-			no=(String)session.getAttribute("no"+i);
-			
+
+		// 구매한 상품 재고 및 판매수량 변경
+		int pSales, pCount = 0;
+		String no = null;
+		for (int i = 0; i < (int) session.getAttribute("size"); i++) {
+			pSales = (int) session.getAttribute("count" + i);
+			pCount = (int) session.getAttribute("count" + i);
+			no = (String) session.getAttribute("no" + i);
+
 			pvo.setpNo(no);
 			pvo.setpSales(pSales);
 			pvo.setpCount(pCount);
-			
+
 			service.orderUpdate(pvo);
-			
+
+			session.removeAttribute("count" + i);
+			session.removeAttribute("no" + i);
 		}
 
 		return "order/orderComplete";
-		}
+	}
 
 }

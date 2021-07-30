@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.MemberService;
+import com.tr.Service.QnaService;
 import com.tr.VO.MemberVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.PageMaker;
 import com.tr.VO.QnaVO;
+import com.tr.VO.SearchCriteria;
 
 @Controller
 @RequestMapping("/member/*")
@@ -30,6 +34,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private QnaService qservice;
 
 	@Autowired
 	BCryptPasswordEncoder pwdEncoder;
@@ -118,13 +125,20 @@ public class MemberController {
 		logger.info("★마이페이지(주문내역)....mpOrder get");
 		String userId = (String) session.getAttribute("userId");
 
-		vo.setUserId(userId);
+		if (userId != null) {
+			MemberVO mvo = service.info(userId);
+			vo.setUserId(userId);
 
-		List<OrderVO> order = service.order(vo);
+			List<OrderVO> order = service.order(vo);
 
-		model.addAttribute("order", order);
+			model.addAttribute("order", order);
+			model.addAttribute("size", order.size());
+			model.addAttribute("name", mvo.getUserName());
 
-		return "member/order";
+			return "member/order";
+		} else {
+			return "redirect:/member/loginPage";
+		}
 	}
 
 	// 마이페이지_주문내역상세
@@ -132,53 +146,77 @@ public class MemberController {
 	public String orderDetail(HttpSession session, @RequestParam("oId") String oId, OrderVO vo, Model model)
 			throws Exception {
 		logger.info("★마이페이지(주문내역상세)....mpOrderDetail get");
-
 		String userId = (String) session.getAttribute("userId");
 
-		vo.setUserId(userId);
-		vo.setoId(oId);
+		if (userId != null) {
+			MemberVO mvo = service.info(userId);
 
-		List<OrderVO> orderDetail = service.orderDetail(vo);
-		logger.info("★값=" + orderDetail);
+			vo.setUserId(userId);
+			vo.setoId(oId);
 
-		int total = 0;
-		for (int i = 0; i < orderDetail.size(); i++) {
-			total += orderDetail.get(i).getoTotal();
-			logger.info("total" + total);
+			List<OrderVO> orderDetail = service.orderDetail(vo);
+
+			int total = 0;
+			for (int i = 0; i < orderDetail.size(); i++) {
+				total += orderDetail.get(i).getoTotal();
+				logger.info("total" + total);
+			}
+
+			model.addAttribute("no", orderDetail.get(0));
+			model.addAttribute("orderDetail", orderDetail);
+			model.addAttribute("total", total);
+			model.addAttribute("name", mvo.getUserName());
+
+			return "member/orderDetail";
+		} else {
+			return "redirect:/member/loginPage";
 		}
 
-		model.addAttribute("no", orderDetail.get(0));
-		model.addAttribute("orderDetail", orderDetail);
-		model.addAttribute("total", total);
-
-		return "member/orderDetail";
 	}
 
 	// 마이페이지_문의사항 get
-	@RequestMapping(value = "/mp_qna", method = RequestMethod.GET)
-	public String qna(Model model, HttpSession session) throws Exception {
+	@RequestMapping(value = "/qna", method = RequestMethod.GET)
+	public String qna(Model model, HttpSession session, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 		String userId = (String) session.getAttribute("userId");
 
-		List<QnaVO> qna = service.qna(userId);
-		model.addAttribute("qna", qna);
+		if (userId != null) {
+			List<QnaVO> qna = service.qna(userId);
+			MemberVO mvo = service.info(userId);
 
-		return "member/qna";
+			model.addAttribute("qna", qna);
+			logger.info("qna" + qna);
+			model.addAttribute("name", mvo.getUserName());
+
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setScri(scri);
+			pageMaker.setTotalCount(qservice.listCount(scri));
+
+			model.addAttribute("pageMaker", pageMaker);
+
+			return "member/qna";
+		} else {
+			return "redirect:/member/loginPage";
+		}
 	}
 
 	// 마이페이지_회원정보 조회 get
-	@RequestMapping(value = "/mp_update", method = RequestMethod.GET)
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String info(Model model, HttpSession session) throws Exception {
 
-		MemberVO member = service.info((String) session.getAttribute("userId"));
+		if (session.getAttribute("userId") != null) {
+			MemberVO member = service.info((String) session.getAttribute("userId"));
 
-		session.setAttribute("userPass", member.getUserPass());
-		session.setAttribute("userName", member.getUserName());
-		session.setAttribute("userEmail", member.getUserEmail());
-		session.setAttribute("userPhone", member.getUserPhone());
-		session.setAttribute("userAddr", member.getUserAddr());
-		session.setAttribute("userBday", member.getUserBday());
+			model.addAttribute("pass", member.getUserPass());
+			model.addAttribute("name", member.getUserName());
+			model.addAttribute("email", member.getUserEmail());
+			model.addAttribute("phone", member.getUserPhone());
+			model.addAttribute("addr", member.getUserAddr());
+			model.addAttribute("bday", member.getUserBday());
 
-		return "member/update";
+			return "member/update";
+		} else {
+			return "redirect:/member/loginPage";
+		}
 	}
 
 	// 마이페이지_회원정보 수정
@@ -192,11 +230,20 @@ public class MemberController {
 	}
 
 	// 마이페이지_회원정보 삭제 get
-	@RequestMapping(value = "mp_deleteview", method = RequestMethod.GET)
-	public String deleteview(HttpSession session) throws Exception {
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String deleteview(HttpSession session, Model model) throws Exception {
 		String userId = (String) session.getAttribute("userId");
 
-		return "member/delete";
+		if (userId != null) {
+			MemberVO mvo = service.info(userId);
+
+			model.addAttribute("name", mvo.getUserName());
+
+			return "member/delete";
+		} else {
+			return "redirect:/member/loginPage";
+		}
+
 	}
 
 	// 마이페이지_회원정보 삭제 post

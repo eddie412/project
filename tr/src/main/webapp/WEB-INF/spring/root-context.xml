@@ -40,4 +40,5 @@
     <context:component-scan base-package="com.tr.Service"></context:component-scan>
     <context:component-scan base-package="com.tr.DAO"></context:component-scan>
     <context:component-scan base-package="com.tr.VO"></context:component-scan>
+    <context:component-scan base-package="com.tr.utils"></context:component-scan>
 </beans>

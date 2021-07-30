@@ -6,6 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 목록</title>
+<style>
+td{
+font-size:17px;
+}
+th{
+font-size:20px;
+}
+</style>
+<!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../resources/css/sb-admin-2.css" rel="stylesheet" />
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 	<header id="header">
@@ -13,14 +26,19 @@
 			<%@ include file="../../include/header.jsp"%>
 		</div>
 	</header>
+	<div id="wrapper">
 	<aside>
 		<%@ include file="../aside.jsp"%>
 	</aside>
-	<br><hr>
-	<section>
-		<button type="button" onclick="location.href='productAdd'">상품등록</button>
-	</section>
-	<table>
+	<div id="content-wrapper" class="d-flex flex-column">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800" style="margin-right:30px;">상품 내역</h1><br>
+		<button type="button" onclick="location.href='productAdd'">상품등록</button>		
+	</div>
+	<div class="col-sm-12">
+	<table class="table table-bordered dataTable" style="text-align:center;">
 		<tr>
 			<th>상품번호</th>
 			<th>상품명</th>
@@ -36,8 +54,12 @@
 			<td>${product.pCount}</td>
 			<td>${product.pSales}</td>
 		</tr>
-	</c:forEach>
-		
+	</c:forEach>	
 	</table>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>
