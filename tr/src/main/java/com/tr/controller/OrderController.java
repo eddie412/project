@@ -43,18 +43,23 @@ public class OrderController {
 		logger.info("★장바구니 진입....cart get");
 		String userId = (String) session.getAttribute("userId");
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		if(userId != null) {
+			Map<String, Object> map = new HashMap<String, Object>();
 
-		List<OrderVO> cartItems = service.cart(userId);
-		int total = service.total(userId);
+			List<OrderVO> cartItems = service.cart(userId);
+			int total = service.total(userId);
 
-		map.put("items", cartItems);
-		map.put("itemsYN", cartItems.size());
-		map.put("total", total);
+			map.put("items", cartItems);
+			map.put("itemsYN", cartItems.size());
+			map.put("total", total);
+			
+			logger.info("얍" + map);
+			model.addAttribute("cart", map);
 
-		model.addAttribute("cart", map);
-
-		return "order/cart";
+			return "order/cart";
+		}else {
+			return "redirect:/member/loginPage";			
+		}
 	}
 
 	// 장바구니 상품 개별삭제
@@ -62,6 +67,7 @@ public class OrderController {
 	public String delete(@RequestParam int cId) throws Exception {
 		logger.info("★장바구니 상품개별삭제....deleteItem get");
 
+		logger.info("장바구니=" + cId);
 		service.deleteItem(cId);
 
 		return "redirect:/order/cart";
@@ -141,6 +147,7 @@ public class OrderController {
 
 		String oId = ymds + subNum;
 		vo.setoId(oId);
+		logger.info("주문번호: " + oId);
 
 		// 구매날짜
 		Date now = new Date();

@@ -279,9 +279,11 @@ input {
 		<img src="../resources/images/menubar.png" class="navber-menu">
 		<a class="navbar-brand" href="/">전통이酒</a>
 		<!-- 검색창 -->
-		<form id="search-content">
-			<input type="text" name="input" class="input" id="search-input">
-			<button type="reset" class="search" id="search-btn"></button>
+		<form id="search-content" action="../product/search" method="get">
+			<div name="searchType">
+				<input type="text" name="keyword" class="input" id="search-input" value="${keyword}">
+				<button type="reset" class="search" id="search-btn"></button>
+			</div>
 		</form>
 		<!-- 사용자 메뉴 -->
 		<div id="userMenu">

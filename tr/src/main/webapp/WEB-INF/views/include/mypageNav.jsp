@@ -3,6 +3,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 글씨체 -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <style type="text/css">
 #nav {
@@ -14,11 +16,12 @@
 	overflow: auto;
 	text-align: center;
 	border-right: 1px solid gray;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 #nav .nav_title {
 	width: auto;
-	height: 17%;
+	height: 8rem;
 	margin: 0.8rem;
 	font-size: 1.4rem;
 	font-weight: bold;
@@ -54,6 +57,7 @@
 .nav_content li{
 	display: block;
 	padding: auto;
+	font-family: 'Gowun Dodum', sans-serif;
 }
 
 .nav_content li:after{
@@ -83,7 +87,7 @@
 			마이페이지
 		</div>
 		<ul class="nav_content">
-			<li><a href="order">주문상세내역</a></li>
+			<li><a href="order">주문내역</a></li>
 			<li><a href="qna">문의사항</a></li>
 			<li><a href="update">회원정보수정</a></li>
 			<li><a href="delete">탈퇴하기</a></li>

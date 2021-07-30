@@ -30,8 +30,17 @@
 	<!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-6  py-1 px-lg-7">	
-            		 <img src="../resources/images/menubar.png"
-				class="navber-menu">
+            		 <img src="../resources/images/menubar.png" class="navber-menu">
+<!--             		 <div class="menu_bg">
+						<div class="menu">
+						<div style="width:80%; text-align: right"  onclick="HideMenu()">닫기</div>
+							<div id="menu_1"><a href="/product/cateList?c=m"> 막걸리</a></div>
+							<div id="menu_1"><a href="/product/cateList?c=s">  소주</a></div>
+							<div id="menu_1"><a href="/product/cateList?c=y">  약주/탁주</a></div>
+							<div id="menu_1"><a href="/product/cateList?c=f">  과실주</a></div>
+							<div id="menu_1"><a href="/product/cateList?c=n">  안주</a></div>
+						</div>
+					</div> -->
                		 <a class="navbar-brand" href="/">전통이酒</a>
               		 <button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -40,10 +49,12 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
         	<!-- 검색창 -->
-			<form id="search-content">
-			  <input type="text" name="input" class="input" id="search-input">
- 			  <button type="reset" class="search" id="search-btn"></button>
-			</form>
+		<form id="search-content" action="../product/search" method="get">
+			<div name="searchType" id="search">
+				<input type="text" name="keyword" class="input" id="search-input" value="${keyword}">
+				<button type="reset" class="search" id="search-btn"></button>
+			</div>
+		</form>
 			<!-- 사용자 메뉴 -->
  			<div id="userMenu">
 			<c:choose>

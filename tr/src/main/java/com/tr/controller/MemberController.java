@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tr.Service.MemberService;
+import com.tr.Service.QnaService;
 import com.tr.VO.MemberVO;
 import com.tr.VO.OrderVO;
+import com.tr.VO.PageMaker;
 import com.tr.VO.QnaVO;
+import com.tr.VO.SearchCriteria;
 
 @Controller
 @RequestMapping("/member/*")
@@ -30,6 +34,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private QnaService qservice;
 
 	@Autowired
 	BCryptPasswordEncoder pwdEncoder;
@@ -135,6 +142,7 @@ public class MemberController {
 		String userId = (String) session.getAttribute("userId");
 		
 		if(userId != null) {
+			MemberVO mvo = service.info(userId);
 			
 			vo.setUserId(userId);
 			vo.setoId(oId);
@@ -151,6 +159,7 @@ public class MemberController {
 			model.addAttribute("no", orderDetail.get(0));
 			model.addAttribute("orderDetail", orderDetail);
 			model.addAttribute("total", total);
+			model.addAttribute("name", mvo.getUserName());
 
 			return "member/orderDetail";
 		}else {
@@ -162,7 +171,7 @@ public class MemberController {
 
 	// 마이페이지_문의사항 get
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	public String qna(Model model, HttpSession session) throws Exception {
+	public String qna(Model model, HttpSession session, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 		String userId = (String) session.getAttribute("userId");
 
 		if(userId != null) {
@@ -170,7 +179,14 @@ public class MemberController {
 			MemberVO mvo = service.info(userId);
 			
 			model.addAttribute("qna", qna);
+			logger.info("qna" + qna);
 			model.addAttribute("name" , mvo.getUserName());
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setScri(scri);
+			pageMaker.setTotalCount(qservice.listCount(scri));
+			
+			model.addAttribute("pageMaker", pageMaker);
 
 			return "member/qna";
 		}else {

@@ -6,7 +6,7 @@
 
 /* 검색창 */
 const input = document.getElementById("search-input");
-const searchBtn = document.getElementById("search-btn");
+const searchBtn = document.getElementById("search");
 
 const expand = () => {
   searchBtn.classList.toggle("close");

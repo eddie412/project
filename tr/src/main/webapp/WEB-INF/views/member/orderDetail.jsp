@@ -6,73 +6,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Core theme CSS-->
+<link href="../resources/css/orderStyle.css" rel="stylesheet" />
+<!-- 글씨체 -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <title>마이페이지</title>
 </head>
-<style type="text/css">
-#main {
-	width: 70%;
-	overflow-y: scroll;
-	margin-right: 100px;
-	margin-top: 50px;
-	text-align: center;
-}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e){
+	genRowspan("total");
+});
 
-#main, #main th, #main td {
-	border: 1px solid gray;
-	border-collapse: collapse;
+function genRowspan(className){
+	$("." + className).each(function(){
+		var rows = $("." + className + ":contains('" + $(this).text() + "')");
+		 if(rows.length > 1){
+			 rows.eq(0).attr("rowspan", rows.length);
+			 rows.not(":eq(0)").remove();
+		 }
+	});
 }
-
-#main th {
-	background: #B28EF7;
-}
-</style>
+</script>
 <body>
 	<!-- 헤드 -->
+	<div id="header"></div>
 	
-	<H2>주문번호: ${no.oId}</H2>
-	<span>받는분: ${no.rName}</span><br>
-	<span>받는분 주소: ${no.rAddr}</span><br>
-	<span>받는분 번호: ${no.rPhone}</span><br>
-	<span>요청사항: ${no.oMemo}</span><br>
-	<span>주문날짜: <fmt:formatDate value="${no.oDate}" pattern="yyyy.MM.dd"/></span><br>
-	<span>총구매금액: <fmt:formatNumber pattern="###,###,###"
-						value="${total}" /></span>
-	<c:forEach var="orderDetail" items="${orderDetail}">
-		<table>
-			<tr>
-				<th>상품이름</th>
-				<td>${orderDetail.pName}</td>
-			</tr>
-			<tr>
-				<th>상품이미지</th>
-				<td><img src="../resources/images/${orderDetail.pImg}"
-					alt="${orderList.pName} 이미지"></td>
-			</tr>
-			<tr>
-				<th>상품정보</th>
-				<td>${orderDetail.pInfo}</td>
-			</tr>
-			<tr>
-				<th>상품가격</th>
-				<td><fmt:formatNumber pattern="###,###,###"
-						value="${orderDetail.pPrice}" />원</td>
-			</tr>
-			<tr>
-				<th>수량</th>
-				<td>${orderDetail.count}개</td>
-			</tr>
-			<tr>
-				<th>주문상태</th>
-				<td>${orderDetail.delivery}</td>
-			</tr>
-			<tr>
-				<th>금액</th>
-				<td><fmt:formatNumber pattern="###,###,###"
-						value="${orderDetail.oTotal}" />원</td>
-			</tr>
-			----------------------------------------------------------------
+	<!-- 사이드메뉴 -->
+    <%@ include file="../include/mypageNav.jsp" %>
+	
+	<!-- 메인 -->
+	<div id="main">
+		<div class="title">마이페이지 > <span>주문상세내역</span></div>
+		<div id="dcontent">
+			<div id="info">
+					<span>• 주문 정보</span>
+						<table>
+							<tr>
+								<th>주문번호</th>
+								<th>주문날짜</th>
+								<th>배송상태</th>
+							</tr>
+							<tr>
+								<td>${no.oId}</td>
+								<td><fmt:formatDate value="${no.oDate}" pattern="yyyy년MM월dd일 E요일 HH시 mm분 ss초" /></td>
+								<td>${no.delivery}</td>
+							</tr>
+					</table>
+			</div>
+					<div id="person">
+				<div class="re">
+					<span>• 받는분 정보</span>
+						<table>
+							<tr>
+								<th>받는분</th>
+								<td>${no.rName}</td>
+							</tr>
+							<tr>
+								<th>받는분 주소</th>
+								<td>${no.rAddr}</td>
+							</tr>
+							<tr>
+								<th>받는분 연락처</th>
+								<td>${no.rPhone}</td>
+							</tr>
+				</table>
+			</div>
+			<div class="memo">
+				<span>• 요청사항</span>
+				<div>
+					<c:if test="${empty no.oMemo}">
+						요청사항이 없습니다 :)
+					</c:if>
+						${no.oMemo}
+				</div>
+			</div>
+		</div>
+			<div id="product">
+				<span>• 상품정보</span>
+					<table>
+						<tr>
+							<th>상품이름</th>
+							<th>상품이미지</th>
+							<th>상품정보</th>
+							<th>상품가격</th>
+							<th>수량</th>
+							<th>금액</th>
+							<th>총 금액</th>
+						</tr>
+						<c:forEach var="orderDetail" items="${orderDetail}">
+						<tr>
+								<td>${orderDetail.pName}</td>
+								<td><img src="../resources/images/${orderDetail.pImg}"	alt="${orderList.pName} 이미지"></td>
+								<td>${orderDetail.pInfo}</td>
+								<td><fmt:formatNumber pattern="###,###,###" value="${orderDetail.pPrice}" />원</td>
+								<td>${orderDetail.count}개</td>
+								<td><fmt:formatNumber pattern="###,###,###" value="${orderDetail.oTotal}" />원</td>
+								<td class="total"><fmt:formatNumber pattern="###,###,###"	value="${total}"></fmt:formatNumber>원</td>
+						</tr>
+						</c:forEach>
+						
 		</table>
-	</c:forEach>
-
+			<a href="javascript:history.go(-1)"><button class="btn">확인</button></a>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

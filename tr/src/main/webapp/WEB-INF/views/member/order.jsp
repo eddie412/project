@@ -9,7 +9,7 @@
 <!-- Core theme CSS-->
 <link href="../resources/css/orderStyle.css" rel="stylesheet" />
 <!-- font -->
-<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <title>마이페이지</title>
 </head>
 <body>
@@ -21,12 +21,12 @@
 
 	<!-- 메인 -->
 	<div id="main">
-		<div class="title">마이페이지 > <span>주문상세내역</span></div>
+		<div class="title">마이페이지 > <span>주문내역</span></div>
 	
 		<c:forEach var="order" items="${order}">
 			<div id="content">
 					<div class="image">
-						<a href='/product/product?pno=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a>
+						<a href='/product/view?n=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a>
 					</div>
 					<div class="info">
 						<div class="no">
@@ -34,14 +34,14 @@
 							<button type="button" class="${order.delivery eq '배송준비' ? 'badge rounded-pill bg-warning' : 'badge rounded-pill bg-success'}">${order.delivery}</button>
 						</div>
 						<span class="date"><fmt:formatDate value="${order.oDate}" pattern="yyyy-MM-dd" /></span>
-						<span><br>${order.pName}(<fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원)</span>
-						<span>${order.count}개</span>
-						<fmt:formatNumber pattern="###,###,###" value="${order.pPrice * order.count}" />원
-						<a href='mpOrderDetail?oId=${order.oId}'>주문상세 > </a>
+						<span class="spacing name"><br>${order.pName}(<fmt:formatNumber pattern="###,###,###" value="${order.pPrice}" />원)</span>
+						<span class="spacing">${order.count}개</span>
+						<span class="spacing"><fmt:formatNumber pattern="###,###,###" value="${order.pPrice * order.count}" />원</span>
+						<span class="spacing"><a href='mpOrderDetail?oId=${order.oId}'>주문상세 > </a></span>
 					</div>
 			</div>
 		</c:forEach>
 	</div>
-
+	
 </body>
 </html>

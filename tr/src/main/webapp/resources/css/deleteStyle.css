@@ -39,96 +39,94 @@ body{
 }
 
 #header{
+	position: fixed;
 	width: 100%;
 	height: 7.6rem;
 	background: #E3D9CD;
 }
 
-/* 사이드바 */
-#nav {
-	position: fixed;
-	width: auto;
-	padding: 0;
-	margin: 0;
-	height: 100%;
-	overflow: auto;
-	text-align: center;
-	
-	border-right: 1px solid gray;
-}
-
-#nav .nav_title {
-	width: auto;
-	height: 17%;
-	margin: 0.8rem;
-	font-size: 1.4rem;
-	font-weight: bold;
+/* 메인 */
+#main .title {
+	width: 15rem;
+	margin-left: 15rem;
+	padding-top: 11rem;
+	padding-bottom: 0.4rem;
+	padding-left: 0.5rem;
+	font-size: 14px;
+	color: #5A443F;
 	border-bottom: 2px solid lightgray;
 }
-
-#icon-mypage{
-	width: 3rem;
-	position: relative;
-	margin-bottom: 1.5rem;
-	margin-left: 0.8rem;
-}
-
-#nav span{
-	font-size: 14px;
-	margin-left: -4.1rem;
-}
-
-#nav b{
-	text-align: center;
-	font-size: 18px;
+.title > span {
+	font-weight: bold;
 	color: #3FB0C8;
 }
 
-
-#nav .nav_content{
-	list-style: none;
-	padding-right: 3rem;
-	font-family: 'Noto Sans KR', sans-serif;
+/* 회원탈퇴 */
+#content {
+	display: flex;
+	width: calc(100% - 20rem);
+	height: 13rem;
+	margin-top: 3.5rem;
+	margin-bottom: 0.5rem;
+	margin-left: 16rem;
+ 	font-family: 'Gowun Dodum', sans-serif;
 }
-
-.nav_content li{
-	display: block;
-	padding: auto;
-}
-
-.nav_content li:after{
-  display:block;
-  content: '';
-  border-bottom: solid 3px #3FB0C8;  
-  transform: scaleX(0);  
-  transition: transform 250ms ease-in-out;
-}
-
-.nav_content li:hover:after { transform: scaleX(1); }
-
-#nav a {
-	display: inline-block;
-	margin: 1rem auto;
-	color:#5A443F;
-	text-decoration: none;
-	font-size: 14px;
-}
-
-
-/* 메인 */
-#main {
-	position: fixed;
-	width: 70%;
-	margin-left: 400px;
-	margin-top: 50px;
-	text-align: center;
-}
-
-#main, #main th, #main td {
-	border: 1px solid gray;
+#content table{
+	width: 100%;
 	border-collapse: collapse;
+	margin-left: 2rem;
+}
+#content th:not(.check){
+	border-bottom: 1.5px solid black;
+	padding-bottom: 1.5rem;
+}
+#content span{
+	color: red;
+}
+#content .text{
+	padding-top: 3rem;
+	padding-bottom: 3rem; 
 }
 
-#main th {
-	background: #B28EF7;
+/* 아이디&비밀번호 */
+.check{
+	padding-left: 8rem;
+	color: #3FB0C8;
+}
+.check th{
+	padding-right: 10px;
+}
+
+/* 버튼 */
+#btn{
+	padding: 1.5rem 0;
+	text-align: center;
+	font-weight: bold;
+}
+#content .rBtn{
+	background-color: transparent;
+	border: none;
+	box-shadow: rgba(211, 16, 6, 0.8) 0 0px 0px 2px inset;
+	color: rgba(211, 16, 6, 0.8);
+	padding: 0.5rem 1.2rem;
+	border-radius: 7px;
+}
+#content .rBtn:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(211, 16, 6, 0.8) 0 0px 0px 40px inset;
+}
+#content .sBtn{
+	background-color: transparent;
+	border: none;
+	box-shadow: rgba(7, 157, 58, 0.8) 0 0px 0px 2px inset;
+	color: rgba(7, 157, 58, 0.8);
+	padding: 0.5rem 1.2rem;
+	border-radius: 7px;
+}
+#content .sBtn:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: rgba(7, 157, 58, 0.8) 0 0px 0px 40px inset;
+}
+.swal-overlay {
+  background-color: rgba(225, 230, 240, 0.45);
 }
