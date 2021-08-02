@@ -40,11 +40,14 @@ public class ProductController {
 
 		//카테고리별 상품리스트
 		@RequestMapping(value="/cateList",method=RequestMethod.GET)
-		public ModelAndView cateList(@RequestParam("c") String cateCode, ModelAndView model) throws Exception{
+		public ModelAndView cateList(@RequestParam("c") String cateCode, ModelAndView model,ProductVO vo) throws Exception{
 			logger.info("get cate list");
+			
+			
 			
 			model.setViewName("product/shopList");
 			model.addObject("cateList",productService.cateList(cateCode));
+			
 			
 			return model;
 		}
@@ -166,19 +169,10 @@ public class ProductController {
 				  
 				  model.setViewName("product/shopSearch");
 				  model.addObject("search",productService.mainSearch(vo));
+				  model.addObject("titleMain",vo.getKeyword());
 				  
 				  return model;
 				  
 			  }
-			 //전체상품 리스트
-			  @RequestMapping(value="/homeList",method=RequestMethod.GET)
-			  public ModelAndView homeList(ModelAndView model,ProductVO vo)throws Exception{
-				  
-				  logger.info("home list");
-				  
-				  model.setViewName("home");
-				  model.addObject("home",productService.homeList(vo));
-				  
-				  return model;
-			  }
+		
 }

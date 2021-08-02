@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 
@@ -74,15 +75,24 @@
 		
 })
 </script>
+<style type="text/css">
+.textarea_qcon{display:inline-block; width:15%; position:relative; top:-200px;font-family: 'Gowun Dodum', sans-serif;}
+.write_qna{margin-left:200px;font-family: 'Gowun Dodum', sans-serif;}
+.write_qna2{margin-left:300px;font-family: 'Gowun Dodum', sans-serif;}
+.button_write{margin:10px; position: absolute; right: 30%;font-family: 'Gowun Dodum', sans-serif;}
+</style>
 </head>
 <body>
-	<div id="root">
-		<header>
+
+			<%@ include file = "../include/header.jsp" %>
+	<div id="root" class="container">
+		<br>
 			<h1>문의사항</h1>
-		</header>
+		
 		<hr />
 
 		<section id="container">
+		<div class="write_qna">
 			<form role="readForm" method="post">
 
 				<input type="hidden" id="qNo" name="qNo" value="${read.qNo}" /> 
@@ -90,39 +100,38 @@
 				<input type="hidden" id="perPageNum" name="perPageNum"value="${scri.perPageNum}"> 
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
 				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
-
-				<table>
-					<tbody>
-						<tr>
-							<td><label for="qNo">번호</label><input type="text" id="qNo"
-								name="qNo" value="${read.qNo}" /></td>
-						</tr>
-						<tr>
-							<td><label for="qTitle">제목</label><input type="text"
-								id="qTitle" name="qTitle" value="${read.qTitle}" /></td>
-						</tr>
-						<tr>
-							<td><label for="qContent">내용</label> <textarea id="qContent"
-									name="qContent"><c:out value="${read.qContent}" /></textarea></td>
-						</tr>
-						<tr>
-							<td><label for="qWriter">작성자</label><input type="text"
-								id="qWriter" name="qWriter" value="${read.qWriter}" /></td>
-						</tr>
-						<tr>
-							<td><label for="qDate">작성일</label> <fmt:formatDate
-									value="${read.qDate}" pattern="yyyy.MM.dd hh:mm" /></td>
-						</tr>
-					</tbody>
-				</table>
-				<div>
+						<div class="form-group">
+							<input class="form-control2" type="hidden" id="qNo"name="qNo" value="${read.qNo}" readonly="readonly" />
+						</div>
+						<div class="form-group">
+							<label for="qTitle" class="col-sm-2 control-label">제목</label>
+							<input class="form-control2" type="text" id="qTitle" name="qTitle" value="${read.qTitle}" readonly="readonly"/>
+						</div>
+						<div class="form-group">
+							<label for="qWriter" class="col-sm-2 control-label">작성자</label>
+							<input class="form-control2" type="text" id="qWriter" name="qWriter" value="${read.qWriter}" readonly="readonly"/>
+						</div>
+						<div class="form-group">
+							<label for="qContent" class="textarea_qcon">내용</label> 
+							<textarea class="form-control3" id="qContent" name="qContent" readonly="readonly"><c:out value="${read.qContent}"/></textarea>
+						</div>
+						<div class="form-group">
+							<label for="qDate" class="col-sm-2 control-label">작성일</label> 
+							<fmt:formatDate value="${read.qDate}" pattern="yyyy.MM.dd hh:mm" />
+						</div>
+				<div class="button_write">
 					<button type="submit" class="update_btn">수정</button>
 					<button type="submit" class="delete_btn">삭제</button>
 					<button type="submit" class="list_btn">목록</button>
 				</div>
 			</form>
+		</div>	
+		<br><br><br>
+		<h4>댓글</h4>
+		<hr/>
+		
 			<!-- 댓글 -->
-			<div id="reply">
+			<div  class="write_qna2" id="reply">
 				<ol class="replyList">
 					<c:forEach items="${replyList}" var="replyList">
 						<li>
@@ -140,11 +149,13 @@
 							</c:if>
 							</div>
 						</li>
+						<br>
 					</c:forEach>
 				</ol>
 			</div>
+			<hr />
 			<c:if test="${member.verify != 9}">
-				<p>댓글은 관리자만 작성할 수 있습니다.</p>
+				<p style="font-family: 'Gowun Dodum', sans-serif;">댓글은 관리자만 작성할 수 있습니다.</p>
 			</c:if>
 			
 			<c:if test="${member.verify == 9 }">
@@ -155,21 +166,23 @@
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}">
 				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 
-				<div>
-					<label for="rWriter">작성자 </label><span>관리자</span>
+				<div class="write_qna">
+					<label for="rWriter" class="col-sm-2 control-label">작성자 :</label><span> 관리자</span>
 					<input type="hidden" id="rWriter" name="rWriter"/>
 					 <br /> 
-					 <label for="rcontent">내용 </label>
-					 <input type="text" id="rcontent" name="rContent" />
-				</div>
-				<div>
+					 <label for="rcontent" class="col-sm-2 control-label">내용 </label>
+					 <input  class="form-control3"  type="text" id="rcontent" name="rContent" />
+				
 					<button type="button" class="replyWriteBtn">작성</button>
 				</div>
 			</form>
 			</c:if>
 
 		</section>
-		<hr />
+	
 	</div>
+	
+		<%@ include file = "../include/footer.jsp" %>
+	
 </body>
 </html>

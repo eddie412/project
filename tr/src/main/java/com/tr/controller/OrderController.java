@@ -44,6 +44,7 @@ public class OrderController {
 		logger.info("★장바구니 진입....cart get");
 		String userId = (String) session.getAttribute("userId");
 
+		if(userId != null) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<OrderVO> cartItems = service.cart(userId);
@@ -56,6 +57,9 @@ public class OrderController {
 		model.addAttribute("cart", map);
 
 		return "order/cart";
+		}else {
+			return "redirect:/member/loginPage";
+		}
 	}
 
 	// 장바구니 상품 개별삭제

@@ -5,20 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>categories</title>
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
-	.menu_bg { width: 40%; height: 2000px; 
+	.menu_bg { width:  35%; height: 2000px; 
 				position: fixed; top:0px; 
 				left:0px; overflow: hidden; 
 				display: none; z-index: 10;}
 	.menu { position:absolute; top:0px; left:0px; 
-		width:40%; height: 100%; background-color:#DDD;  }
+		width:40%; height: 100%; background-color:#DDD;  font-family: 'Gowun Dodum', sans-serif; }
 	.menu > div { padding: 10%; margin-top :20px;}
 	div#menu_1 {
-		text-decoration: none;
-		color: black;
+	 font-family: 'Gowun Dodum', sans-serif;
+	font-size: 20px;
+	font-weight:bold;
+	 text-decoration:none;
+		margin-left: 10px;
+		
 	}
 	div#menu_2 {
-		text-decoration: none;
+	 font-family: 'Gowun Dodum', sans-serif;
+	text-decoration:none;
+		margin-left: 10px;
 		position: absolute; top:600px;
 		
 	}

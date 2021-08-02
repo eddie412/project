@@ -9,6 +9,7 @@
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/homeStyles.css" rel="stylesheet" />
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container px-6  py-1 px-lg-7">
@@ -27,15 +28,13 @@
 		<div id="userMenu">
 			<c:choose>
 				<c:when test="${member == null}">
-					<a href="/member/order"><img
-						src="../resources/images/myPage.png" id="icon-mypage" /></a>
-					<a href="/order/cart"><img src="resources/images/cart.gif"
-						id="icon-cart" /></a>
+					<a href="/member/order"><img src="../resources/images/myPage.png" id="icon-mypage" /></a>
+					<a href="/order/cart"><img src="../resources/images/cart.gif"id="icon-cart" /></a>
 				</c:when>
 				<c:otherwise>
 					<c:if test="${member.verify == 9}">
 						<a href="/admin/adminPage"><img
-							src="resources/images/admin.png"></a>
+							src="../resources/images/admin.png"></a>
 					</c:if>
 					<a href="/member/order"><img src="../resources/images/myPage.png"
 						id="icon-mypage" /></a>

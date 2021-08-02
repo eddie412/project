@@ -5,12 +5,11 @@
      <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<link href="../resources/css/homeStyles.css" rel="stylesheet" />
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
- section#container div#lin { display:inline-block; margin:10px; }
- section#container div.goodsThumb img { width:200px; height:200px; }
- section#container div.goodsName { padding:10px 0; text-align:center; }
- section#container div.goodsName a { color:#000; }
-  section#container div.goodsPrice {text-align:center;} 
+
 </style>
 	<title>전통 이酒 </title>
 </head>
@@ -22,27 +21,36 @@
 			</div>
 		</header>
 
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp"%>
-			</div>
-		</nav>
+		
 		<br>
-		<section id="container">
-			<div id="container_box" style="width: 80; height: 300;">
-				<div id="content">
-				
+		<section class="py-5">
+		
+		<p id="title_S" style="margin-left:50px; font-size:25px; font-family: 'Gowun Dodum', sans-serif; color:#3FB0C8;">카테고리별</p>
+		
+		<hr>
+		<div class="container px-4 px-lg-5 mt-5">
+			<div
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					
 					<c:forEach items="${cateList}" var="list">
-						<div id="lin">
-							<div class="goodsThumb">
-								<a href="/product/view?n=${list.pNo}"><img src="../resources/images/${list.pImg}"></a>
-							</div>
-							<div class="goodsName">
-								${list.pName}
-							</div>
-							<div class="goodsPrice">
-								<fmt:formatNumber pattern="###,###,###" value="${list.pPrice}"/>
-								원	
+					
+						<div class="col mb-5">
+							<div class="card h-100">
+								<div>
+									<a href="/product/view?n=${list.pNo}">
+									<img class="card-img-top" src="../resources/images/${list.pImg}"></a>
+								</div>
+								<div id="card-body p-4">
+									<div class="text-center">
+										<div class="fw-bolder">
+											${list.pName}
+										</div>
+										<div class="price_s"  style="font-family: 'Gowun Dodum', sans-serif;">
+											<fmt:formatNumber pattern="###,###,###" value="${list.pPrice}"/>
+											원	
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</c:forEach>
@@ -52,11 +60,8 @@
 
 		</section>
 
-		<footer>
-			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
-			</div>
-		</footer>
+		
 	</div>
 
 </body>

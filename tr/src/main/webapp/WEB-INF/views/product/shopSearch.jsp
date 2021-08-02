@@ -7,12 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
- section#container div#lin { display:inline-block; margin:10px; }
- section#container div.goodsThumb img { width:200px; height:200px; }
- section#container div.goodsName { padding:10px 0; text-align:center; }
- section#container div.goodsName a { color:#000; }
-  section#container div.goodsPrice {text-align:center;} 
+<link href="../resources/css/homeStyles.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style type="text/css">
+#title_m{margin-left:20px; font-size:25px; font-family: 'Gowun Dodum', sans-serif;}
+.price_s{font-family: 'Gowun Dodum', sans-serif;}
 </style>
 <title>전통 이酒 </title>
 </head>
@@ -24,41 +23,48 @@
 			</div>
 		</header>
 
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp"%>
-			</div>
-		</nav>
 		<br>
-		<section id="container">
-			<div id="container_box" style="width: 80; height: 300;">
-				<div id="content">
-				
+
+		<section class="py-5">
+					<p id="title_m">'${titleMain}' 검색결과</p>
+					
+					<hr>
+					<c:if test="${empty search}">
+						
+						일치하는 검색 결과가 없습니다.
+					</c:if>
+			<div class="container px-4 px-lg-5 mt-5">
+				<div
+					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+					
 					<c:forEach items="${search}" var="search">
-						<div id="lin">
-							<div class="goodsThumb">
-								<a href="/product/view?n=${search.pNo}"><img src="../resources/images/${search.pImg}"></a>
-							</div>
-							<div class="goodsName">
-								${search.pName}
-							</div>
-							<div class="goodsPrice">
-								<fmt:formatNumber pattern="###,###,###" value="${search.pPrice}"/>
-								원	
+						<div class="col mb-5">
+							<div class="card h-100">
+								<div>
+								<a href="/product/view?n=${search.pNo}"> 
+								<img class="card-img-top" src="../resources/images/${search.pImg}"></a>
+								</div>
+							<div id="card-body p-4">
+								<div class="text-center">
+									<div class="fw-bolder">${search.pName}</div>
+									<div class="price_s">
+										<fmt:formatNumber pattern="###,###,###"
+											value="${search.pPrice}" />
+										원
+									</div>
+								</div>
 							</div>
 						</div>
+						</div>
 					</c:forEach>
-			
-					</div>
+				</div>
 			</div>
-
 		</section>
 
-		<footer>
-			<div id="footer_box">
+	
 				<%@ include file="../include/footer.jsp"%>
-			</div>
-		</footer>
+		
 	</div>
 
 </body>
