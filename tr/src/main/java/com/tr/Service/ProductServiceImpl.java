@@ -80,5 +80,10 @@ public class ProductServiceImpl  implements ProductService{
 	
 		return productDao.mainSearch(vo);
 	}
+	@Override
+	public List<ProductVO> homeList(ProductVO vo) throws Exception {
+		
+		return productDao.homeList(vo);
+	}
 	
 }

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>문의사항</title>
@@ -26,10 +27,15 @@
 	</script>
 </head>
 <body>
-<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
+<header id = "header">
+		<div id="header_box">
+			<%@ include file = "../include/header.jsp" %>
+		</div>
+	</header>
+<div id="root" class="container">
+			<br>
+				<h1> 문의사항</h1>
+			
 			<hr />
 
 			<section id="container">

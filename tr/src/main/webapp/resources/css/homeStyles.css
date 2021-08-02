@@ -55,6 +55,7 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: var(--bs-font-sans-serif);
   font-size: 1rem;
   font-weight: 400;
@@ -71,6 +72,7 @@ hr {
   background-color: currentColor;
   border: 0;
   opacity: 0.25;
+ 
 }
 
 hr:not([size]) {
@@ -82,6 +84,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
+  font-family: 'Gowun Dodum', sans-serif;
 }
 
 h1, .h1 {
@@ -211,8 +214,8 @@ sup {
 }
 
 a {
-  color: #0d6efd;
-  text-decoration: underline;
+  color: #5A443F;
+  text-decoration: none;
 }
 a:hover {
   color: #0a58ca;
@@ -275,6 +278,7 @@ figure {
 img,
 svg {
   vertical-align: middle;
+  
 }
 
 table {
@@ -300,6 +304,7 @@ tfoot,
 tr,
 td,
 th {
+	text-align:center;
   border-color: inherit;
   border-style: solid;
   border-width: 0;
@@ -605,6 +610,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
+	font-family: 'Gowun Dodum', sans-serif;
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
@@ -1076,7 +1082,8 @@ progress {
 
   .col-sm-2 {
     flex: 0 0 auto;
-    width: 16.66666667%;
+    width: 15%;
+    font-family: 'Gowun Dodum', sans-serif;
   }
 
   .col-sm-3 {
@@ -1111,7 +1118,8 @@ progress {
 
   .col-sm-9 {
     flex: 0 0 auto;
-    width: 75%;
+    width:40%;
+    display: inline-block;
   }
 
   .col-sm-10 {
@@ -1996,6 +2004,7 @@ progress {
 .table-hover > tbody > tr:hover {
   --bs-table-accent-bg: var(--bs-table-hover-bg);
   color: var(--bs-table-hover-color);
+
 }
 
 .table-primary {
@@ -2160,8 +2169,14 @@ progress {
 }
 
 .form-control {
-  display: block;
-  width: 100%;
+	all: unset;
+	padding:0;
+	float:left;
+	height:15px;
+	position: relative !important;
+	outline:1px solid #3FB0C8;
+	margin:0px 10px;
+  width: 30% !important;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -2173,8 +2188,73 @@ progress {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border-radius: 0.25rem;
+ border-radius: 0;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control2 {
+	all: unset;
+	padding:0;
+	height:15px;
+	position: relative !important;
+	outline:1px solid #3FB0C8;
+	margin:5px 10px;
+  width: 50% !important;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+ border-radius: 0;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control3 {
+	all: unset;
+	padding:0;
+	height:200px;
+	position: relative !important;
+	outline:1px solid #3FB0C8;
+	margin:5px 10px;
+  width: 50% !important;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+ border-radius: 0;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.numBox_1{
+	all: unset;
+	padding:0;
+	text-align: center;
+	position: relative !important;
+	margin:5px 10px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+ border-radius: 0;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
 }
 @media (prefers-reduced-motion: reduce) {
   .form-control {
@@ -2680,7 +2760,7 @@ textarea.form-control-lg {
 .input-group > .form-control,
 .input-group > .form-select {
   position: relative;
-  flex: 1 1 auto;
+ 
   width: 1%;
   min-width: 0;
 }
@@ -4140,7 +4220,7 @@ input {
   padding-bottom: 0.3125rem;
   text-align: center;
   font-size: 3.5rem;
-  font-family: 'East Sea Dokdo', cursive;	
+  font-family: 'East Sea Dokdo', cursive !important;	
   text-decoration: none;
   white-space: nowrap;
 }
@@ -4470,6 +4550,7 @@ input {
 .card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
+  
 }
 
 .card-title {
@@ -4537,18 +4618,23 @@ input {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+   height: 310px;
+  
 }
 
 .card-img,
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
+  height: 300px;
+ 
 }
 
 .card-img,
 .card-img-bottom {
   border-bottom-right-radius: calc(0.25rem - 1px);
   border-bottom-left-radius: calc(0.25rem - 1px);
+   height: 300px;
 }
 
 .card-group > .card {
@@ -7003,6 +7089,7 @@ input {
 
 .m-0 {
   margin: 0 !important;
+  display: inline-block;
 }
 
 .m-1 {
@@ -7229,6 +7316,7 @@ input {
 
 .p-4 {
   padding: 1.5rem !important;
+ 
 }
 
 .p-5 {
@@ -7445,6 +7533,7 @@ input {
 
 .fw-bolder {
   font-weight: bolder !important;
+   font-family: 'Gowun Dodum', sans-serif;
 }
 
 .lh-1 {
@@ -7599,7 +7688,7 @@ input {
 }
 
 .bg-dark {
-  background-color: #212529 !important;
+  background-color: #5A443F !important;
 }
 
 .bg-body {

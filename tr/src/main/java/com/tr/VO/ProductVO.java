@@ -128,12 +128,5 @@ public class ProductVO {
 				+ cateName + ", cateCode=" + cateCode + ", cNO=" + cNO + ", cContent=" + cContent + ", cDate=" + cDate
 				+ ", userId=" + userId + ", searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

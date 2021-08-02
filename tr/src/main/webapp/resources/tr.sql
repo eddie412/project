@@ -125,7 +125,19 @@ start with 1
 maxvalue 1000
 nocache;
 
-create sequence sq_b		--시퀀스 for 맥주
+create sequence sq_y		--시퀀스 for 약주
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
+create sequence sq_f		--시퀀스 for 과실주
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
+create sequence sq_n		--시퀀스 for 안주
 increment by 1
 start with 1
 maxvalue 1000
@@ -221,6 +233,18 @@ create table tr_category(
 );
 
 
+-------------------카테고리 테이블---------------------
+create table tr_category( 
+	cateName varchar2(20) not null,				-- 카테고리 이름
+	cateCode varchar2(10) not null primary key	-- 카테고리 코드
+);
+insert into tr_category values('소주','s');
+insert into tr_category values('막걸리','m');
+insert into tr_category values('약주','y');
+insert into tr_category values('과실주','f');
+insert into tr_category values('안주','n');
+
+drop table tr_category;
 -------------------상품평 테이블---------------------
 create table tr_comment(
 	pNo varchar2(10),				-- 상품 번호
@@ -229,6 +253,18 @@ create table tr_comment(
 	cDate DATE DEFAULT sysdate,		-- 상품평 작성 날짜
 	userId varchar2(15)  not null	-- 사용자 아이디
 );
-
 alter table tr_comment ADD CONSTRAINT tr_comment_pNo FOREIGN KEY(pNo) REFERENCES tr_product(pNo);
 alter table tr_comment ADD CONSTRAINT tr_comment_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
+
+create sequence sq_comment		
+increment by 1
+start with 1
+maxvalue 1000
+nocache;
+
+drop sequence sq_qna;
+
+		 select 
+		 	pNo, cNo, cContent, cDate, userId
+		  from tr_comment 
+		  where pNo = 'm1';

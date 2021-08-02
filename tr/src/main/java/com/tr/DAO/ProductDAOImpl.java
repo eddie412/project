@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.tr.VO.CartVO;
 import com.tr.VO.ProductVO;
-import com.tr.VO.ReplyVO;
 
 @Repository
 public class ProductDAOImpl  implements ProductDAO{
@@ -87,6 +86,12 @@ public class ProductDAOImpl  implements ProductDAO{
 		public List<ProductVO> mainSearch(ProductVO vo) throws Exception {
 		
 			return sqlSession.selectList("product.goodsList", vo);
+		}
+		//전체 상품 목록
+		@Override
+		public List<ProductVO> homeList(ProductVO vo) throws Exception {
+		
+			return sqlSession.selectList("product.homeList",vo);
 		}
 	
 		

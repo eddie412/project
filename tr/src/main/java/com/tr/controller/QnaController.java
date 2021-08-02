@@ -3,12 +3,14 @@ package com.tr.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,19 +72,19 @@ private static final Logger logger = LoggerFactory.getLogger(QnaController.class
 		
 		}
 		
-		// 문의사항 조회
+		// 게시판 조회
 		@RequestMapping(value = "/readView", method = {RequestMethod.GET,RequestMethod.POST})
 		public String read(QnaVO qnaVO,@ModelAttribute("scri") SearchCriteria scri ,Model model, @RequestParam("qno") int qNo) throws Exception{
-		logger.info(qnaVO.toString());
+			logger.info("read.....");
 			
 			qnaVO.setqNo(qNo);
+			logger.info("qno값=" + qNo);
 			
 			model.addAttribute("read", service.read(qnaVO.getqNo()));
 			model.addAttribute("scri",scri);
 			
 			List<ReplyVO> replyList=service.readReply(qnaVO.getqNo());
 			model.addAttribute("replyList",replyList);
-			logger.info(replyList.toString());
 			//댓글개수 
 			model.addAttribute("count", service.count(qNo));
 			

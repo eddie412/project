@@ -12,7 +12,7 @@
 <body>
 	<header id="header">
 		<div id="header_box">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../include/aheader.jsp"%>
 		</div>
 	</header>
 	<div id="wrapper">
@@ -36,7 +36,9 @@
 					<option>상품 종류를 선택해주세요</option>
 					<option value="m">막걸리</option>
 					<option value="s">소주</option>
-					<option value="b">맥주</option>
+					<option value="y">약주</option>
+					<option value="f">과실주</option>
+					<option value="n">안주</option>
 					</select>
 					</td>
 				</tr>

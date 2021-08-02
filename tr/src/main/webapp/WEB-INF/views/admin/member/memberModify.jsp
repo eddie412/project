@@ -16,7 +16,7 @@ font-weight: bold;
 <body>
 	<header id="header">
 		<div id="header_box">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../include/aheader.jsp"%>
 		</div>
 	</header>
 	<div id="wrapper">

@@ -5,21 +5,28 @@ package com.tr.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.tr.Service.ProductService;
 import com.tr.VO.CartVO;
 import com.tr.VO.MemberVO;
 import com.tr.VO.ProductVO;
+import com.tr.VO.ReplyVO;
+import com.tr.VO.SearchCriteria;
 
 @Controller
 @RequestMapping("product/*")
@@ -33,11 +40,14 @@ public class ProductController {
 
 		//카테고리별 상품리스트
 		@RequestMapping(value="/cateList",method=RequestMethod.GET)
-		public ModelAndView cateList(@RequestParam("c") String cateCode, ModelAndView model) throws Exception{
+		public ModelAndView cateList(@RequestParam("c") String cateCode, ModelAndView model,ProductVO vo) throws Exception{
 			logger.info("get cate list");
+			
+			
 			
 			model.setViewName("product/shopList");
 			model.addObject("cateList",productService.cateList(cateCode));
+			
 			
 			return model;
 		}
@@ -159,9 +169,10 @@ public class ProductController {
 				  
 				  model.setViewName("product/shopSearch");
 				  model.addObject("search",productService.mainSearch(vo));
+				  model.addObject("titleMain",vo.getKeyword());
 				  
 				  return model;
 				  
 			  }
-			 
+		
 }

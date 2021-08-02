@@ -22,7 +22,7 @@ th{
 <body>
 	<header id="header">
 		<div id="header_box">
-			<%@ include file="../../include/header.jsp"%>
+			<%@ include file="../../include/aheader.jsp"%>
 		</div>
 	</header>
 	<div id="wrapper">
@@ -97,7 +97,7 @@ th{
 						<th></th>
 					</tr>
 					<tr>
-						<td>${replyList.qWriter}</td>
+						<td>${replyList.rWriter}</td>
 						<td><fmt:formatDate value="${replyList.rDate}" pattern="yyyy-MM-dd" /></td>
 						<td>${replyList.rContent}</td>	
 						<td>
