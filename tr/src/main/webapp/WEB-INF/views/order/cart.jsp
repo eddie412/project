@@ -78,7 +78,7 @@
 				</table>
 				<div id="btn">
 					<input type="button" value="쇼핑 계속하기" class="gBtn"
-						onclick="location.href='/'"> <input type="button"
+						onclick="location.href='javascript:history.go(-1)'"> <input type="button"
 						value="전체 삭제" class="deleteAll dBtn"> <input type="button"
 						value="주문하기" class="sBtn" onclick="check()">
 				</div>

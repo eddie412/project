@@ -9,7 +9,7 @@
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/homeStyles.css" rel="stylesheet" />
-
+<script src="../resources/js/homescripts.js"></script>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container px-6  py-1 px-lg-7">
@@ -20,8 +20,8 @@
 		<!-- 검색창 -->
 		<form id="search-content" action="../product/search" method="get">
 			<div name="searchType" id="search">
-			<input type="text" name="keyword" value="${keyword}" class="input" id="search-input">
-			<button type="reset" class="search" id="search-btn"></button>
+				<input type="text" name="keyword" class="input" id="search-input" value="${keyword}">
+				<button type="reset" class="search" id="search-btn"></button>
 			</div>
 		</form>
 		<!-- 사용자 메뉴 -->
