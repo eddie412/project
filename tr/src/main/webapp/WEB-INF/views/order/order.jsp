@@ -46,6 +46,9 @@ function orderCheck(){
 		frm.rPhone.focus();
 		return false;
 	}
+	else{
+		alert("구매해 주셔서 감사합니다.");
+	}
 }
 </script>
 <body>

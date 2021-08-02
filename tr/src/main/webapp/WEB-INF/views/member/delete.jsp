@@ -36,7 +36,9 @@
 </script>
 <body>
 	<!-- 헤드 -->
-	<div id="header"></div>
+	<div id="header">
+		<%@include file="../include/header.jsp" %>
+	</div>
 	
 	<!-- 사이드 메뉴 -->
     <%@ include file="../include/mypageNav.jsp" %>

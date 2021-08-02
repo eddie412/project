@@ -87,10 +87,17 @@ function updateCheck(){
 <!-- font -->
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <title>마이페이지</title>
+<style>
+td{
+	text-align:left;
+}
+</style>
 </head>
 <body>
 	<!-- 헤드 -->
-	<div id="header"></div>
+	<div id="header">
+		<%@include file="../include/header.jsp" %>
+	</div>
 	
 	<!-- 사이드 메뉴 -->
     <%@ include file="../include/mypageNav.jsp" %>
@@ -104,37 +111,37 @@ function updateCheck(){
 				<table>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" id="userName"  name="userName"value="${name}"></td>
+						<td style="text-align:left;"><input type="text" id="userName"  name="userName"value="${name}" ></td>
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" id="userId"  name="userId" value="${userId}"	 readonly="readonly" style="border: 0px"></td>
+						<td style="text-align:left;"><input type="text" id="userId"  name="userId" value="${userId}"	 readonly="readonly" style="border: 0px"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td>
+						<td style="text-align:left;">
 							<input type="text" id="userPass" name="userPass" value="${pass}">
 							<input type="hidden"  id="passCheck" value="${pass}">
 						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" id="userEmail" name="userEmail" value="${email}"></td>
+						<td style="text-align:left;"><input type="email" id="userEmail" name="userEmail" value="${email}"></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호</th>
-						<td><input type="text" id="userPhone" name="userPhone" value="${phone}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
+						<td style="text-align:left;"><input type="text" id="userPhone" name="userPhone" value="${phone}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" ></td>
 					</tr>
 					<tr>
 						<th>주소</th>
-						<td><input type="text" id="userAddr" name="userAddr" value="${addr}" style="width: 90%;"></td>
+						<td style="text-align:left;"><input type="text" id="userAddr" name="userAddr" value="${addr}" style="width: 90%;"></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="date" id="userBday" name="userBday" value="${bday}" /></td>
+						<td style="text-align:left;"><input type="date" id="userBday" name="userBday" value="${bday}" /></td>
 					</tr>
 					<tr>
-						<td colspan="2" id="btn">
+						<td colspan="2" id="btn" >
 							<input type="button" class="rBtn" value="취소"  id="reset">
 							<input type="submit" class="sBtn" value="수정" onclick="return updateCheck()">
 						</td>

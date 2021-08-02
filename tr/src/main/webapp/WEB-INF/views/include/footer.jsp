@@ -28,7 +28,7 @@ footer	dl#footerd{
 </head>
 <body>
 	<!-- Footer-->
-	<footer class="py-5 bg-dark">
+	<footer class="bg-dark">
 		<div class="container">
 			<div id="footerbox">
 			

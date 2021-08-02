@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!-- Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap"
@@ -9,21 +8,22 @@
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/homeStyles.css" rel="stylesheet" />
-<script src="../resources/js/homescripts.js"></script>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:7.6rem;">
 	<div class="container px-6  py-1 px-lg-7">
 		<!-- 햄버거 메뉴 -->
 		<%@include file="../include/category.jsp" %>
 		
 		<a class="navbar-brand" href="/">전통이酒</a>
 		<!-- 검색창 -->
+		<div id=search2>
 		<form id="search-content" action="../product/search" method="get">
 			<div name="searchType" id="search">
-				<input type="text" name="keyword" class="input" id="search-input" value="${keyword}">
+				<input type="text" name="keyword" value="${keyword}" class="searchinput" id="search-input">
 				<button type="reset" class="search" id="search-btn"></button>
 			</div>
 		</form>
+		</div>
 		<!-- 사용자 메뉴 -->
 		<div id="userMenu">
 			<c:choose>
@@ -47,3 +47,4 @@
 	</div>
 </nav>
 </body>
+<script src="../resources/js/homescripts.js"></script>

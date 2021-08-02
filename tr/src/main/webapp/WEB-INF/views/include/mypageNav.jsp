@@ -17,6 +17,7 @@
 	text-align: center;
 	border-right: 1px solid gray;
 	font-family: 'Gowun Dodum', sans-serif;
+	z-index:-1;
 }
 
 #nav .nav_title {
@@ -31,13 +32,11 @@
 #icon-mypage{
 	width: 3rem;
 	position: relative;
-	margin-bottom: 1.5rem;
-	margin-left: 0.8rem;
 }
 
 #nav span{
+	display:block;
 	font-size: 14px;
-	margin-left: -4.1rem;
 	color: #312C29;
 }
 
@@ -77,14 +76,14 @@
 	text-decoration: none;
 	font-size: 14px;
 }
+
 </style>
 <body>
 	<!-- 사이드 메뉴 -->
 	<div id="nav">
 		<div class="nav_title">
 			 <img src="../../resources/images/myPage.png" id="icon-mypage" />
-			<span><b>${name}</b>님</span><br>
-			마이페이지
+			<span><b>${name}</b>님<br></span><span style="font-size:20px">마이페이지</span><br>
 		</div>
 		<ul class="nav_content">
 			<li><a href="order">주문내역</a></li>

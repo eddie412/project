@@ -5,18 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>categories</title>
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <style>
-	.menu_bg { width: 40%; height: 2000px; 
-				position: fixed; top:0px; 
-				left:0px; overflow: hidden; 
-				display: none; }
-	.menu { position:absolute; top:0px; left:0px; 
-		width:40%; height: 100%; background-color:#DDD; }
-	.menu > div { padding: 10%; }
-	div#menu_1 {
-		text-decoration: none;
-		color: black;
-	}
+   .menu_bg { width: 35%; height: 2000px; 
+            position: fixed; top:0px; 
+            left:0px; overflow: hidden; 
+            display: none; z-index:10 !important;}
+   .menu { position:absolute; top:0px; left:0px; 
+      width:40%; height: 100%; background-color:#DDD;  font-family: 'Gowun Dodum', sans-serif; }
+   .menu > div {position:relative; top:70px; padding: 10%; }
+      div#menu_1 {
+    font-family: 'Gowun Dodum', sans-serif;
+   font-size: 20px;
+   font-weight:bold;
+    text-decoration:none;
+      margin-left: 10px;
+      
+   }
+   div#menu_2 {
+    font-family: 'Gowun Dodum', sans-serif;
+    text-decoration: none;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 150;
+      
+   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
@@ -43,16 +58,18 @@
 </script>
 </head>
 <body>
-	<img src="/resources/images/Imenu.png" width="40" onclick="ShowMenu()">
+
+	<img src="../resources/images/menubar.png" class="navber-menu" width="40" onclick="ShowMenu()">
+
 	<div class="menu_bg">
 		<div class="menu">
-			<div style="width:80%; text-align: right"
-			 onclick="HideMenu()">닫기</div>
+			<div style="width:80%; text-align: right" onclick="HideMenu()">닫기</div>
 			<div id="menu_1"><a href="/product/cateList?c=m"> 막걸리</a></div>
 			<div id="menu_1"><a href="/product/cateList?c=s">  소주</a></div>
 			<div id="menu_1"><a href="/product/cateList?c=y">  약주/탁주</a></div>
 			<div id="menu_1"><a href="/product/cateList?c=f">  과실주</a></div>
 			<div id="menu_1"><a href="/product/cateList?c=n">  안주</a></div>
+			<div id="menu_2"><a href="../qna/list"> 고객센터</a></div> 
 		</div>
 	</div>
 </body>

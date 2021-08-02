@@ -31,7 +31,7 @@
 			<div class="col-lg-6">
 				<div class="p-5">
 					<div class="text-center">
-						<h1 class="h4 text-gray-900 mb-4">Login</h1>
+						<h1 class="h4 text-gray-900 mb-4"><a class="navbar-brand" style="font-size:30px;color:#8B4513;"href="/">전통이酒</a></h1>
 					</div>
 					<form name="form" method="post" action="/member/login" class="user">
 						<c:if test="${member == null}">

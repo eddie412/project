@@ -43,13 +43,12 @@ function replyList(){
 }
 </script>
 <style>
-section#container{width:1000px;height:auto;margin-left:250;}
+section#container{width:1000px;height:auto;margin-left:20%;}
  section#container::after { content:""; display:block; clear:both;}
 section#content{width:800px;}
  section#content::after { content:""; display:block; clear:both; }
-
  div.goods div.goodsImg {float:left; width:350px; margin:10px; }
- div.goods div.goodsImg img { width:350px; height:auto;border:1px solid #eaeaea;  }
+ div.goods div.goodsImg img { width:350px; height:470;border:1px solid #eaeaea;  }
  div.goods div.goodsInfo {float:right;width:400px; font-size:22px; }
  div.goods div.goodsInfo p { margin:20px 0 20px 20px; }
  div.goods div.goodsInfo p span {display:inline-block; width:100px; margin-right:15px; }
@@ -59,12 +58,11 @@ div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; backgr
  div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; background:none; }
  div.goods div.goodsInfo p.addToCart { text-align:right; }
  div.goods div.gdsDes { font-size:18px; clear:both; padding-top:30px; margin:20px 0 20px 20px;}
-
 div#reply{display:block;position:relative; margin-left:100;}
-	div#reply p#replylogin{display:block; clear:both;  margin-top: 50; }
+   div#reply p#replylogin{display:block; clear:both;  margin-top: 50; }
  section.replyForm { content:""; display:block; clear:both;  padding:30px 0; }
  section.replyForm div.input_area { margin:10px 0; }
- section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:700px;; height:150px; margin-left:200;}
+ section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:100%;; height:150px;}
  section.replyForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; position:relative;left:750;}
  
  section.replyList { padding:30px 0; }
@@ -76,14 +74,12 @@ div#reply{display:block;position:relative; margin-left:100;}
  section.replyList div.replyContent { padding:10px; margin:20px 0; }
  section.replyList div.replyFooter{margin-bottom:10px;position: relative; left:580;}
 section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
-
  div.replyModal { position:relative; z-index:1; display:none;}
  div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
  div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:525px; height:290px; padding:20px 10px; background:#fff; border:2px solid #666; }
  div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px; height:200px; }
  div.modalContent button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
  div.modalContent button.modal_cancel { margin-left:20px; }
-
 h5{margin-left:50; color:#3FB0C8; width:100;}
 </style>
 	<title>전통 이酒 </title>
@@ -211,19 +207,13 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 				<p id="replylogin">
 				
 						소감을 남기시려면 <a href="/member/loginPage">로그인</a>해주세요
-				
 				</c:if>
-
-				
-
-				<section class="replyList">
-				
-					<ol>
+					<!-- <ol>
 				
 					</ol>
 					<script> 
 						replyList();
-					</script>
+					</script> -->
 					
 					<script>
 						$(document).on("click", ".modify", function(){
@@ -265,8 +255,6 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 						  }
 					 });
 					</script>
-					
-				</section>
 				<c:if test="${member != null}">
 					<section class="replyForm">
 						<form role="form" method="post" autocomplete="off" action="/product/replyView">

@@ -14,7 +14,9 @@
 </head>
 <body>
 	<!-- 헤드 -->
-	<div id="header"></div>
+	<div id="header">
+		<%@include file="../include/header.jsp" %>
+	</div>
 	
 	<!-- 사이드 메뉴 -->
     <%@ include file="../include/mypageNav.jsp" %>
@@ -22,11 +24,11 @@
 	<!-- 메인 -->
 	<div id="main">
 		<div class="title">마이페이지 > <span>주문내역</span></div>
-			<div style="margin-left:300px;margin-top:200px;font-size:20px;">
 			<c:if test="${empty order}">
+			<div style="margin-left:300px;margin-top:200px;font-size:20px;">
 				주문하신 상품이 없습니다.
-			</c:if>
 			</div>
+			</c:if>
 		<c:forEach var="order" items="${order}">
 
 			<div id="content">

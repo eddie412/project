@@ -70,8 +70,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- Core theme JS-->
-	<script src="../resources/js/homescripts.js"></script>
 </body>
 </html>
 

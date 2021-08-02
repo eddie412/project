@@ -124,7 +124,7 @@ public class MemberController {
 	public String order(Model model, HttpSession session, OrderVO vo) throws Exception {
 		logger.info("★마이페이지(주문내역)....mpOrder get");
 		String userId = (String) session.getAttribute("userId");
-
+		logger.info(userId.toString());
 		if (userId != null) {
 			MemberVO mvo = service.info(userId);
 			vo.setUserId(userId);
@@ -137,6 +137,7 @@ public class MemberController {
 
 			return "member/order";
 		} else {
+			logger.info("오니?");
 			return "redirect:/member/loginPage";
 		}
 	}

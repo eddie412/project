@@ -10,11 +10,17 @@ create table tr_member(
   verify Number not null						-- 관리자 구분(1: 사용자)
 );
 
-drop table tr_member;
+drop table tr_member cascade Constraints;
 
 delete from tr_member where userName='aa';
 
 select * from tr_member;
+
+insert into tr_member(userId,userPass,userName,userEmail,userPhone,userAddr,userBday,verify)
+values ('admin',1234,'김주영','juyoung412@gmail.com','01085146744','상계동','93/04/12',9);
+
+insert into tr_member(userId,userPass,userName,userEmail,userPhone,userAddr,userBday,verify)
+values ('jk',1234,'김주영','juyoung412@gmail.com','01085146744','상계동','93/04/12',9);
 
 -------------------- 주문 테이블 ------------------------
 create table tr_order(		
@@ -38,7 +44,6 @@ maxvalue 1000
 nocache;
 
 alter table tr_order ADD CONSTRAINT tr_order_userId FOREIGN KEY(userId) REFERENCES tr_member(userId);
-
 
 drop table tr_order CASCADE CONSTRAINTS
 drop sequence sq_order;
@@ -66,6 +71,9 @@ nocache;
 alter table tr_orderDetails ADD CONSTRAINT tr_orderDetials_oId FOREIGN KEY(oId) REFERENCES tr_order(oId);
 
 drop table tr_orderDetails;
+drop sequence sq_oDetails;
+
+select * from tr_orderDetails;
 
 -------------------- 장바구니 테이블 ------------------------
 create table tr_cart(
@@ -109,9 +117,11 @@ drop table tr_product;
 drop table tr_product CASCADE CONSTRAINTS;
 select * from tr_product;
 
-drop sequence sq_b;
+drop sequence sq_y;
 drop sequence sq_s;
 drop sequence sq_m;
+drop sequence sq_f;
+drop sequence sq_n;
 
 create sequence sq_m		--시퀀스 for 막걸리
 increment by 1
@@ -174,8 +184,10 @@ values (sq_qna.nextval,'문의사항입니다','aaa','이거이상해요',1234);
 insert into tr_qna(qNO,qTitle,qWriter,qContent)
 values (sq_qna.nextval,'문의사항입니다','aaa','이거이상해요');
 
-alter table tr_qna modify qWriter varchar2(10);
 select * from tr_qna;
+
+drop table tr_qna;
+drop sequence sq_qna
 
 -------------------답글 테이블---------------------
 create table tr_reply( 
@@ -217,20 +229,14 @@ start with 1
 maxvalue 1000
 nocache;
 
-drop sequence sq_qna;
+drop sequence sq_reply;
+drop sequence sq_order;
 
 insert into tr_qna(qNo, qTitle, qWriter, qContent, qPass)
 values(sq_qna.nextval, 'test', 'tester', '안녕', 1234);
 
 delete from tr_qna
 where qNo = 2;
-
-
--------------------카테고리 테이블---------------------
-create table tr_category( 
-	cateName varchar2(20) not null,				-- 카테고리 이름
-	cateCode varchar2(10) not null primary key	-- 카테고리 코드
-);
 
 
 -------------------카테고리 테이블---------------------
@@ -262,7 +268,9 @@ start with 1
 maxvalue 1000
 nocache;
 
+drop sequence sq_comment;
 drop sequence sq_qna;
+select * from TR_COMMENT;
 
 		 select 
 		 	pNo, cNo, cContent, cDate, userId

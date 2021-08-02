@@ -181,7 +181,7 @@ public class OrderController {
 			session.removeAttribute("no" + i);
 		}
 
-		return "order/orderComplete";
+		return "redirect:/";
 	}
 
 }
