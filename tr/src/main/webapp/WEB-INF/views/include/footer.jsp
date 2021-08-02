@@ -5,15 +5,15 @@
 <style>
 
 foooter	p#serviceName{
+	
 		margin-left: 5%;
 		float:left;
 		font-size:25px;
-		color:white !important;
 	}
 footer	dl#footerd{
 		margin-right:5%;
 		float:right;
-		font-size: 10px;
+		font-size: 13px;
 		color:white;
 		}
 </style>
@@ -25,20 +25,16 @@ footer	dl#footerd{
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
-	<div id="footerbox">
-		<p id="serviceName">
-		  전통 이酒
-		</p>
-		
-		<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
-		<dl id="footerd">
-			<dt>서울특별시 송파구 중대로 109 8층</dt>
-			<dt>사업자 등록번호: 120-12-12121</dt>
-			<dt>통신판매업 신고: 2021-서울송파-0801</dt>
+			<div id="footerbox">
 			
-		</dl>
-	
-	</div>
+				
+				<p class="m-0 text-center text-white">365고객센터 <br>02-401-5660</p>
+				<dl id="footerd">
+					<dt>서울특별시 송파구 중대로 109 8층</dt>
+					<dt>사업자 등록번호: 120-12-12121</dt>
+					<dt>통신판매업 신고: 2021-서울송파-0801</dt>
+				</dl>
+			</div>
 		</div>
 	</footer>
 
