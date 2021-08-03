@@ -25,7 +25,7 @@
 	<div id="main">
 		<div class="title">마이페이지 > <span>주문내역</span></div>
 			<c:if test="${empty order}">
-			<div style="margin-left:300px;margin-top:200px;font-size:20px;">
+			<div style="margin-left:700px;margin-top:200px;font-size:20px;">
 				주문하신 상품이 없습니다.
 			</div>
 			</c:if>
@@ -33,7 +33,7 @@
 
 			<div id="content">
 					<div class="image">
-						<a href='/product/view?n=${order.pNo}'><img src="../resources/images/${order.pImg}" alt="${order.pName} 이미지" ></a>
+						<a href='/product/view?n=${order.pNo}'><img src="../resources/${order.pImg}" alt="${order.pName} 이미지" ></a>
 					</div>
 					<div class="info">
 						<div class="no">

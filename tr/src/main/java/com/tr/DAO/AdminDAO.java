@@ -32,6 +32,7 @@ public interface AdminDAO {
 
 	// 주문 삭제
 	public void orderDelete(String oId) throws Exception;
+	public void orderDetailsDelete(String oId) throws Exception;
 
 	// 회원 조회
 	public MemberVO memberView(String userId) throws Exception;

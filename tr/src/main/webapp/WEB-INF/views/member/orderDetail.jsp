@@ -99,7 +99,7 @@ function genRowspan(className){
 						<c:forEach var="orderDetail" items="${orderDetail}">
 						<tr>
 								<td>${orderDetail.pName}</td>
-								<td><img src="../resources/images/${orderDetail.pImg}"	alt="${orderList.pName} 이미지"></td>
+								<td><img src="../resources/${orderDetail.pImg}"	alt="${orderList.pName} 이미지"></td>
 								<td>${orderDetail.pInfo}</td>
 								<td><fmt:formatNumber pattern="###,###,###" value="${orderDetail.pPrice}" />원</td>
 								<td>${orderDetail.count}개</td>

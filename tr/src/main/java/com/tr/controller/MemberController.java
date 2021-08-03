@@ -124,7 +124,7 @@ public class MemberController {
 	public String order(Model model, HttpSession session, OrderVO vo) throws Exception {
 		logger.info("★마이페이지(주문내역)....mpOrder get");
 		String userId = (String) session.getAttribute("userId");
-		logger.info(userId.toString());
+
 		if (userId != null) {
 			MemberVO mvo = service.info(userId);
 			vo.setUserId(userId);
@@ -221,7 +221,7 @@ public class MemberController {
 	}
 
 	// 마이페이지_회원정보 수정
-	@RequestMapping(value = "mp_update", method = RequestMethod.POST)
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(MemberVO vo, HttpSession session) throws Exception {
 		service.update(vo);
 
@@ -248,7 +248,7 @@ public class MemberController {
 	}
 
 	// 마이페이지_회원정보 삭제 post
-	@RequestMapping(value = "mp_delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(MemberVO vo, HttpSession session) throws Exception {
 		service.delete(vo);
 

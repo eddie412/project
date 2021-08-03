@@ -53,7 +53,9 @@ function orderCheck(){
 </script>
 <body>
 <!-- 헤드 -->
-<div id="header"></div>
+<div id="header">
+		<%@include file="../include/header.jsp" %>
+	</div>
 
 <!-- 주문서  -->
 <div id="main">
@@ -68,7 +70,7 @@ function orderCheck(){
 						<c:set var="item" value="item${i}"/>
 							<input type="hidden"  name="cId" value="${order[item].cId}">
 							<tr>
-								<td><img src="../resources/images/${order[item].pImg}"	alt="${order[item].pName} 이미지" ></td>
+								<td><img src="../resources/${order[item].pImg}"	alt="${order[item].pName} 이미지" ></td>
 								<td>${order[item].pName}</td>
 								<td>${order[item].count}개</td>
 								<td class="price"><fmt:formatNumber pattern="###,###,###"	value="${order[item].count * order[item].pPrice}" />원</td>

@@ -12,7 +12,7 @@
             position: fixed; top:0px; 
             left:0px; overflow: hidden; 
             display: none; z-index:10 !important;}
-   .menu { position:absolute; top:0px; left:0px; 
+   .menu { position:absolute; top:0px; left:0px; z-index:10;
       width:40%; height: 100%; background-color:#DDD;  font-family: 'Gowun Dodum', sans-serif; }
    .menu > div {position:relative; top:70px; padding: 10%; }
       div#menu_1 {
@@ -57,7 +57,7 @@
 
 </script>
 </head>
-<body>
+<body style="z-index:5;">
 
 	<img src="../resources/images/menubar.png" class="navber-menu" width="40" onclick="ShowMenu()">
 

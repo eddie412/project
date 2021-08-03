@@ -19,7 +19,9 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <body>
 	<!-- 헤드 -->
-	<div id="header"></div>
+	<div id="header">
+		<%@include file="../include/header.jsp" %>
+	</div>
 
 	<!-- 타이틀 -->
 	<div id="main">
@@ -28,7 +30,7 @@
 		<div id="content">
 			<form method="get" action="/order/order" role="frm">
 				<table id="main">
-					<tr class="row">
+					<tr class="crow">
 						<th><input type="checkbox" name="allCheck" id="allCheck" /></th>
 						<th>상품정보</th>
 						<th>수량</th>
@@ -50,7 +52,7 @@
 										value="${cart.count * cart.pPrice}"></td>
 									<td>
 										<div style="display: flex">
-											<img src="../resources/images/${cart.pImg}"
+											<img src="../resources/${cart.pImg}"
 												alt="${cart.pName} 이미지" class="img">
 											<div class="info">
 												${cart.pName}<br>
@@ -70,7 +72,7 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-					<tr class="row">
+					<tr class="crow">
 						<th colspan="2" style="color: #5A443F">총합</th>
 						<td colspan="3" style="font-weight: bold; color: #3FB0C8;"
 							id="total" value="${sum}">0원</td>

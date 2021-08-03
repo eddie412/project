@@ -4138,7 +4138,7 @@ textarea.form-control-lg {
   width: 30px;
   height: 30px;
   margin-top: -0.5rem;
-  margin-left: 32rem;
+  margin-left: 49rem;
   border: 4px solid #3FB0C8;
   border-radius: 50%;
   background: none;
@@ -4188,7 +4188,7 @@ textarea.form-control-lg {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   margin-top: 0.4rem;
-  margin-left: 32.6rem;
+  margin-left: 49.5rem;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
@@ -4206,7 +4206,7 @@ textarea.form-control-lg {
   width: 27px;
   height: 4px;
   margin-top: -0.6rem;
-  margin-left: 31rem;
+  margin-left: 48rem;
   background-color: #3FB0C8;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -4222,7 +4222,7 @@ textarea.form-control-lg {
   height: 4px;
   background-color: #3FB0C8;
   margin-top: -0.6rem;
-  margin-left: 31rem;
+  margin-left: 48rem;
   cursor: pointer;
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -4266,6 +4266,7 @@ textarea.form-control-lg {
 .navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
+  margin:auto;
   text-align: center;
   font-size: 3.5rem;
   font-family: 'East Sea Dokdo', cursive !important;	
@@ -4391,7 +4392,7 @@ textarea.form-control-lg {
 @media (min-width: 992px) {
   .navbar-expand-lg {
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
   }
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;

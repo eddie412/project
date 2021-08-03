@@ -1,11 +1,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script> 
 function replyList(){
  var pNo = "${shopList.pNo}";
@@ -43,55 +44,241 @@ function replyList(){
 }
 </script>
 <style>
-section#container{width:1000px;height:auto;margin-left:20%;}
- section#container::after { content:""; display:block; clear:both;}
-section#content{width:800px;}
- section#content::after { content:""; display:block; clear:both; }
- div.goods div.goodsImg {float:left; width:350px; margin:10px; }
- div.goods div.goodsImg img { width:350px; height:470;border:1px solid #eaeaea;  }
- div.goods div.goodsInfo {float:right;width:400px; font-size:22px; }
- div.goods div.goodsInfo p { margin:20px 0 20px 20px; }
- div.goods div.goodsInfo p span {display:inline-block; width:100px; margin-right:15px; }
- 
- div.goods div.goodsInfo p.cartStock input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
-div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; background:none; }
- div.goods div.goodsInfo p.cartStock button { font-size:26px; border:none; background:none; }
- div.goods div.goodsInfo p.addToCart { text-align:right; }
- div.goods div.gdsDes { font-size:18px; clear:both; padding-top:30px; margin:20px 0 20px 20px;}
-div#reply{display:block;position:relative; margin-left:100;}
-   div#reply p#replylogin{display:block; clear:both;  margin-top: 50; }
- section.replyForm { content:""; display:block; clear:both;  padding:30px 0; }
- section.replyForm div.input_area { margin:10px 0; }
- section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:100%;; height:150px;}
- section.replyForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; position:relative;left:750;}
- 
- section.replyList { padding:30px 0; }
- section.replyList ol { padding:0; margin:0; }
- section.replyList ol li { padding:10px 0; border-bottom:2px solid #eee; margin-top:30px; }
- section.replyList div.userInfo { }
- section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
- section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
- section.replyList div.replyContent { padding:10px; margin:20px 0; }
- section.replyList div.replyFooter{margin-bottom:10px;position: relative; left:580;}
-section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
- div.replyModal { position:relative; z-index:1; display:none;}
- div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
- div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:525px; height:290px; padding:20px 10px; background:#fff; border:2px solid #666; }
- div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px; height:200px; }
- div.modalContent button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
- div.modalContent button.modal_cancel { margin-left:20px; }
-h5{margin-left:50; color:#3FB0C8; width:100;}
+section#container {
+	width: 1000px;
+	height: auto;
+	margin-left: 20%;
+	margin-bottom: 10%
+}
+
+section#container::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+section#content {
+	width: 800px;
+}
+
+section#content::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+div.goods div.goodsImg {
+	float: left;
+	width: 350px;
+	margin: 10px;
+}
+
+div.goods div.goodsImg img {
+	width: 350px;
+	height: 470;
+	border: 1px solid #eaeaea;
+}
+
+div.goods div.goodsInfo {
+	float: right;
+	width: 400px;
+	font-size: 22px;
+}
+
+div.goods div.goodsInfo p {
+	margin: 20px 0 20px 20px;
+}
+
+div.goods div.goodsInfo p span {
+	display: inline-block;
+	width: 100px;
+	margin-right: 15px;
+}
+
+div.goods div.goodsInfo p.cartStock input {
+	font-size: 22px;
+	width: 50px;
+	padding: 5px;
+	margin: 0;
+	border: 1px solid #eee;
+}
+
+div.goods div.goodsInfo p.cartStock button {
+	font-size: 26px;
+	border: none;
+	background: none;
+}
+
+div.goods div.goodsInfo p.cartStock button {
+	font-size: 26px;
+	border: none;
+	background: none;
+}
+
+div.goods div.goodsInfo p.addToCart {
+	text-align: right;
+}
+
+div.goods div.gdsDes {
+	font-size: 18px;
+	clear: both;
+	padding-top: 30px;
+	margin: 20px 0 20px 20px;
+}
+
+div#reply {
+	display: block;
+	position: relative;
+	margin-left: 100;
+}
+
+div#reply p#replylogin {
+	display: block;
+	clear: both;
+	margin-top: 50;
+}
+
+section.replyForm {
+	content: "";
+	display: block;
+	clear: both;
+	padding: 30px 0;
+}
+
+section.replyForm div.input_area {
+	margin: 10px 0;
+}
+
+section.replyForm textarea {
+	font-size: 16px;
+	font-family: '맑은 고딕', verdana;
+	padding: 10px;
+	width: 100%;;
+	height: 150px;
+}
+
+section.replyForm button {
+	font-size: 20px;
+	padding: 5px 10px;
+	margin: 10px 0;
+	background: #fff;
+	border: 1px solid #ccc;
+	position: relative;
+	left: 750;
+}
+
+section.replyList {
+	padding: 30px 0;
+}
+
+section.replyList ol {
+	padding: 0;
+	margin: 0;
+}
+
+section.replyList ol li {
+	padding: 10px 0;
+	border-bottom: 2px solid #eee;
+	margin-top: 30px;
+}
+
+section.replyList div.userInfo {
+	
+}
+
+section.replyList div.userInfo .userName {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+section.replyList div.userInfo .date {
+	color: #999;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+section.replyList div.replyContent {
+	padding: 10px;
+	margin: 20px 0;
+}
+
+section.replyList div.replyFooter {
+	margin-bottom: 10px;
+	position: relative;
+	left: 580;
+}
+
+section.replyList div.replyFooter button {
+	font-size: 14px;
+	border: 1px solid #999;
+	background: none;
+	margin-right: 10px;
+}
+
+div.replyModal {
+	position: relative;
+	z-index: 1;
+	display: none;
+}
+
+div.modalBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: -1;
+}
+
+div.modalContent {
+	position: fixed;
+	top: 20%;
+	left: calc(50% - 250px);
+	width: 525px;
+	height: 290px;
+	padding: 20px 10px;
+	background: #fff;
+	border: 2px solid #666;
+}
+
+div.modalContent textarea {
+	font-size: 16px;
+	font-family: '맑은 고딕', verdana;
+	padding: 10px;
+	width: 500px;
+	height: 200px;
+}
+
+div.modalContent button {
+	font-size: 20px;
+	padding: 5px 10px;
+	margin: 10px 0;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+div.modalContent button.modal_cancel {
+	margin-left: 20px;
+}
+
+h5 {
+	margin-left: 50;
+	color: #3FB0C8;
+	width: 100;
+}
 </style>
-	<title>전통 이酒 </title>
+<title>전통 이酒</title>
 </head>
 <body>
-	
-				<%@ include file="../include/header.jsp"%>
 
-		<br>
+	<%@ include file="../include/header.jsp"%>
+
+	<br>
 	<div id="root" class="container">
 		<section id="container">
-			<div id="container_box" style="width: 80; height: 320;border-bottom:2px solid #eee">
+			<div id="container_box"
+				style="width: 80; height: 320; border-bottom: 2px solid #eee">
 
 				<section id="content">
 					<form role="form" method="post">
@@ -100,7 +287,7 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 
 					<div class="goods">
 						<div class="goodsImg">
-							<img src="../resources/images/${shopList.pImg}">
+							<img src="../resources/${shopList.pImg}">
 						</div>
 
 						<div class="goodsInfo">
@@ -127,7 +314,8 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 							<p class="cartStock">
 								<span>구입 수량</span>
 								<button type="button" class="plus">+</button>
-								<input type="number" class="numBox_1" min="1" max="${shopList.pCount}" value="1" readonly="readonly" />
+								<input type="number" class="numBox_1" min="1"
+									max="${shopList.pCount}" value="1" readonly="readonly" />
 								<button type="button" class="minus">-</button>
 
 								<script>
@@ -156,10 +344,10 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 
 							</p>
 
-								<p class="addToCart">
-								 <button type="button" class="addCart_btn">장바구니에 담기</button>
-								 
-								 <script>
+							<p class="addToCart">
+								<button type="button" class="addCart_btn">장바구니에 담기</button>
+
+								<script>
 								  $(".addCart_btn").click(function(){
 								   var gdsNum = $("#gdsNum").val();
 								   var cartStock = $(".numBox_1").val();
@@ -188,34 +376,35 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 								   });
 								  });
 								 </script>
-								</p>
-							<div style="margin:20px 0 20px 20px">						
-							<span>상세내용</span>
-							<div class="gdsDes">${shopList.pInfo}</div>
-							</div>	
+							</p>
+							<div style="margin: 20px 0 20px 20px">
+								<span>상세내용</span>
+								<div class="gdsDes">${shopList.pInfo}</div>
+							</div>
 						</div>
 					</div>
 				</section>
-			
+
 			</div>
 			<br>
-					<h5>상품평</h5>
-			<div id="reply">
-				
+			<div id="reply" style="margin-top: 200px !important;">
+				<h5>상품평</h5>
+
 				<c:if test="${member == null }">
-				
-				<p id="replylogin">
-				
+
+					<p id="replylogin">
+
 						소감을 남기시려면 <a href="/member/loginPage">로그인</a>해주세요
 				</c:if>
-					<!-- <ol>
-				
-					</ol>
-					<script> 
+				<section class="replyList">
+				<ol>
+
+				</ol>
+				<script> 
 						replyList();
-					</script> -->
-					
-					<script>
+				</script>
+
+				<script>
 						$(document).on("click", ".modify", function(){
 						$(".replyModal").fadeIn(200);
 						
@@ -255,18 +444,21 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 						  }
 					 });
 					</script>
+				</section>
 				<c:if test="${member != null}">
 					<section class="replyForm">
-						<form role="form" method="post" autocomplete="off" action="/product/replyView">
-							<input type="hidden" name="pNo" id="gdsNum" value="${shopList.pNo}">
+						<form role="form" method="post" autocomplete="off"
+							action="/product/replyView">
+							<input type="hidden" name="pNo" id="gdsNum"
+								value="${shopList.pNo}">
 							<div class="input_area">
 								<textarea name="cContent" id="repCon"></textarea>
 							</div>
 
 							<div class="input_area">
 								<button type="button" id="reply_btn">소감 남기기</button>
-								
-							<script>
+
+								<script>
 							 $("#reply_btn").click(function(){
 							  
 							  var formObj = $(".replyForm form[role='form']");
@@ -296,29 +488,25 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 				</c:if>
 			</div>
 		</section>
-	</div>
+		<div class="replyModal">
 
-		
-				<%@ include file="../include/footer.jsp"%>
-			
-	<div class="replyModal">
+			<div class="modalContent">
+
+				<div>
+					<textarea class="modal_repCon" name="modal_repCon"></textarea>
+				</div>
+
+				<div>
+					<button type="button" class="modal_modify_btn">수정</button>
+					<button type="button" class="modal_cancel">취소</button>
+				</div>
+
+			</div>
+
+			<div class="modalBackground"></div>
+
+		</div>
 	
-	 <div class="modalContent">
-	  
-	  <div>
-	   <textarea class="modal_repCon" name="modal_repCon"></textarea>
-	  </div>
-	  
-	  <div>
-	   <button type="button" class="modal_modify_btn">수정</button>
-	   <button type="button" class="modal_cancel">취소</button>
-	  </div>
-	  
-	 </div>
-	
-	 <div class="modalBackground"></div>
-	 
-	</div>
 	<script>
 	$(".modal_modify_btn").click(function(){
 		 var modifyConfirm = confirm("정말로 수정하시겠습니까?");
@@ -355,6 +543,10 @@ h5{margin-left:50; color:#3FB0C8; width:100;}
 		 $(".replyModal").fadeOut(200);
 		});
 		</script>
-		
+	<div>
+		<%@ include file="../include/footer.jsp"%>
+	</div>
+	</div>
+
 </body>
 </html>

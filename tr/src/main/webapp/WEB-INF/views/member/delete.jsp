@@ -47,8 +47,8 @@
    	<div id="main">
    		<div class="title">마이페이지 > <span>회원탈퇴</span></div>
 		
-		<div id="content">
-			<form method="post" action="deleteSuccess" name="frm">
+		<div id="Dcontent">
+			<form method="post" action="delete" name="frm">
 				<table>
 					<tr><th colspan="2">정말로 탈퇴하시겠습니까?</th></tr>
 					<tr>

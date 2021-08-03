@@ -104,7 +104,7 @@ public class AdminController {
 	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
 	public String getOrderDelete(@RequestParam("n") String oId, Model model) throws Exception {
 		logger.info("Get orderDelete");
-
+		aService.orderDetailsDelete(oId);
 		aService.orderDelete(oId);
 
 		return "redirect:/admin/order/orderList";

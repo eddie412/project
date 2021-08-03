@@ -43,7 +43,7 @@
 							<div class="card h-100">
 								<div>
 								<a href="/product/view?n=${search.pNo}"> 
-								<img class="card-img-top" src="../resources/images/${search.pImg}"></a>
+								<img class="card-img-top" src="../resources/${search.pImg}"></a>
 								</div>
 							<div id="card-body p-4">
 								<div class="text-center">

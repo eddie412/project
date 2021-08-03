@@ -24,6 +24,14 @@ body{
 	font-weight: 800;
 	text-align: center;
 }
+.crow {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -.5);
+  margin-left: calc(var(--bs-gutter-x) * -.5);
+}
 
 
 /* 장바구니 */
@@ -66,8 +74,8 @@ body{
 }
 
 #main .img{
-	width: 60%;
-	height: 15rem;
+	width: 200px;
+	height: 400px;
 	float: right;
 }
 #main .info{

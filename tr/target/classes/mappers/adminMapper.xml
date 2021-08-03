@@ -83,11 +83,18 @@
 		where oId=#{oId}
 	</update>
 	
-	<!-- 제품 삭제	 -->
+	<!-- 주문 삭제	 -->
 	<delete id="orderDelete">
 	delete	tr_order
 	where oId = #{oId}
 	</delete>
+	
+	<!-- 주문 삭제2-->
+	<delete id="orderDetailsDelete">
+	delete	tr_orderDetails
+	where oId = #{oId}
+	</delete>
+	
 	<!-- 회원 조회 -->
 	<select id="memberView" resultType="com.tr.VO.MemberVO">
 		Select userId,userName,userEmail,userPhone,userAddr,userBday
@@ -105,7 +112,7 @@
 			userBday=#{userBday}
 		where userId=#{userId}
 	</update>
-	<!-- 제품 삭제	 -->
+	<!-- 회원 삭제	 -->
 	<delete id="memberDelete">
 	delete	tr_member
 	where userId = #{userId}

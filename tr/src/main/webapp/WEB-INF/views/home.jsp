@@ -46,7 +46,7 @@
 							<!-- Product image-->
 							<div>
 								<a href="/product/view?n=${homeList.pNo}"><img
-									class="card-img-top" src="../resources/images/${homeList.pImg}"></a>
+									class="card-img-top" src="../resources/${homeList.pImg}"></a>
 							</div>
 							<div id="card-body p-4">
 								<div class="text-center">

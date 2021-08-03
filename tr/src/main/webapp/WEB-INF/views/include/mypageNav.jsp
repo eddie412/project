@@ -17,7 +17,7 @@
 	text-align: center;
 	border-right: 1px solid gray;
 	font-family: 'Gowun Dodum', sans-serif;
-	z-index:-1;
+	z-index:0;
 }
 
 #nav .nav_title {

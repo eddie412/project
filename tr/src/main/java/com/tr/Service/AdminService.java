@@ -25,8 +25,10 @@ public interface AdminService {
 	public List<OrderVO> orderView(String oId) throws Exception;
 	//주문 수정
 	public void orderModify(OrderVO vo) throws Exception;
-	//상품 삭제
+	//주문 삭제
 	public void orderDelete(String oId) throws Exception;
+	public void orderDetailsDelete(String oId) throws Exception;
+	
 	
 	//회원 조회
 	public MemberVO memberView(String userId) throws Exception;

@@ -65,6 +65,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public void orderDelete(String oId) throws Exception {
 		sql.delete("adminMapper.orderDelete", oId);
 	}
+	//주문 삭제 2
+	@Override
+	public void orderDetailsDelete(String oId) throws Exception {
+		sql.delete("adminMapper.orderDetailsDelete", oId);
+	}
 
 	// 회원 조회
 	@Override

@@ -8,7 +8,7 @@
 
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="../resources/css/homeStyles.css" rel="stylesheet" />
-<body>
+<body style="position: absoulte; z-index:5; ">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:7.6rem;">
 	<div class="container px-6  py-1 px-lg-7">
 		<!-- 햄버거 메뉴 -->

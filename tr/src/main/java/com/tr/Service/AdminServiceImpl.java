@@ -65,6 +65,11 @@ public class AdminServiceImpl implements AdminService {
 	public void orderDelete(String oId) throws Exception {
 		dao.orderDelete(oId);
 	}
+	//주문 삭제 2
+	@Override
+	public void orderDetailsDelete(String oId) throws Exception {
+		dao.orderDetailsDelete(oId);
+	}
 
 	// 회원 조회
 	@Override
