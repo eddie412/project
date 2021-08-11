@@ -142,4 +142,9 @@ https://user-images.githubusercontent.com/84488362/129009752-1fe956b6-4ab4-4195-
 + 로그아웃  
   a. 로그아웃 상태로 메인 페이지로 이동됩니다.
 +😉구동영상
-Uploading 마이페이지.mp4…
+https://user-images.githubusercontent.com/84488362/129010161-05079bd7-4ab4-46b0-a72a-cbe536d1952a.mp4
+
+
+
+
+
